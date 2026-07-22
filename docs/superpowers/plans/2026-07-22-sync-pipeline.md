@@ -175,7 +175,7 @@ describe('attributesOf', () => {
     expect(attributesOf(ad as never)).toEqual({ PRICE: '330000' })
   })
 
-  it('склеює кілька значень через кому', () => {
+  it('склеює кілька значень через вертикальну риску', () => {
     const ad = {
       id: '1',
       attributes: { attribute: [{ name: 'X', values: ['a', 'b'] }] },
