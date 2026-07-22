@@ -50,6 +50,62 @@ describe('carContentHash', () => {
     })
     expect(await carContentHash(extra)).not.toBe(await carContentHash(car()))
   })
+
+  it('реагує на зміну make', async () => {
+    expect(await carContentHash(car({ make: 'Rolls-Royce' }))).not.toBe(await carContentHash(car()))
+  })
+
+  it('реагує на зміну model', async () => {
+    expect(await carContentHash(car({ model: 'Continental' }))).not.toBe(await carContentHash(car()))
+  })
+
+  it('розрізняє обладнання з комою всередині елемента (межі масиву не змішуються)', async () => {
+    const a = car({
+      equipment: [
+        { de: 'A,B', en: 'A,B', tr: 'A,B' },
+        { de: 'C', en: 'C', tr: 'C' },
+      ],
+    })
+    const b = car({
+      equipment: [
+        { de: 'A', en: 'A', tr: 'A' },
+        { de: 'B,C', en: 'B,C', tr: 'B,C' },
+      ],
+    })
+    expect(await carContentHash(a)).not.toBe(await carContentHash(b))
+  })
+
+  it('ІГНОРУЄ порядок обладнання для того самого набору', async () => {
+    const a = car({
+      equipment: [
+        { de: 'ABS', en: 'ABS', tr: 'ABS' },
+        { de: 'Klima', en: 'AC', tr: 'Klima' },
+      ],
+    })
+    const b = car({
+      equipment: [
+        { de: 'Klima', en: 'AC', tr: 'Klima' },
+        { de: 'ABS', en: 'ABS', tr: 'ABS' },
+      ],
+    })
+    expect(await carContentHash(a)).toBe(await carContentHash(b))
+  })
+
+  it('реагує на зміну порядку фото (порядок галереї клієнтоважливий)', async () => {
+    const a = car({
+      images: [
+        { key: 'cars/1/0.webp', source: 'a.jpg', order: 0 },
+        { key: 'cars/1/1.webp', source: 'b.jpg', order: 1 },
+      ],
+    })
+    const b = car({
+      images: [
+        { key: 'cars/1/1.webp', source: 'b.jpg', order: 0 },
+        { key: 'cars/1/0.webp', source: 'a.jpg', order: 1 },
+      ],
+    })
+    expect(await carContentHash(a)).not.toBe(await carContentHash(b))
+  })
 })
 
 describe('withContentHash', () => {

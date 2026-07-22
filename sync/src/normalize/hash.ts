@@ -17,8 +17,15 @@ async function sha256(text: string): Promise<string> {
  * сайту й вичерпало б місячний ліміт білдів за кілька днів.
  */
 export async function carContentHash(car: Car): Promise<string> {
+  // make/model йдуть окремо від title: cleanTitle() виводить title з
+  // вільного тексту оголошення дилера і підставляє make/model лише коли
+  // заголовок порожній або дорівнює make. Тож willhaben може виправити
+  // невірно категоризовану make/model, а текст заголовка не зміниться —
+  // без цих полів така зміна лишилась би непоміченою.
   const significant = [
     car.id,
+    car.make,
+    car.model,
     car.title,
     car.price,
     car.mileage,
@@ -31,8 +38,18 @@ export async function carContentHash(car: Car): Promise<string> {
     car.warranty,
     car.seats,
     car.owners,
-    car.equipment.map((e) => e.de).join(','),
-    car.images.map((i) => i.source).join(','),
+    // Масиви передаємо як є (не через join), щоб JSON.stringify зберігав
+    // межі елементів: join(',') змішує ['A,B','C'] і ['A','B,C'] в один
+    // рядок, і кома всередині значення (напр. неперекладеного терміну
+    // обладнання) ламає розрізнення.
+    //
+    // equipment сортуємо: willhaben не гарантує стабільний порядок
+    // повернення того самого набору обладнання, а сортування не може
+    // приховати реальну зміну — інший набір дає інший відсортований список.
+    [...car.equipment.map((e) => e.de)].sort(),
+    // images НЕ сортуємо: порядок тут — порядок показу в галереї на сайті,
+    // тобто сам по собі клієнтоважливий контент.
+    car.images.map((i) => i.source),
   ]
   return sha256(JSON.stringify(significant))
 }
