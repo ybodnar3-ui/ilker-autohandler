@@ -90,10 +90,10 @@ cp docs/research/fixtures/*.json sync/test/fixtures/
     "deploy": "wrangler deploy"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260101.0",
-    "typescript": "^5.7.0",
-    "vitest": "^3.0.0",
-    "wrangler": "^3.100.0"
+    "@cloudflare/workers-types": "^5.20260722.1",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.113.0"
   }
 }
 ```
