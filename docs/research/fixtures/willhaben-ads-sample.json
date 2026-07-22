@@ -1,0 +1,1724 @@
+[
+ {
+  "id": "1619051774",
+  "verticalId": 3,
+  "adTypeId": 20,
+  "productId": 305,
+  "advertStatus": {
+   "id": "active",
+   "description": "aktiv",
+   "statusId": 50
+  },
+  "description": "Bentley Azure /// SONDER EDITION /// FINANZIERUNG 0€ MÖ...",
+  "attributes": {
+   "attribute": [
+    {
+     "name": "PRICE_REDUCTION_SET_DATE",
+     "values": [
+      "1774602324486"
+     ]
+    },
+    {
+     "name": "DEFECTS_LIABILITY",
+     "values": [
+      "1"
+     ]
+    },
+    {
+     "name": "BODY_DYN",
+     "values": [
+      "Allgemeine Informationen   —————   * Bank Finanzierung  möglich * Monatliche Rate ab ca. 150–300 €  möglich * Flexible Laufzeit & Anzahlung   Bei Interesse erstellen wir Ihnen gerne ein passendes Finanzierungsangebot.   —————   * Privat Finanzierung..."
+     ]
+    },
+    {
+     "name": "CONDITION_REPORT",
+     "values": [
+      "1"
+     ]
+    },
+    {
+     "name": "MOTOR_PRICE_BONUS/TRADE_IN",
+     "values": [
+      "false"
+     ]
+    },
+    {
+     "name": "MILEAGE",
+     "values": [
+      "6800"
+     ]
+    },
+    {
+     "name": "imagedescription",
+     "values": [
+      "Bild 1"
+     ]
+    },
+    {
+     "name": "CAR_MODEL/MAKE",
+     "values": [
+      "Bentley"
+     ]
+    },
+    {
+     "name": "ORG_UUID",
+     "values": [
+      "2a3a156d-eefe-4e6c-927e-f799d5cb8781"
+     ]
+    },
+    {
+     "name": "PUBLISHED",
+     "values": [
+      "1784714400000"
+     ]
+    },
+    {
+     "name": "COUNTRY",
+     "values": [
+      "Österreich"
+     ]
+    },
+    {
+     "name": "CAR_MODEL/MODEL",
+     "values": [
+      "Azure"
+     ]
+    },
+    {
+     "name": "CAR_MODEL/MODEL_SPECIFICATION",
+     "values": [
+      "Azure /// SONDER EDITION /// FINANZIERUNG 0€ MÖ..."
+     ]
+    },
+    {
+     "name": "PRICE/AMOUNT",
+     "values": [
+      "330000.0"
+     ]
+    },
+    {
+     "name": "AUTDEALER",
+     "values": [
+      "0"
+     ]
+    },
+    {
+     "name": "NOOFSEATS",
+     "values": [
+      "4"
+     ]
+    },
+    {
+     "name": "ADTYPE_ID",
+     "values": [
+      "20"
+     ]
+    },
+    {
+     "name": "ORGID",
+     "values": [
+      "1004471"
+     ]
+    },
+    {
+     "name": "SEO_URL",
+     "values": [
+      "gebrauchtwagen/d/auto/bentley-azure-sonder-edition-finanzierung-0-moe-1619051774/"
+     ]
+    },
+    {
+     "name": "PUBLISHED_String",
+     "values": [
+      "2026-07-22T12:00:00Z"
+     ]
+    },
+    {
+     "name": "ENGINE/EFFECT",
+     "values": [
+      "404"
+     ]
+    },
+    {
+     "name": "UPSELLING_AD_SEARCHRESULT",
+     "values": [
+      "true"
+     ]
+    },
+    {
+     "name": "MMO",
+     "values": [
+      "4/161/905/1774_-1239811916_n.jpg"
+     ]
+    },
+    {
+     "name": "ENGINE/FUEL",
+     "values": [
+      "100001"
+     ]
+    },
+    {
+     "name": "AD_UUID",
+     "values": [
+      "87c00fe8-f031-4522-8e6d-b34e9d305250"
+     ]
+    },
+    {
+     "name": "ADDRESS",
+     "values": [
+      "Groß-Enzersdorfer Straße 88 b"
+     ]
+    },
+    {
+     "name": "AD_SEARCHRESULT_LOGO",
+     "values": [
+      "adSearchResult/1004471/imageupload15177447890152285279hayatlogo1002_12339694391222899214.png"
+     ]
+    },
+    {
+     "name": "SOURCE",
+     "values": [
+      "15"
+     ]
+    },
+    {
+     "name": "OLD_PRICE",
+     "values": [
+      "240000.0"
+     ]
+    },
+    {
+     "name": "CONDITION",
+     "values": [
+      "20"
+     ]
+    },
+    {
+     "name": "COORDINATES",
+     "values": [
+      "48.21484,16.5058"
+     ]
+    },
+    {
+     "name": "LOCATION",
+     "values": [
+      "Wien, 22. Bezirk, Donaustadt"
+     ]
+    },
+    {
+     "name": "POSTCODE",
+     "values": [
+      "1220"
+     ]
+    },
+    {
+     "name": "STATE",
+     "values": [
+      "Wien"
+     ]
+    },
+    {
+     "name": "ORGNAME",
+     "values": [
+      "Hayat Gruppe"
+     ]
+    },
+    {
+     "name": "fnmmocount",
+     "values": [
+      "35"
+     ]
+    },
+    {
+     "name": "PRICE_REDUCTION_SET_DATE_String",
+     "values": [
+      "2026-03-27T10:05:24Z"
+     ]
+    },
+    {
+     "name": "EQUIPMENT",
+     "values": [
+      "5;101;85;110;24;69;42;6;9;12;40;2;34;15;11;8;43;117;75;3;29;79;19;72;77;97;116;111;94;68;92;74;45;145;107;136;66;63;35;76;156;135;132;114;93;138;104;89;82;105;100;98;86;99;95;67;106;88;146;38;28;137;160;81;144;84;133;91;134;102;108;118;115;122;103;109;120;125;121;113;112;126;154;151;153;127;128;129;130;131;140;143;148;152;155;139;141;142;147;149;150;161"
+     ]
+    },
+    {
+     "name": "DISTRICT",
+     "values": [
+      "Wien"
+     ]
+    },
+    {
+     "name": "HEADING",
+     "values": [
+      "Bentley Azure /// SONDER EDITION /// FINANZIERUNG 0€ MÖ..."
+     ]
+    },
+    {
+     "name": "CAR_TYPE",
+     "values": [
+      "Cabrio / Roadster"
+     ]
+    },
+    {
+     "name": "NO_OF_OWNERS",
+     "values": [
+      "1"
+     ]
+    },
+    {
+     "name": "ADID",
+     "values": [
+      "1619051774"
+     ]
+    },
+    {
+     "name": "EXTERIORCOLOURMAIN",
+     "values": [
+      "10"
+     ]
+    },
+    {
+     "name": "YEAR_MODEL",
+     "values": [
+      "2023"
+     ]
+    },
+    {
+     "name": "ALL_IMAGE_URLS",
+     "values": [
+      "4/161/905/1774_-1239811916_n.jpg;4/161/905/1774_1034610546_n.jpg;4/161/905/1774_-447675780_n.jpg;4/161/905/1774_2042034041_n.jpg;4/161/905/1774_675541560_n.jpg;4/161/905/1774_-1404895370_n.jpg;4/161/905/1774_2032599281_n.jpg;4/161/905/1774_-1724253234_n.jpg;4/161/905/1774_-744162528_n.jpg;4/161/905/1774_1541604417_n.jpg;4/161/905/1774_194048319_n.jpg;4/161/905/1774_-671352224_n.jpg;4/161/905/1774_-747389653_n.jpg;4/161/905/1774_379451754_n.jpg;4/161/905/1774_887090258_n.jpg;4/161/905/1774_-1383535699_n.jpg;4/161/905/1774_-2104035496_n.jpg;4/161/905/1774_-892405582_n.jpg;4/161/905/1774_2119108133_n.jpg;4/161/905/1774_-913704954_n.jpg;4/161/905/1774_168626617_n.jpg;4/161/905/1774_924843630_n.jpg;4/161/905/1774_1483935059_n.jpg;4/161/905/1774_2048520977_n.jpg;4/161/905/1774_1909718495_n.jpg;4/161/905/1774_1401483845_n.jpg;4/161/905/1774_1672019268_n.jpg;4/161/905/1774_-2026511855_n.jpg;4/161/905/1774_-1655385256_n.jpg;4/161/905/1774_-1563754667_n.jpg;4/161/905/1774_1163987846_n.jpg;4/161/905/1774_-440401554_n.jpg;4/161/905/1774_-274398446_n.jpg;4/161/905/1774_-798752870_n.jpg;4/161/905/1774_-1461390755_n.jpg"
+     ]
+    },
+    {
+     "name": "ISPRIVATE",
+     "values": [
+      "0"
+     ]
+    },
+    {
+     "name": "MOTOR_PRICE_BONUS/FINANCE",
+     "values": [
+      "false"
+     ]
+    },
+    {
+     "name": "PRODUCT_ID",
+     "values": [
+      "305"
+     ]
+    },
+    {
+     "name": "IS_BUMPED",
+     "values": [
+      "1"
+     ]
+    },
+    {
+     "name": "TRANSMISSION",
+     "values": [
+      "180004"
+     ]
+    },
+    {
+     "name": "WARRANTY",
+     "values": [
+      "-1"
+     ]
+    },
+    {
+     "name": "PRICE",
+     "values": [
+      "330000"
+     ]
+    },
+    {
+     "name": "PRICE_FOR_DISPLAY",
+     "values": [
+      "€ 330.000"
+     ]
+    },
+    {
+     "name": "LAST_UPDATED",
+     "values": [
+      "1784714419000"
+     ]
+    },
+    {
+     "name": "ENGINE/FUEL_RESOLVED",
+     "values": [
+      "Benzin"
+     ]
+    },
+    {
+     "name": "TRANSMISSION_RESOLVED",
+     "values": [
+      "Automatik"
+     ]
+    },
+    {
+     "name": "CONDITION_RESOLVED",
+     "values": [
+      "Gebrauchtwagen"
+     ]
+    },
+    {
+     "name": "EQUIPMENT_RESOLVED",
+     "values": [
+      "ABS",
+      "Dachreling",
+      "Serviceheft",
+      "Nichtraucherfahrzeug",
+      "Fahrerairbag",
+      "Alufelgen",
+      "Bordcomputer",
+      "elektr. Fensterheber",
+      "Klimaanlage",
+      "Lederausstattung",
+      "Navigationssystem",
+      "Servolenkung",
+      "Radio",
+      "Sitzheizung vorne",
+      "Tempomat",
+      "Zentralverriegelung",
+      "Xenon",
+      "Kopfairbags",
+      "Beifahrerairbags",
+      "Seitenairbags",
+      "Alarmanlage",
+      "Behindertengerecht",
+      "elektr. Spiegel",
+      "elektr. Sitze",
+      "ESP",
+      "ISOFIX",
+      "Kurvenlicht",
+      "Mittelarmlehne",
+      "Multifunktionslenkrad",
+      "Nebelscheinwerfer",
+      "Panoramadach",
+      "Parksensor hinten",
+      "Regensensor",
+      "Scheinwerferreinigung",
+      "Sperrdifferential",
+      "Innenspiegel autom. abblendend",
+      "Sportfahrwerk",
+      "Sportsitze",
+      "Standheizung",
+      "Wegfahrsperre",
+      "Windschott",
+      "Getönte Scheiben",
+      "Beifahrer-Airbag Deaktivierung",
+      "Lederlenkrad",
+      "Notbremsassistent",
+      "Luftfederung",
+      "Tagfahrlicht",
+      "Freisprecheinrichtung",
+      "Metallic-Lackierung",
+      "Start/Stop-Automatik",
+      "Abstandstempomat",
+      "Head-Up-Display",
+      "Rückfahrkamera",
+      "Bluetooth",
+      "Lichtsensor",
+      "Sportpaket",
+      "Spurhalteassistent",
+      "LED-Scheinwerfer",
+      "Sitzbelüftung",
+      "Klimaautomatik",
+      "CD Player",
+      "Keyless go",
+      "Traktionskontrolle",
+      "Reifendruckkontrolle",
+      "Parkassistent selbstlenkend",
+      "Leasingfähig",
+      "Berganfahrassistent",
+      "Teilautonomes Fahren",
+      "DAB-Radio",
+      "Parksensor vorne",
+      "Schaltwippen",
+      "Komfortfahrwerk",
+      "Laserlicht",
+      "Fernlichtassistent",
+      "Totwinkelassistent",
+      "Notrufsystem",
+      "Induktionsladen",
+      "Apple CarPlay",
+      "Frontscheibenheizung",
+      "Lenkradheizung",
+      "Lordosenstütze",
+      "Android Auto",
+      "Verkehrszeichenerkennung",
+      "Spurwechselassistent",
+      "Touchscreen",
+      "2-Zonen-Klimaautomatik",
+      "3-Zonen-Klimaautomatik",
+      "360° Kamera",
+      "4-Zonen-Klimaautomatik",
+      "Ambiente-Beleuchtung",
+      "Matrix LED Licht",
+      "Pannenkit",
+      "Sommerreifen",
+      "Stahlfelgen",
+      "Virtual Cockpit",
+      "Massagesitze",
+      "Müdigkeitswarnsystem",
+      "Nachtsichtassistent",
+      "Sitzheizung hinten",
+      "Soundsystem",
+      "Sprachsteuerung",
+      "LED-Tagfahrlicht"
+     ]
+    },
+    {
+     "name": "WARRANTY_RESOLVED",
+     "values": [
+      "Nein"
+     ]
+    }
+   ]
+  },
+  "advertImageList": {
+   "advertImage": [
+    {
+     "id": 1,
+     "name": "4/161/905/1774_-1239811916_n.jpg",
+     "selfLink": "https://api.willhaben.at/restapi/v2/atimage/1619051774/1",
+     "description": "Cover Image",
+     "mainImageUrl": "https://cache.willhaben.at/mmo/4/161/905/1774_-1239811916_n_hoved.jpg",
+     "thumbnailImageUrl": "https://cache.willhaben.at/mmo/4/161/905/1774_-1239811916_n_thumb.jpg",
+     "referenceImageUrl": "https://cache.willhaben.at/mmo/4/161/905/1774_-1239811916_n.jpg",
+     "similarImageSearchUrl": null,
+     "reference": "4/161/905/1774_-1239811916_n.jpg"
+    },
+    {
+     "id": 1,
+     "name": "4/161/905/1774_1034610546_n.jpg",
+     "selfLink": "https://api.willhaben.at/restapi/v2/atimage/1619051774/1",
+     "description": "Cover Image",
+     "mainImageUrl": "https://cache.willhaben.at/mmo/4/161/905/1774_1034610546_n_hoved.jpg",
+     "thumbnailImageUrl": "https://cache.willhaben.at/mmo/4/161/905/1774_1034610546_n_thumb.jpg",
+     "referenceImageUrl": "https://cache.willhaben.at/mmo/4/161/905/1774_1034610546_n.jpg",
+     "similarImageSearchUrl": null,
+     "reference": "4/161/905/1774_1034610546_n.jpg"
+    },
+    {
+     "id": 1,
+     "name": "4/161/905/1774_-447675780_n.jpg",
+     "selfLink": "https://api.willhaben.at/restapi/v2/atimage/1619051774/1",
+     "description": "Cover Image",
+     "mainImageUrl": "https://cache.willhaben.at/mmo/4/161/905/1774_-447675780_n_hoved.jpg",
+     "thumbnailImageUrl": "https://cache.willhaben.at/mmo/4/161/905/1774_-447675780_n_thumb.jpg",
+     "referenceImageUrl": "https://cache.willhaben.at/mmo/4/161/905/1774_-447675780_n.jpg",
+     "similarImageSearchUrl": null,
+     "reference": "4/161/905/1774_-447675780_n.jpg"
+    }
+   ],
+   "floorPlans": []
+  },
+  "selfLink": "https://api.willhaben.at/restapi/v2/atverz/1619051774",
+  "contextLinkList": {
+   "contextLink": [
+    {
+     "id": "selfLink",
+     "description": "Identifies this entity",
+     "uri": "https://api.willhaben.at/restapi/v2/atverz/1619051774",
+     "selected": false,
+     "relativePath": "/atverz/1619051774",
+     "serviceName": "iad"
+    },
+    {
+     "id": "seoSelfLink",
+     "description": "Self reference",
+     "uri": "https://api.willhaben.at/restapi/v2/atverz/gebrauchtwagen/d/auto/bentley-azure-sonder-edition-finanzierung-0-moe-1619051774/",
+     "selected": false,
+     "relativePath": "/atverz/gebrauchtwagen/d/auto/bentley-azure-sonder-edition-finanzierung-0-moe-1619051774/",
+     "serviceName": "iad"
+    },
+    {
+     "id": "adDetailLink",
+     "description": "Self reference to advert via ad detail component",
+     "uri": "https://publicapi.willhaben.at/atdetail/v1/1619051774",
+     "selected": false,
+     "relativePath": "/1619051774",
+     "serviceName": "addetail"
+    },
+    {
+     "id": "removeAdFromFolder",
+     "description": "Remove ad from any folder",
+     "uri": "https://api.willhaben.at/restapi/v2/userfolders/remove/1619051774",
+     "selected": false,
+     "relativePath": "/userfolders/remove/1619051774",
+     "serviceName": "iad"
+    },
+    {
+     "id": "getFolderSaveLinks",
+     "description": "Get contextlinks to save the ad in the users folders",
+     "uri": "https://api.willhaben.at/restapi/v2/userfolders/links/1619051774",
+     "selected": false,
+     "relativePath": "/userfolders/links/1619051774",
+     "serviceName": "iad"
+    },
+    {
+     "id": "iadShareLink",
+     "description": "Share link in iAd",
+     "uri": "https://www.willhaben.at/iad/object?adId=1619051774",
+     "selected": false,
+     "relativePath": "/iad/object?adId=1619051774",
+     "serviceName": "web_url"
+    }
+   ]
+  },
+  "advertiserInfo": {
+   "label": "Gewährleistung",
+   "iconSVG": "https://cache.willhaben.at/img/resultlist/auto/icon_car_warrantycheck_v2.svg",
+   "iconPNG": "https://cache.willhaben.at/img/resultlist/auto/icon_car_warrantycheck.png",
+   "iconType": "CHECK"
+  },
+  "upsellingOrganisationLogo": "https://cache.willhaben.at/mmo/logo/adSearchResult/1004471/imageupload15177447890152285279hayatlogo1002_12339694391222899214_medium.png",
+  "teaserAttributes": [
+   {
+    "prefix": null,
+    "value": "2023",
+    "postfix": "EZ"
+   },
+   {
+    "prefix": null,
+    "value": "6.800",
+    "postfix": "km"
+   },
+   {
+    "prefix": null,
+    "value": "549",
+    "postfix": "PS (404 kW)"
+   }
+  ],
+  "children": null,
+  "dmpParameters": {
+   "motorcondition": [
+    "Gebrauchtwagen"
+   ],
+   "heading": "Bentley_Azure_SONDER_EDITION_FINANZIERUNG_0_MOe",
+   "city": [
+    "Wien_22_Bezirk_Donaustadt"
+   ],
+   "registrationfirstyear": 2023,
+   "fuel": [
+    "Benzin"
+   ],
+   "noofseats": 4,
+   "postcode": [
+    1220
+   ],
+   "make_model": [
+    "Bentley",
+    "Azure"
+   ],
+   "transmission": [
+    "Automatik"
+   ],
+   "postcode_str": [
+    "1220"
+   ],
+   "price": 330000,
+   "conditionreport": true,
+   "effect": 404,
+   "warranty": false,
+   "model": [
+    "Azure"
+   ],
+   "state": [
+    "Wien"
+   ],
+   "noofowners": 1,
+   "make": [
+    "Bentley"
+   ],
+   "mileage": 6800
+  }
+ },
+ {
+  "id": "1891775219",
+  "verticalId": 3,
+  "adTypeId": 20,
+  "productId": 305,
+  "advertStatus": {
+   "id": "active",
+   "description": "aktiv",
+   "statusId": 50
+  },
+  "description": "Ford Mustang Cabrio /// USA FAHRZEUG DAHER DER PREIS...",
+  "attributes": {
+   "attribute": [
+    {
+     "name": "PRICE_REDUCTION_SET_DATE",
+     "values": [
+      "1784200666803"
+     ]
+    },
+    {
+     "name": "DEFECTS_LIABILITY",
+     "values": [
+      "1"
+     ]
+    },
+    {
+     "name": "BODY_DYN",
+     "values": [
+      "Allgemeine Informationen   —————   * Privat Finanzierung  möglich * Monatliche Rate Verkäufer abhängig * hohe Anzahlung muss erbracht werden * Absicherung per Notar * Dokumente bleiben beim Verkäufer   —————   Gerne können Sie uns Ihre Preisvorstellung..."
+     ]
+    },
+    {
+     "name": "CONDITION_REPORT",
+     "values": [
+      "-1"
+     ]
+    },
+    {
+     "name": "MOTOR_PRICE_BONUS/TRADE_IN",
+     "values": [
+      "false"
+     ]
+    },
+    {
+     "name": "MILEAGE",
+     "values": [
+      "90688"
+     ]
+    },
+    {
+     "name": "imagedescription",
+     "values": [
+      "Bild 1"
+     ]
+    },
+    {
+     "name": "CAR_MODEL/MAKE",
+     "values": [
+      "Ford"
+     ]
+    },
+    {
+     "name": "ORG_UUID",
+     "values": [
+      "2a3a156d-eefe-4e6c-927e-f799d5cb8781"
+     ]
+    },
+    {
+     "name": "PUBLISHED",
+     "values": [
+      "1784521980000"
+     ]
+    },
+    {
+     "name": "COUNTRY",
+     "values": [
+      "Österreich"
+     ]
+    },
+    {
+     "name": "CAR_MODEL/MODEL",
+     "values": [
+      "Mustang"
+     ]
+    },
+    {
+     "name": "CAR_MODEL/MODEL_SPECIFICATION",
+     "values": [
+      "Mustang Cabrio /// USA FAHRZEUG DAHER DER PREIS..."
+     ]
+    },
+    {
+     "name": "PRICE/AMOUNT",
+     "values": [
+      "17999.0"
+     ]
+    },
+    {
+     "name": "AUTDEALER",
+     "values": [
+      "0"
+     ]
+    },
+    {
+     "name": "NOOFSEATS",
+     "values": [
+      "4"
+     ]
+    },
+    {
+     "name": "ADTYPE_ID",
+     "values": [
+      "20"
+     ]
+    },
+    {
+     "name": "ORGID",
+     "values": [
+      "1004471"
+     ]
+    },
+    {
+     "name": "SEO_URL",
+     "values": [
+      "gebrauchtwagen/d/auto/ford-mustang-cabrio-usa-fahrzeug-daher-der-preis-1891775219/"
+     ]
+    },
+    {
+     "name": "PUBLISHED_String",
+     "values": [
+      "2026-07-20T06:33:00Z"
+     ]
+    },
+    {
+     "name": "ENGINE/EFFECT",
+     "values": [
+      "233"
+     ]
+    },
+    {
+     "name": "UPSELLING_AD_SEARCHRESULT",
+     "values": [
+      "true"
+     ]
+    },
+    {
+     "name": "MMO",
+     "values": [
+      "9/189/177/5219_630152052.jpg"
+     ]
+    },
+    {
+     "name": "ENGINE/FUEL",
+     "values": [
+      "100001"
+     ]
+    },
+    {
+     "name": "AD_UUID",
+     "values": [
+      "c340a260-ab8c-4b6e-b1ce-b34e9d305250"
+     ]
+    },
+    {
+     "name": "ADDRESS",
+     "values": [
+      "Groß-Enzersdorfer Straße 88 b"
+     ]
+    },
+    {
+     "name": "AD_SEARCHRESULT_LOGO",
+     "values": [
+      "adSearchResult/1004471/imageupload15177447890152285279hayatlogo1002_12339694391222899214.png"
+     ]
+    },
+    {
+     "name": "SOURCE",
+     "values": [
+      "15"
+     ]
+    },
+    {
+     "name": "OLD_PRICE",
+     "values": [
+      "19299.0"
+     ]
+    },
+    {
+     "name": "CONDITION",
+     "values": [
+      "20"
+     ]
+    },
+    {
+     "name": "COORDINATES",
+     "values": [
+      "48.21484,16.5058"
+     ]
+    },
+    {
+     "name": "LOCATION",
+     "values": [
+      "Wien, 22. Bezirk, Donaustadt"
+     ]
+    },
+    {
+     "name": "POSTCODE",
+     "values": [
+      "1220"
+     ]
+    },
+    {
+     "name": "STATE",
+     "values": [
+      "Wien"
+     ]
+    },
+    {
+     "name": "ORGNAME",
+     "values": [
+      "Hayat Gruppe"
+     ]
+    },
+    {
+     "name": "fnmmocount",
+     "values": [
+      "26"
+     ]
+    },
+    {
+     "name": "PRICE_REDUCTION_SET_DATE_String",
+     "values": [
+      "2026-07-16T13:17:46Z"
+     ]
+    },
+    {
+     "name": "EQUIPMENT",
+     "values": [
+      "5;85;110;24;69;42;6;9;12;2;34;15;11;8;43;75;3;29;19;72;77;97;111;94;68;74;45;145;136;63;135;132;114;93;82;105;86;99;88;38;28;137;81;102;148"
+     ]
+    },
+    {
+     "name": "DISTRICT",
+     "values": [
+      "Wien"
+     ]
+    },
+    {
+     "name": "HEADING",
+     "values": [
+      "Ford Mustang Cabrio /// USA FAHRZEUG DAHER DER PREIS..."
+     ]
+    },
+    {
+     "name": "CAR_TYPE",
+     "values": [
+      "Cabrio / Roadster"
+     ]
+    },
+    {
+     "name": "NO_OF_OWNERS",
+     "values": [
+      "2"
+     ]
+    },
+    {
+     "name": "ADID",
+     "values": [
+      "1891775219"
+     ]
+    },
+    {
+     "name": "EXTERIORCOLOURMAIN",
+     "values": [
+      "7"
+     ]
+    },
+    {
+     "name": "YEAR_MODEL",
+     "values": [
+      "2015"
+     ]
+    },
+    {
+     "name": "ALL_IMAGE_URLS",
+     "values": [
+      "9/189/177/5219_630152052.jpg;9/189/177/5219_1908806039.jpg;9/189/177/5219_-1351157094.jpg;9/189/177/5219_-522666361.jpg;9/189/177/5219_1523838074.jpg;9/189/177/5219_-1498647746.jpg;9/189/177/5219_2016712482.jpg;9/189/177/5219_1145009302.jpg;9/189/177/5219_748401256.jpg;9/189/177/5219_226126378.jpg;9/189/177/5219_-1030108723.jpg;9/189/177/5219_121887311.jpg;9/189/177/5219_-1069242123.jpg;9/189/177/5219_1212041043.jpg;9/189/177/5219_-1287284762.jpg;9/189/177/5219_-581185240.jpg;9/189/177/5219_-941286783.jpg;9/189/177/5219_1385346407.jpg;9/189/177/5219_2141308297.jpg;9/189/177/5219_1290393432.jpg;9/189/177/5219_-1005401672.jpg;9/189/177/5219_-1527503320.jpg;9/189/177/5219_-1730262372.jpg;9/189/177/5219_647371319.jpg;9/189/177/5219_-652059834.jpg;9/189/177/5219_1164809436.jpg"
+     ]
+    },
+    {
+     "name": "ISPRIVATE",
+     "values": [
+      "0"
+     ]
+    },
+    {
+     "name": "MOTOR_PRICE_BONUS/FINANCE",
+     "values": [
+      "false"
+     ]
+    },
+    {
+     "name": "PRODUCT_ID",
+     "values": [
+      "305"
+     ]
+    },
+    {
+     "name": "IS_BUMPED",
+     "values": [
+      "1"
+     ]
+    },
+    {
+     "name": "TRANSMISSION",
+     "values": [
+      "180004"
+     ]
+    },
+    {
+     "name": "WARRANTY",
+     "values": [
+      "-1"
+     ]
+    },
+    {
+     "name": "PRICE",
+     "values": [
+      "17999"
+     ]
+    },
+    {
+     "name": "PRICE_FOR_DISPLAY",
+     "values": [
+      "€ 17.999"
+     ]
+    },
+    {
+     "name": "OLD_PRICE_FOR_DISPLAY",
+     "values": [
+      "€ 19.299"
+     ]
+    },
+    {
+     "name": "OFFER_BADGE_ENABLED",
+     "values": [
+      "true"
+     ]
+    },
+    {
+     "name": "LAST_UPDATED",
+     "values": [
+      "1784522116000"
+     ]
+    },
+    {
+     "name": "ENGINE/FUEL_RESOLVED",
+     "values": [
+      "Benzin"
+     ]
+    },
+    {
+     "name": "TRANSMISSION_RESOLVED",
+     "values": [
+      "Automatik"
+     ]
+    },
+    {
+     "name": "CONDITION_RESOLVED",
+     "values": [
+      "Gebrauchtwagen"
+     ]
+    },
+    {
+     "name": "EQUIPMENT_RESOLVED",
+     "values": [
+      "ABS",
+      "Serviceheft",
+      "Nichtraucherfahrzeug",
+      "Fahrerairbag",
+      "Alufelgen",
+      "Bordcomputer",
+      "elektr. Fensterheber",
+      "Klimaanlage",
+      "Lederausstattung",
+      "Servolenkung",
+      "Radio",
+      "Sitzheizung vorne",
+      "Tempomat",
+      "Zentralverriegelung",
+      "Xenon",
+      "Beifahrerairbags",
+      "Seitenairbags",
+      "Alarmanlage",
+      "elektr. Spiegel",
+      "elektr. Sitze",
+      "ESP",
+      "ISOFIX",
+      "Mittelarmlehne",
+      "Multifunktionslenkrad",
+      "Nebelscheinwerfer",
+      "Parksensor hinten",
+      "Regensensor",
+      "Scheinwerferreinigung",
+      "Innenspiegel autom. abblendend",
+      "Sportsitze",
+      "Getönte Scheiben",
+      "Beifahrer-Airbag Deaktivierung",
+      "Lederlenkrad",
+      "Notbremsassistent",
+      "Metallic-Lackierung",
+      "Start/Stop-Automatik",
+      "Rückfahrkamera",
+      "Bluetooth",
+      "LED-Scheinwerfer",
+      "Klimaautomatik",
+      "CD Player",
+      "Keyless go",
+      "Reifendruckkontrolle",
+      "Parksensor vorne",
+      "Sommerreifen"
+     ]
+    },
+    {
+     "name": "WARRANTY_RESOLVED",
+     "values": [
+      "Nein"
+     ]
+    }
+   ]
+  },
+  "advertImageList": {
+   "advertImage": [
+    {
+     "id": 1,
+     "name": "9/189/177/5219_630152052.jpg",
+     "selfLink": "https://api.willhaben.at/restapi/v2/atimage/1891775219/1",
+     "description": "Cover Image",
+     "mainImageUrl": "https://cache.willhaben.at/mmo/9/189/177/5219_630152052_hoved.jpg",
+     "thumbnailImageUrl": "https://cache.willhaben.at/mmo/9/189/177/5219_630152052_thumb.jpg",
+     "referenceImageUrl": "https://cache.willhaben.at/mmo/9/189/177/5219_630152052.jpg",
+     "similarImageSearchUrl": null,
+     "reference": "9/189/177/5219_630152052.jpg"
+    },
+    {
+     "id": 1,
+     "name": "9/189/177/5219_1908806039.jpg",
+     "selfLink": "https://api.willhaben.at/restapi/v2/atimage/1891775219/1",
+     "description": "Cover Image",
+     "mainImageUrl": "https://cache.willhaben.at/mmo/9/189/177/5219_1908806039_hoved.jpg",
+     "thumbnailImageUrl": "https://cache.willhaben.at/mmo/9/189/177/5219_1908806039_thumb.jpg",
+     "referenceImageUrl": "https://cache.willhaben.at/mmo/9/189/177/5219_1908806039.jpg",
+     "similarImageSearchUrl": null,
+     "reference": "9/189/177/5219_1908806039.jpg"
+    },
+    {
+     "id": 1,
+     "name": "9/189/177/5219_-1351157094.jpg",
+     "selfLink": "https://api.willhaben.at/restapi/v2/atimage/1891775219/1",
+     "description": "Cover Image",
+     "mainImageUrl": "https://cache.willhaben.at/mmo/9/189/177/5219_-1351157094_hoved.jpg",
+     "thumbnailImageUrl": "https://cache.willhaben.at/mmo/9/189/177/5219_-1351157094_thumb.jpg",
+     "referenceImageUrl": "https://cache.willhaben.at/mmo/9/189/177/5219_-1351157094.jpg",
+     "similarImageSearchUrl": null,
+     "reference": "9/189/177/5219_-1351157094.jpg"
+    }
+   ],
+   "floorPlans": []
+  },
+  "selfLink": "https://api.willhaben.at/restapi/v2/atverz/1891775219",
+  "contextLinkList": {
+   "contextLink": [
+    {
+     "id": "selfLink",
+     "description": "Identifies this entity",
+     "uri": "https://api.willhaben.at/restapi/v2/atverz/1891775219",
+     "selected": false,
+     "relativePath": "/atverz/1891775219",
+     "serviceName": "iad"
+    },
+    {
+     "id": "seoSelfLink",
+     "description": "Self reference",
+     "uri": "https://api.willhaben.at/restapi/v2/atverz/gebrauchtwagen/d/auto/ford-mustang-cabrio-usa-fahrzeug-daher-der-preis-1891775219/",
+     "selected": false,
+     "relativePath": "/atverz/gebrauchtwagen/d/auto/ford-mustang-cabrio-usa-fahrzeug-daher-der-preis-1891775219/",
+     "serviceName": "iad"
+    },
+    {
+     "id": "adDetailLink",
+     "description": "Self reference to advert via ad detail component",
+     "uri": "https://publicapi.willhaben.at/atdetail/v1/1891775219",
+     "selected": false,
+     "relativePath": "/1891775219",
+     "serviceName": "addetail"
+    },
+    {
+     "id": "removeAdFromFolder",
+     "description": "Remove ad from any folder",
+     "uri": "https://api.willhaben.at/restapi/v2/userfolders/remove/1891775219",
+     "selected": false,
+     "relativePath": "/userfolders/remove/1891775219",
+     "serviceName": "iad"
+    },
+    {
+     "id": "getFolderSaveLinks",
+     "description": "Get contextlinks to save the ad in the users folders",
+     "uri": "https://api.willhaben.at/restapi/v2/userfolders/links/1891775219",
+     "selected": false,
+     "relativePath": "/userfolders/links/1891775219",
+     "serviceName": "iad"
+    },
+    {
+     "id": "iadShareLink",
+     "description": "Share link in iAd",
+     "uri": "https://www.willhaben.at/iad/object?adId=1891775219",
+     "selected": false,
+     "relativePath": "/iad/object?adId=1891775219",
+     "serviceName": "web_url"
+    }
+   ]
+  },
+  "advertiserInfo": {
+   "label": "Gewährleistung",
+   "iconSVG": "https://cache.willhaben.at/img/resultlist/auto/icon_car_warrantycheck_v2.svg",
+   "iconPNG": "https://cache.willhaben.at/img/resultlist/auto/icon_car_warrantycheck.png",
+   "iconType": "CHECK"
+  },
+  "upsellingOrganisationLogo": "https://cache.willhaben.at/mmo/logo/adSearchResult/1004471/imageupload15177447890152285279hayatlogo1002_12339694391222899214_medium.png",
+  "teaserAttributes": [
+   {
+    "prefix": null,
+    "value": "2015",
+    "postfix": "EZ"
+   },
+   {
+    "prefix": null,
+    "value": "90.688",
+    "postfix": "km"
+   },
+   {
+    "prefix": null,
+    "value": "317",
+    "postfix": "PS (233 kW)"
+   }
+  ],
+  "children": null,
+  "dmpParameters": {
+   "motorcondition": [
+    "Gebrauchtwagen"
+   ],
+   "heading": "Ford_Mustang_Cabrio_USA_FAHRZEUG_DAHER_DER_PREIS",
+   "city": [
+    "Wien_22_Bezirk_Donaustadt"
+   ],
+   "registrationfirstyear": 2015,
+   "fuel": [
+    "Benzin"
+   ],
+   "noofseats": 4,
+   "postcode": [
+    1220
+   ],
+   "make_model": [
+    "Ford",
+    "Mustang"
+   ],
+   "transmission": [
+    "Automatik"
+   ],
+   "postcode_str": [
+    "1220"
+   ],
+   "price": 17999,
+   "conditionreport": false,
+   "effect": 233,
+   "warranty": false,
+   "model": [
+    "Mustang"
+   ],
+   "state": [
+    "Wien"
+   ],
+   "noofowners": 2,
+   "make": [
+    "Ford"
+   ],
+   "mileage": 90688
+  }
+ },
+ {
+  "id": "1204956659",
+  "verticalId": 3,
+  "adTypeId": 20,
+  "productId": 305,
+  "advertStatus": {
+   "id": "active",
+   "description": "aktiv",
+   "statusId": 50
+  },
+  "description": "Renault Mégane /// ANGEBOT DER WOCHE NUR ///",
+  "attributes": {
+   "attribute": [
+    {
+     "name": "DEFECTS_LIABILITY",
+     "values": [
+      "1"
+     ]
+    },
+    {
+     "name": "BODY_DYN",
+     "values": [
+      "NUR DIE WOCHE AKTION !!!!! EXPORT"
+     ]
+    },
+    {
+     "name": "CONDITION_REPORT",
+     "values": [
+      "-1"
+     ]
+    },
+    {
+     "name": "MOTOR_PRICE_BONUS/TRADE_IN",
+     "values": [
+      "false"
+     ]
+    },
+    {
+     "name": "MILEAGE",
+     "values": [
+      "207974"
+     ]
+    },
+    {
+     "name": "imagedescription",
+     "values": [
+      "Bild 1"
+     ]
+    },
+    {
+     "name": "CAR_MODEL/MAKE",
+     "values": [
+      "Renault"
+     ]
+    },
+    {
+     "name": "ORG_UUID",
+     "values": [
+      "2a3a156d-eefe-4e6c-927e-f799d5cb8781"
+     ]
+    },
+    {
+     "name": "PUBLISHED",
+     "values": [
+      "1784534820000"
+     ]
+    },
+    {
+     "name": "COUNTRY",
+     "values": [
+      "Österreich"
+     ]
+    },
+    {
+     "name": "CAR_MODEL/MODEL",
+     "values": [
+      "Mégane"
+     ]
+    },
+    {
+     "name": "CAR_MODEL/MODEL_SPECIFICATION",
+     "values": [
+      "Mégane /// ANGEBOT DER WOCHE NUR ///"
+     ]
+    },
+    {
+     "name": "PRICE/AMOUNT",
+     "values": [
+      "299.0"
+     ]
+    },
+    {
+     "name": "AUTDEALER",
+     "values": [
+      "0"
+     ]
+    },
+    {
+     "name": "NOOFSEATS",
+     "values": [
+      "5"
+     ]
+    },
+    {
+     "name": "ADTYPE_ID",
+     "values": [
+      "20"
+     ]
+    },
+    {
+     "name": "ORGID",
+     "values": [
+      "1004471"
+     ]
+    },
+    {
+     "name": "SEO_URL",
+     "values": [
+      "gebrauchtwagen/d/auto/renault-megane-angebot-der-woche-nur-1204956659/"
+     ]
+    },
+    {
+     "name": "PUBLISHED_String",
+     "values": [
+      "2026-07-20T10:07:00Z"
+     ]
+    },
+    {
+     "name": "ENGINE/EFFECT",
+     "values": [
+      "72"
+     ]
+    },
+    {
+     "name": "UPSELLING_AD_SEARCHRESULT",
+     "values": [
+      "true"
+     ]
+    },
+    {
+     "name": "MMO",
+     "values": [
+      "9/120/495/6659_-145321500.jpg"
+     ]
+    },
+    {
+     "name": "ENGINE/FUEL",
+     "values": [
+      "100001"
+     ]
+    },
+    {
+     "name": "AD_UUID",
+     "values": [
+      "59a4800d-1633-4160-9866-a6ca8aa3da02"
+     ]
+    },
+    {
+     "name": "ADDRESS",
+     "values": [
+      "Groß-Enzersdorfer Straße 88 b"
+     ]
+    },
+    {
+     "name": "AD_SEARCHRESULT_LOGO",
+     "values": [
+      "adSearchResult/1004471/imageupload15177447890152285279hayatlogo1002_12339694391222899214.png"
+     ]
+    },
+    {
+     "name": "SOURCE",
+     "values": [
+      "2"
+     ]
+    },
+    {
+     "name": "CONDITION",
+     "values": [
+      "30"
+     ]
+    },
+    {
+     "name": "COORDINATES",
+     "values": [
+      "48.21484,16.5058"
+     ]
+    },
+    {
+     "name": "LOCATION",
+     "values": [
+      "Wien, 22. Bezirk, Donaustadt"
+     ]
+    },
+    {
+     "name": "POSTCODE",
+     "values": [
+      "1220"
+     ]
+    },
+    {
+     "name": "STATE",
+     "values": [
+      "Wien"
+     ]
+    },
+    {
+     "name": "ORGNAME",
+     "values": [
+      "Hayat Gruppe"
+     ]
+    },
+    {
+     "name": "fnmmocount",
+     "values": [
+      "16"
+     ]
+    },
+    {
+     "name": "DISTRICT",
+     "values": [
+      "Wien"
+     ]
+    },
+    {
+     "name": "HEADING",
+     "values": [
+      "Renault Mégane /// ANGEBOT DER WOCHE NUR ///"
+     ]
+    },
+    {
+     "name": "CAR_TYPE",
+     "values": [
+      "Limousine"
+     ]
+    },
+    {
+     "name": "ADID",
+     "values": [
+      "1204956659"
+     ]
+    },
+    {
+     "name": "EXTERIORCOLOURMAIN",
+     "values": [
+      "17"
+     ]
+    },
+    {
+     "name": "YEAR_MODEL",
+     "values": [
+      "2012"
+     ]
+    },
+    {
+     "name": "ALL_IMAGE_URLS",
+     "values": [
+      "9/120/495/6659_-145321500.jpg;9/120/495/6659_-145321500.jpg;9/120/495/6659_369017349.jpg;9/120/495/6659_369017349.jpg;9/120/495/6659_-809606099.jpg;9/120/495/6659_-809606099.jpg;9/120/495/6659_820591459.jpg;9/120/495/6659_820591459.jpg;9/120/495/6659_-1142873457.jpg;9/120/495/6659_-1483832022.jpg;9/120/495/6659_-1301254969.jpg;9/120/495/6659_-1301254969.jpg;9/120/495/6659_-1118320409.jpg;9/120/495/6659_-21514172.jpg;9/120/495/6659_-21514172.jpg;9/120/495/6659_-1724871569.jpg"
+     ]
+    },
+    {
+     "name": "ISPRIVATE",
+     "values": [
+      "0"
+     ]
+    },
+    {
+     "name": "MOTOR_PRICE_BONUS/FINANCE",
+     "values": [
+      "false"
+     ]
+    },
+    {
+     "name": "PRODUCT_ID",
+     "values": [
+      "305"
+     ]
+    },
+    {
+     "name": "IS_BUMPED",
+     "values": [
+      "1"
+     ]
+    },
+    {
+     "name": "TRANSMISSION",
+     "values": [
+      "180001"
+     ]
+    },
+    {
+     "name": "WARRANTY",
+     "values": [
+      "-1"
+     ]
+    },
+    {
+     "name": "PRICE",
+     "values": [
+      "299"
+     ]
+    },
+    {
+     "name": "PRICE_FOR_DISPLAY",
+     "values": [
+      "€ 299"
+     ]
+    },
+    {
+     "name": "LAST_UPDATED",
+     "values": [
+      "1784606086000"
+     ]
+    },
+    {
+     "name": "ENGINE/FUEL_RESOLVED",
+     "values": [
+      "Benzin"
+     ]
+    },
+    {
+     "name": "TRANSMISSION_RESOLVED",
+     "values": [
+      "Schaltgetriebe"
+     ]
+    },
+    {
+     "name": "CONDITION_RESOLVED",
+     "values": [
+      "Unfallwagen"
+     ]
+    },
+    {
+     "name": "WARRANTY_RESOLVED",
+     "values": [
+      "Nein"
+     ]
+    }
+   ]
+  },
+  "advertImageList": {
+   "advertImage": [
+    {
+     "id": 1,
+     "name": "9/120/495/6659_-145321500.jpg",
+     "selfLink": "https://api.willhaben.at/restapi/v2/atimage/1204956659/1",
+     "description": "Cover Image",
+     "mainImageUrl": "https://cache.willhaben.at/mmo/9/120/495/6659_-145321500_hoved.jpg",
+     "thumbnailImageUrl": "https://cache.willhaben.at/mmo/9/120/495/6659_-145321500_thumb.jpg",
+     "referenceImageUrl": "https://cache.willhaben.at/mmo/9/120/495/6659_-145321500.jpg",
+     "similarImageSearchUrl": null,
+     "reference": "9/120/495/6659_-145321500.jpg"
+    },
+    {
+     "id": 1,
+     "name": "9/120/495/6659_-145321500.jpg",
+     "selfLink": "https://api.willhaben.at/restapi/v2/atimage/1204956659/1",
+     "description": "Cover Image",
+     "mainImageUrl": "https://cache.willhaben.at/mmo/9/120/495/6659_-145321500_hoved.jpg",
+     "thumbnailImageUrl": "https://cache.willhaben.at/mmo/9/120/495/6659_-145321500_thumb.jpg",
+     "referenceImageUrl": "https://cache.willhaben.at/mmo/9/120/495/6659_-145321500.jpg",
+     "similarImageSearchUrl": null,
+     "reference": "9/120/495/6659_-145321500.jpg"
+    },
+    {
+     "id": 1,
+     "name": "9/120/495/6659_369017349.jpg",
+     "selfLink": "https://api.willhaben.at/restapi/v2/atimage/1204956659/1",
+     "description": "Cover Image",
+     "mainImageUrl": "https://cache.willhaben.at/mmo/9/120/495/6659_369017349_hoved.jpg",
+     "thumbnailImageUrl": "https://cache.willhaben.at/mmo/9/120/495/6659_369017349_thumb.jpg",
+     "referenceImageUrl": "https://cache.willhaben.at/mmo/9/120/495/6659_369017349.jpg",
+     "similarImageSearchUrl": null,
+     "reference": "9/120/495/6659_369017349.jpg"
+    }
+   ],
+   "floorPlans": []
+  },
+  "selfLink": "https://api.willhaben.at/restapi/v2/atverz/1204956659",
+  "contextLinkList": {
+   "contextLink": [
+    {
+     "id": "selfLink",
+     "description": "Identifies this entity",
+     "uri": "https://api.willhaben.at/restapi/v2/atverz/1204956659",
+     "selected": false,
+     "relativePath": "/atverz/1204956659",
+     "serviceName": "iad"
+    },
+    {
+     "id": "seoSelfLink",
+     "description": "Self reference",
+     "uri": "https://api.willhaben.at/restapi/v2/atverz/gebrauchtwagen/d/auto/renault-megane-angebot-der-woche-nur-1204956659/",
+     "selected": false,
+     "relativePath": "/atverz/gebrauchtwagen/d/auto/renault-megane-angebot-der-woche-nur-1204956659/",
+     "serviceName": "iad"
+    },
+    {
+     "id": "adDetailLink",
+     "description": "Self reference to advert via ad detail component",
+     "uri": "https://publicapi.willhaben.at/atdetail/v1/1204956659",
+     "selected": false,
+     "relativePath": "/1204956659",
+     "serviceName": "addetail"
+    },
+    {
+     "id": "removeAdFromFolder",
+     "description": "Remove ad from any folder",
+     "uri": "https://api.willhaben.at/restapi/v2/userfolders/remove/1204956659",
+     "selected": false,
+     "relativePath": "/userfolders/remove/1204956659",
+     "serviceName": "iad"
+    },
+    {
+     "id": "getFolderSaveLinks",
+     "description": "Get contextlinks to save the ad in the users folders",
+     "uri": "https://api.willhaben.at/restapi/v2/userfolders/links/1204956659",
+     "selected": false,
+     "relativePath": "/userfolders/links/1204956659",
+     "serviceName": "iad"
+    },
+    {
+     "id": "iadShareLink",
+     "description": "Share link in iAd",
+     "uri": "https://www.willhaben.at/iad/object?adId=1204956659",
+     "selected": false,
+     "relativePath": "/iad/object?adId=1204956659",
+     "serviceName": "web_url"
+    }
+   ]
+  },
+  "advertiserInfo": {
+   "label": "Gewährleistung",
+   "iconSVG": "https://cache.willhaben.at/img/resultlist/auto/icon_car_warrantycheck_v2.svg",
+   "iconPNG": "https://cache.willhaben.at/img/resultlist/auto/icon_car_warrantycheck.png",
+   "iconType": "CHECK"
+  },
+  "upsellingOrganisationLogo": "https://cache.willhaben.at/mmo/logo/adSearchResult/1004471/imageupload15177447890152285279hayatlogo1002_12339694391222899214_medium.png",
+  "teaserAttributes": [
+   {
+    "prefix": null,
+    "value": "2012",
+    "postfix": "EZ"
+   },
+   {
+    "prefix": null,
+    "value": "207.974",
+    "postfix": "km"
+   },
+   {
+    "prefix": null,
+    "value": "98",
+    "postfix": "PS (72 kW)"
+   }
+  ],
+  "children": null,
+  "dmpParameters": {
+   "motorcondition": [
+    "Unfallwagen"
+   ],
+   "heading": "Renault_Megane_ANGEBOT_DER_WOCHE_NUR",
+   "city": [
+    "Wien_22_Bezirk_Donaustadt"
+   ],
+   "registrationfirstyear": 2012,
+   "fuel": [
+    "Benzin"
+   ],
+   "noofseats": 5,
+   "postcode": [
+    1220
+   ],
+   "make_model": [
+    "Renault",
+    "Megane"
+   ],
+   "transmission": [
+    "Schaltgetriebe"
+   ],
+   "postcode_str": [
+    "1220"
+   ],
+   "price": 299,
+   "conditionreport": false,
+   "effect": 72,
+   "warranty": false,
+   "model": [
+    "Megane"
+   ],
+   "state": [
+    "Wien"
+   ],
+   "make": [
+    "Renault"
+   ],
+   "mileage": 207974
+  }
+ }
+]

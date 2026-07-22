@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "timestamp": "2026-07-22T13:02:03.819Z",
+  "timestamp": "2026-07-22T13:08:29.153Z",
   "source": "auto-postool",
   "partial": false,
   "phase": null,
@@ -18,9 +18,13 @@
   "uncommitted_files": [
     {
       "status": "M",
-      "path": "docs/session-log.md"
+      "path": ".planning/HANDOFF.json"
+    },
+    {
+      "status": "??",
+      "path": "docs/research/"
     }
   ],
   "next_action": null,
-  "context_notes": "Recent commits:\nc031f72 chore: connect working dir to repo, add gitignore and session log\n9242684 Initial commit"
+  "context_notes": "Recent commits:\n2c5f1b5 docs: record project brief and data-source decision\nc031f72 chore: connect working dir to repo, add gitignore and session log\n9242684 Initial commit"
 }
