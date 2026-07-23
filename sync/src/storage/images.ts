@@ -22,13 +22,24 @@ export const sourceUrl = (path: string): string => IMAGE_BASE + path
  * Помилка одного фото не зупиняє решту: краще авто з неповною галереєю,
  * ніж провалений цикл синхронізації.
  */
-export async function mirrorImages(bucket: R2Bucket, cars: Car[], fetchImpl: FetchLike): Promise<number> {
+export async function mirrorImages(
+  bucket: R2Bucket,
+  cars: Car[],
+  fetchImpl: FetchLike,
+  maxFetches = Infinity,
+): Promise<number> {
   let copied = 0
+  let attempts = 0
 
   for (const car of cars) {
     for (const image of car.images) {
+      // Бюджет рахує саме спроби fetch: кожна споживає квоту subrequest'ів
+      // Worker'а (50 на виклик на безкоштовному тарифі). Що не встигли —
+      // доїде наступного циклу, бо вже завантажені фото пропускаються по head.
+      if (attempts >= maxFetches) return copied
       if (await bucket.head(image.key)) continue
 
+      attempts += 1
       try {
         const response = await fetchImpl(sourceUrl(image.source))
         if (!response.ok) continue
@@ -37,7 +48,6 @@ export async function mirrorImages(bucket: R2Bucket, cars: Car[], fetchImpl: Fet
         })
         copied += 1
       } catch {
-        // Мережевий збій на одному фото — не привід зривати весь цикл
         continue
       }
     }

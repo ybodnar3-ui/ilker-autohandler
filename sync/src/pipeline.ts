@@ -6,6 +6,10 @@ import { readCatalog, writeCatalog, writeLive, readStatus, writeStatus } from '.
 import { mirrorImages, pruneImages, type FetchLike } from './storage/images'
 import type { Car, Catalog, SyncStatus } from './types'
 
+// Ліміт зовнішніх запитів Worker'а на безкоштовному тарифі — 50 на виклик.
+// Лишаємо запас на fetch сторінки, deploy-hook і notify.
+const IMAGES_PER_CYCLE = 40
+
 export interface SyncDeps {
   bucket: R2Bucket
   fetchPage: () => Promise<Response>
@@ -82,8 +86,12 @@ export async function runSync(deps: SyncDeps): Promise<SyncOutcome> {
   }
 
   try {
-    previous = await readCatalog(bucket)
+    // status читаємо першим: якщо readCatalog кине виключення (обрив R2 —
+    // саме тоді, коли сповіщення й потрібне), status.consecutiveFailures усе
+    // одно встигне зчитатись, і recordFailure правильно визначить межу
+    // переходу в стан помилки — одне сповіщення, а не щоцикл.
     status = await readStatus(bucket)
+    previous = await readCatalog(bucket)
 
     let httpOk = false
     let parsed = false
@@ -116,7 +124,7 @@ export async function runSync(deps: SyncDeps): Promise<SyncOutcome> {
     const changed = hash !== previous?.catalogHash
 
     if (changed) {
-      await mirrorImages(bucket, cars, fetchImage)
+      await mirrorImages(bucket, cars, fetchImage, IMAGES_PER_CYCLE)
       await pruneImages(bucket, cars, now)
       const catalog: Catalog = { generatedAt: timestamp, catalogHash: hash, cars }
       await writeCatalog(bucket, catalog)

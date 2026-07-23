@@ -79,6 +79,42 @@ describe('mirrorImages', () => {
     expect(copied).toBe(1)
     expect(b.store.has('cars/1/1.webp')).toBe(true)
   })
+
+  it('обмежує кількість спроб fetch бюджетом maxFetches', async () => {
+    const b = bucket()
+    const fetchImpl = okFetch()
+    const car = carWith('1', ['a.jpg', 'b.jpg', 'c.jpg', 'd.jpg', 'e.jpg'])
+    const copied = await mirrorImages(b, [car], fetchImpl, 2)
+    expect(copied).toBe(2)
+    expect(fetchImpl).toHaveBeenCalledTimes(2)
+    expect(b.store.size).toBe(2)
+  })
+
+  it('рахує бюджет по спробах fetch, а не по успіхах — 404 теж витрачає квоту', async () => {
+    const b = bucket()
+    const fetchImpl = vi.fn(async (url: string) =>
+      url.endsWith('bad.jpg') ? new Response(null, { status: 404 }) : new Response(new ArrayBuffer(8), { status: 200 }))
+    const car = carWith('1', ['bad.jpg', 'good.jpg', 'extra.jpg'])
+    const copied = await mirrorImages(b, [car], fetchImpl, 2)
+    expect(fetchImpl).toHaveBeenCalledTimes(2)
+    expect(copied).toBe(1)
+    expect(b.store.has('cars/1/1.webp')).toBe(true)
+    expect(b.store.has('cars/1/2.webp')).toBe(false)
+  })
+
+  it('не витрачає бюджет на фото, які вже є в бакеті (head-хіт)', async () => {
+    const b = bucket()
+    b.store.set('cars/1/0.webp', new ArrayBuffer(8))
+    b.store.set('cars/1/1.webp', new ArrayBuffer(8))
+    b.store.set('cars/1/2.webp', new ArrayBuffer(8))
+    const fetchImpl = okFetch()
+    const car = carWith('1', ['present0.jpg', 'present1.jpg', 'present2.jpg', 'absent0.jpg', 'absent1.jpg'])
+    const copied = await mirrorImages(b, [car], fetchImpl, 2)
+    expect(fetchImpl).toHaveBeenCalledTimes(2)
+    expect(copied).toBe(2)
+    expect(b.store.has('cars/1/3.webp')).toBe(true)
+    expect(b.store.has('cars/1/4.webp')).toBe(true)
+  })
 })
 
 describe('RETENTION_DAYS', () => {
