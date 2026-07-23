@@ -16,7 +16,13 @@ const BROKEN_TOLERANCE = 0.2
 const MAX_SHRINK_FACTOR = 2
 
 const isUsable = (car: Car): boolean =>
-  Boolean(car.id) && Boolean(car.title) && car.price > 0 && car.images.length > 0
+  Boolean(car.id) &&
+  Boolean(car.title) &&
+  car.price > 0 &&
+  car.images.length > 0 &&
+  car.year > 0 &&
+  car.mileage > 0 &&
+  Boolean(car.fuel.de)
 
 /**
  * Вирішує, чи можна публікувати отриманий стан.

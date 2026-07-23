@@ -65,4 +65,29 @@ describe('checkSanity', () => {
     const mostlyFine = [...many(95), ...Array.from({ length: 5 }, (_, i) => car(`b${i}`, { title: '' }))]
     expect(checkSanity({ httpOk: true, parsed: true, incoming: mostlyFine, previous: catalogOf(many(99)) }).ok).toBe(true)
   })
+
+  it('відхиляє, коли рік обнулився у всіх записах (willhaben прибрав YEAR_MODEL)', () => {
+    const zeroYear = Array.from({ length: 99 }, (_, i) => car(String(i), { year: 0 }))
+    const result = checkSanity({ httpOk: true, parsed: true, incoming: zeroYear, previous: catalogOf(many(99)) })
+    expect(result.ok).toBe(false)
+  })
+
+  it('відхиляє, коли пробіг обнулився у всіх записах (willhaben прибрав MILEAGE)', () => {
+    const zeroMileage = Array.from({ length: 99 }, (_, i) => car(String(i), { mileage: 0 }))
+    const result = checkSanity({ httpOk: true, parsed: true, incoming: zeroMileage, previous: catalogOf(many(99)) })
+    expect(result.ok).toBe(false)
+  })
+
+  it('відхиляє, коли тип палива зник у всіх записах (willhaben прибрав атрибут FUEL)', () => {
+    const noFuel = Array.from({ length: 99 }, (_, i) =>
+      car(String(i), { fuel: { de: '', en: '', tr: '' } }),
+    )
+    const result = checkSanity({ httpOk: true, parsed: true, incoming: noFuel, previous: catalogOf(many(99)) })
+    expect(result.ok).toBe(false)
+  })
+
+  it('пропускає поодиноке легітимне авто з 0 км (day-registration)', () => {
+    const mostlyFine = [...many(96), ...Array.from({ length: 3 }, (_, i) => car(`z${i}`, { mileage: 0 }))]
+    expect(checkSanity({ httpOk: true, parsed: true, incoming: mostlyFine, previous: catalogOf(many(99)) }).ok).toBe(true)
+  })
 })
