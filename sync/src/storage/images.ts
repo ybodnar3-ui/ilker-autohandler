@@ -55,14 +55,21 @@ export async function pruneImages(bucket: R2Bucket, cars: Car[], now: Date): Pro
   const cutoff = now.getTime() - RETENTION_DAYS * 24 * 60 * 60 * 1000
   let removed = 0
 
-  const listed = await bucket.list({ prefix: 'cars/' })
-  for (const object of listed.objects) {
-    const carId = object.key.split('/')[1]
-    if (!carId || alive.has(carId)) continue
-    if (object.uploaded.getTime() > cutoff) continue
-    await bucket.delete(object.key)
-    removed += 1
-  }
+  // list() повертає щонайбільше 1000 обʼєктів за раз — при ~99 авто × ~35 фото
+  // (~3500 обʼєктів) сток одразу перевищує одну сторінку, тому йдемо по cursor,
+  // поки truncated не стане false.
+  let cursor: string | undefined
+  do {
+    const listed = await bucket.list({ prefix: 'cars/', cursor })
+    for (const object of listed.objects) {
+      const carId = object.key.split('/')[1]
+      if (!carId || alive.has(carId)) continue
+      if (object.uploaded.getTime() > cutoff) continue
+      await bucket.delete(object.key)
+      removed += 1
+    }
+    cursor = listed.truncated ? listed.cursor : undefined
+  } while (cursor)
 
   return removed
 }

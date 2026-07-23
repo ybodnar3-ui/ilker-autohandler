@@ -9,11 +9,21 @@ class FakeBucket {
   uploaded = new Map<string, Date>()
   async head(key: string) { return this.store.has(key) ? { key } : null }
   async put(key: string, value: ArrayBuffer) { this.store.set(key, value); this.uploaded.set(key, new Date()) }
-  async list({ prefix }: { prefix: string }) {
-    const objects = [...this.store.keys()]
-      .filter((key) => key.startsWith(prefix))
-      .map((key) => ({ key, uploaded: this.uploaded.get(key) ?? new Date() }))
-    return { objects }
+  // Малий page size навмисно — щоб кілька фікстур вже змушували pruneImages
+  // пройти через cursor-цикл, як це робить справжній R2 при >1000 обʼєктів.
+  // Cursor — це остання видана ключ (не індекс), тому пагінація лишається
+  // коректною навіть якщо попередню сторінку вже видалили з бакета.
+  static PAGE_SIZE = 2
+  async list({ prefix, cursor }: { prefix: string; cursor?: string }) {
+    const remaining = [...this.store.keys()]
+      .filter((key) => key.startsWith(prefix) && (!cursor || key > cursor))
+      .sort()
+    const pageKeys = remaining.slice(0, FakeBucket.PAGE_SIZE)
+    const objects = pageKeys.map((key) => ({ key, uploaded: this.uploaded.get(key) ?? new Date() }))
+    if (remaining.length > FakeBucket.PAGE_SIZE) {
+      return { objects, truncated: true as const, cursor: pageKeys[pageKeys.length - 1] }
+    }
+    return { objects, truncated: false as const }
   }
   async delete(key: string) { this.store.delete(key); this.uploaded.delete(key) }
 }
@@ -111,5 +121,24 @@ describe('pruneImages', () => {
 
     expect(removed).toBe(0)
     expect(b.store.has('cars/3/0.webp')).toBe(true)
+  })
+
+  it('проходить через усі сторінки list(), а не лише першу', async () => {
+    // 5 обʼєктів проданого авто при сторінці на 2 — без пагінації
+    // pruneImages побачить лише перший list() і видалить не все.
+    const b = bucket()
+    const oldDate = new Date('2026-07-10T00:00:00Z') // 14 днів тому
+    for (let i = 0; i < 5; i += 1) {
+      const key = `cars/9/${i}.webp`
+      b.store.set(key, new ArrayBuffer(8))
+      b.uploaded.set(key, oldDate)
+    }
+
+    const removed = await pruneImages(b, [carWith('1', ['a.jpg'])], now)
+
+    expect(removed).toBe(5)
+    for (let i = 0; i < 5; i += 1) {
+      expect(b.store.has(`cars/9/${i}.webp`)).toBe(false)
+    }
   })
 })
