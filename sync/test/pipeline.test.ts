@@ -5,8 +5,16 @@ import fixtureAds from './fixtures/willhaben-ads-sample.json'
 
 class FakeBucket {
   store = new Map<string, string | ArrayBuffer>()
-  async put(key: string, value: string | ArrayBuffer) { this.store.set(key, value) }
+  /** Ключі, на яких get() має кинути виключення (симуляція обриву R2). */
+  getShouldThrow = new Set<string>()
+  /** Ключі, на яких put() має кинути виключення (симуляція обриву R2). */
+  putShouldThrow = new Set<string>()
+  async put(key: string, value: string | ArrayBuffer) {
+    if (this.putShouldThrow.has(key)) throw new Error(`put failed: ${key}`)
+    this.store.set(key, value)
+  }
   async get(key: string) {
+    if (this.getShouldThrow.has(key)) throw new Error(`get failed: ${key}`)
     const value = this.store.get(key)
     return value === undefined ? null : { text: async () => String(value) }
   }
@@ -152,5 +160,33 @@ describe('runSync', () => {
 
     const status = JSON.parse(String(bucket.store.get(STATUS_KEY)))
     expect(status.lastError).toBe('deploy hook 500')
+  })
+
+  it('перехоплює збій початкового читання каталогу і не кидає виключення', async () => {
+    const bucket = new FakeBucket()
+    bucket.getShouldThrow.add(CATALOG_KEY)
+    const d = deps(bucket)
+
+    await expect(runSync(d)).resolves.toMatchObject({ published: false })
+    expect(d.notify).toHaveBeenCalledOnce()
+  })
+
+  it('перехоплює збій запису status.json усередині recordFailure і не кидає виключення', async () => {
+    const bucket = new FakeBucket()
+    bucket.putShouldThrow.add(STATUS_KEY)
+    const d = deps(bucket, vi.fn(async () => new Response('', { status: 503 })))
+
+    await expect(runSync(d)).resolves.toMatchObject({ published: false })
+  })
+
+  it('збій notify не блокує запис status.json і не кидає виключення', async () => {
+    const bucket = new FakeBucket()
+    const d = deps(bucket, vi.fn(async () => new Response('', { status: 503 })))
+    d.notify = vi.fn(async () => {
+      throw new Error('webhook timeout')
+    })
+
+    await expect(runSync(d)).resolves.toMatchObject({ published: false })
+    expect(bucket.store.has(STATUS_KEY)).toBe(true)
   })
 })

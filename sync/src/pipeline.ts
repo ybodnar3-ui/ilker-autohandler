@@ -4,7 +4,7 @@ import { withContentHash, catalogHash } from './normalize/hash'
 import { checkSanity } from './sanity'
 import { readCatalog, writeCatalog, writeLive, readStatus, writeStatus } from './storage/r2'
 import { mirrorImages, pruneImages, type FetchLike } from './storage/images'
-import type { Car, Catalog } from './types'
+import type { Car, Catalog, SyncStatus } from './types'
 
 export interface SyncDeps {
   bucket: R2Bucket
@@ -33,53 +33,82 @@ export async function runSync(deps: SyncDeps): Promise<SyncOutcome> {
   const { bucket, fetchPage, fetchImage, triggerBuild, notify, now } = deps
   const timestamp = now.toISOString()
 
-  const previous = await readCatalog(bucket)
-  const status = await readStatus(bucket)
+  // Безпечні значення за замовчуванням: readCatalog/readStatus — це теж
+  // реальний I/O (bucket.get) і можуть кинути виключення до того, як їхні
+  // результати присвояться нижче. Якщо це станеться, recordFailure все одно
+  // повинен мати з чим працювати — зокрема status.consecutiveFailures для
+  // логіки сповіщення на межі переходу в стан помилки.
+  let previous: Catalog | null = null
+  let status: SyncStatus = {
+    lastAttemptAt: '',
+    lastSuccessAt: null,
+    carCount: 0,
+    lastError: null,
+    consecutiveFailures: 0,
+  }
 
   // Спільний шлях для будь-якого збою цього циклу — і відхилення на воротах
   // осудності, і виключення, кинутого вже після них (обрив R2, HTTP-помилка
-  // деплой-хука). Контракт модуля: runSync ніколи не кидає виключення сам —
-  // будь-яка відмова фіксується в status.json і на межі переходу в стан
-  // помилки сповіщає оператора.
+  // деплой-хука, або збій самих початкових читань). Контракт модуля: runSync
+  // ніколи не кидає виключення сам — будь-яка відмова фіксується в
+  // status.json і на межі переходу в стан помилки сповіщає оператора.
+  //
+  // recordFailure сама мусить бути непробивною: writeStatus і notify — це
+  // I/O, яке падає саме в тих сценаріях (простій R2, таймаут вебхука), заради
+  // яких і робився цей фікс. Кожен виклик обгорнутий окремо, щоб збій одного
+  // не заважав іншому.
   const recordFailure = async (reason: string): Promise<SyncOutcome> => {
     const firstFailure = status.consecutiveFailures === 0
-    await writeStatus(bucket, {
-      ...status,
-      lastAttemptAt: timestamp,
-      lastError: reason,
-      consecutiveFailures: status.consecutiveFailures + 1,
-    })
+    try {
+      await writeStatus(bucket, {
+        ...status,
+        lastAttemptAt: timestamp,
+        lastError: reason,
+        consecutiveFailures: status.consecutiveFailures + 1,
+      })
+    } catch (error) {
+      console.error('runSync: не вдалося записати status.json під час фіксації збою', error)
+    }
     // Сповіщаємо лише на переході у стан помилки, щоб не слати
     // однакове повідомлення кожні 15 хвилин.
-    if (firstFailure) await notify(`Синхронізація не вдалась: ${reason}`)
+    if (firstFailure) {
+      try {
+        await notify(`Синхронізація не вдалась: ${reason}`)
+      } catch (error) {
+        console.error('runSync: не вдалося надіслати сповіщення про збій', error)
+      }
+    }
     return { published: false, rebuilt: false, carCount: previous?.cars.length ?? 0, reason }
   }
 
-  let httpOk = false
-  let parsed = false
-  let cars: Car[] = []
-
   try {
-    const response = await fetchPage()
-    httpOk = response.ok
-    if (httpOk) {
-      const adverts = extractAdverts(await response.text())
-      parsed = true
-      cars = await Promise.all(
-        adverts.map(normalizeCar).filter((car): car is Car => car !== null).map(withContentHash),
-      )
+    previous = await readCatalog(bucket)
+    status = await readStatus(bucket)
+
+    let httpOk = false
+    let parsed = false
+    let cars: Car[] = []
+
+    try {
+      const response = await fetchPage()
+      httpOk = response.ok
+      if (httpOk) {
+        const adverts = extractAdverts(await response.text())
+        parsed = true
+        cars = await Promise.all(
+          adverts.map(normalizeCar).filter((car): car is Car => car !== null).map(withContentHash),
+        )
+      }
+    } catch {
+      // parsed лишається false — перевірка осудності це відхилить
     }
-  } catch {
-    // parsed лишається false — перевірка осудності це відхилить
-  }
 
-  const verdict = checkSanity({ httpOk, parsed, incoming: cars, previous })
+    const verdict = checkSanity({ httpOk, parsed, incoming: cars, previous })
 
-  if (!verdict.ok) {
-    return recordFailure(verdict.reason)
-  }
+    if (!verdict.ok) {
+      return await recordFailure(verdict.reason)
+    }
 
-  try {
     // Живий шар оновлюється щоцикл — саме він дає свіжість без перебудови сайту.
     await writeLive(bucket, cars, timestamp)
 
