@@ -13,7 +13,7 @@ const dealerUrl = (orgId: string) =>
   `https://www.willhaben.at/iad/haendler/hayatgruppe/auto/?orgId=${orgId}&page=1&rows=200`
 
 export default {
-  async scheduled(_event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
+  async scheduled(_event: ScheduledEvent, env: Env): Promise<void> {
     const outcome = await runSync({
       bucket: env.ASSETS,
       now: new Date(),
@@ -42,7 +42,8 @@ export default {
       },
     })
 
-    ctx.waitUntil(Promise.resolve())
+    // Цикл повністю завершений (await вище), тому waitUntil тут не потрібен:
+    // Worker не повертається до завершення runSync і не буде вбитий на півдорозі.
     console.log('sync', JSON.stringify(outcome))
   },
 
