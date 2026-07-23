@@ -48,6 +48,7 @@ export async function mirrorImages(
         })
         copied += 1
       } catch {
+        // Мережевий збій на одному фото — не привід зривати весь цикл.
         continue
       }
     }

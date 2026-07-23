@@ -1,4 +1,13 @@
-/// <reference types="node" />
+// Навмисно НЕ `/// <reference types="node" />`: тризначна ///-директива глобальна
+// для всієї програми (tsconfig компілює sync/src/** в одному проході разом із
+// цим скриптом через test/scripts/seed-images.test.ts), тож вона зробила б
+// `process`/`Buffer`/`NodeJS.*` видимими і в src/** — Worker-рантаймі, де їх
+// бути не повинно. Пряме посилання на @types/node/process.d.ts теж не підійде:
+// цей файл сам усередині оголошує `global { var process: NodeJS.Process }`,
+// тобто просочився б глобально так само. Тип для `node:process` тому живе в
+// сусідньому ./node-process.d.ts як модульно локальне доповнення.
+/// <reference path="./node-process.d.ts" />
+import process from 'node:process'
 import { S3Client, ListObjectsV2Command, PutObjectCommand } from '@aws-sdk/client-s3'
 import { extractAdverts } from '../src/source/willhaben'
 import { normalizeCar } from '../src/normalize/car'
