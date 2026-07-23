@@ -143,6 +143,6 @@ export async function runSync(deps: SyncDeps): Promise<SyncOutcome> {
     // а не просто зміна схеми willhaben, і його треба вміти відрізнити.
     console.error('runSync: post-gate failure', error)
     const reason = error instanceof Error ? error.message : String(error)
-    return recordFailure(reason)
+    return await recordFailure(reason)
   }
 }
