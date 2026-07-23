@@ -36,6 +36,25 @@ export async function runSync(deps: SyncDeps): Promise<SyncOutcome> {
   const previous = await readCatalog(bucket)
   const status = await readStatus(bucket)
 
+  // Спільний шлях для будь-якого збою цього циклу — і відхилення на воротах
+  // осудності, і виключення, кинутого вже після них (обрив R2, HTTP-помилка
+  // деплой-хука). Контракт модуля: runSync ніколи не кидає виключення сам —
+  // будь-яка відмова фіксується в status.json і на межі переходу в стан
+  // помилки сповіщає оператора.
+  const recordFailure = async (reason: string): Promise<SyncOutcome> => {
+    const firstFailure = status.consecutiveFailures === 0
+    await writeStatus(bucket, {
+      ...status,
+      lastAttemptAt: timestamp,
+      lastError: reason,
+      consecutiveFailures: status.consecutiveFailures + 1,
+    })
+    // Сповіщаємо лише на переході у стан помилки, щоб не слати
+    // однакове повідомлення кожні 15 хвилин.
+    if (firstFailure) await notify(`Синхронізація не вдалась: ${reason}`)
+    return { published: false, rebuilt: false, carCount: previous?.cars.length ?? 0, reason }
+  }
+
   let httpOk = false
   let parsed = false
   let cars: Car[] = []
@@ -57,40 +76,44 @@ export async function runSync(deps: SyncDeps): Promise<SyncOutcome> {
   const verdict = checkSanity({ httpOk, parsed, incoming: cars, previous })
 
   if (!verdict.ok) {
-    const firstFailure = status.consecutiveFailures === 0
+    return recordFailure(verdict.reason)
+  }
+
+  try {
+    // Живий шар оновлюється щоцикл — саме він дає свіжість без перебудови сайту.
+    await writeLive(bucket, cars, timestamp)
+
+    const hash = await catalogHash(cars)
+    const changed = hash !== previous?.catalogHash
+
+    if (changed) {
+      await mirrorImages(bucket, cars, fetchImage)
+      await pruneImages(bucket, cars, now)
+      const catalog: Catalog = { generatedAt: timestamp, catalogHash: hash, cars }
+      await writeCatalog(bucket, catalog)
+      // ВІДОМЕ ОБМЕЖЕННЯ (не вирішуємо тут): якщо writeCatalog встигне
+      // записатись, а цей виклик кине виключення — новий каталог уже в R2,
+      // але білд не запущено. Наступного циклу хеш збіжиться і triggerBuild
+      // більше не спрацює, доки контент знову не зміниться, тобто деплой
+      // "загубиться" до наступної зміни. Окремий механізм відстеження
+      // незавершених білдів навмисно не будуємо в межах цієї задачі.
+      await triggerBuild()
+    }
+
     await writeStatus(bucket, {
-      ...status,
       lastAttemptAt: timestamp,
-      lastError: verdict.reason,
-      consecutiveFailures: status.consecutiveFailures + 1,
+      lastSuccessAt: timestamp,
+      carCount: cars.length,
+      lastError: null,
+      consecutiveFailures: 0,
     })
-    // Сповіщаємо лише на переході у стан помилки, щоб не слати
-    // однакове повідомлення кожні 15 хвилин.
-    if (firstFailure) await notify(`Синхронізація не вдалась: ${verdict.reason}`)
-    return { published: false, rebuilt: false, carCount: previous?.cars.length ?? 0, reason: verdict.reason }
+
+    return { published: true, rebuilt: changed, carCount: cars.length, reason: null }
+  } catch (error) {
+    // Лишаємо слід у логах Worker'а: це може бути справжній дефект коду,
+    // а не просто зміна схеми willhaben, і його треба вміти відрізнити.
+    console.error('runSync: post-gate failure', error)
+    const reason = error instanceof Error ? error.message : String(error)
+    return recordFailure(reason)
   }
-
-  // Живий шар оновлюється щоцикл — саме він дає свіжість без перебудови сайту.
-  await writeLive(bucket, cars, timestamp)
-
-  const hash = await catalogHash(cars)
-  const changed = hash !== previous?.catalogHash
-
-  if (changed) {
-    await mirrorImages(bucket, cars, fetchImage)
-    await pruneImages(bucket, cars, now)
-    const catalog: Catalog = { generatedAt: timestamp, catalogHash: hash, cars }
-    await writeCatalog(bucket, catalog)
-    await triggerBuild()
-  }
-
-  await writeStatus(bucket, {
-    lastAttemptAt: timestamp,
-    lastSuccessAt: timestamp,
-    carCount: cars.length,
-    lastError: null,
-    consecutiveFailures: 0,
-  })
-
-  return { published: true, rebuilt: changed, carCount: cars.length, reason: null }
 }

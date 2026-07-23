@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { runSync } from '../src/pipeline'
-import { CATALOG_KEY, LIVE_KEY } from '../src/storage/r2'
+import { CATALOG_KEY, LIVE_KEY, STATUS_KEY } from '../src/storage/r2'
 import fixtureAds from './fixtures/willhaben-ads-sample.json'
 
 class FakeBucket {
@@ -110,5 +110,47 @@ describe('runSync', () => {
     await runSync(second)
 
     expect(second.notify).not.toHaveBeenCalled()
+  })
+
+  it('НЕ чіпає live.json, коли willhaben віддав помилку', async () => {
+    const bucket = new FakeBucket()
+    await runSync(deps(bucket))
+    const good = bucket.store.get(LIVE_KEY)
+
+    const outcome = await runSync(deps(bucket, vi.fn(async () => new Response('', { status: 503 }))))
+
+    expect(outcome.published).toBe(false)
+    expect(bucket.store.get(LIVE_KEY)).toBe(good)
+  })
+
+  it('повторно сповіщає після відновлення між серіями помилок', async () => {
+    const bucket = new FakeBucket()
+    const failing = vi.fn(async () => new Response('', { status: 503 }))
+
+    const first = deps(bucket, failing)
+    await runSync(first)
+    expect(first.notify).toHaveBeenCalledTimes(1)
+
+    const second = deps(bucket)
+    await runSync(second)
+    expect(second.notify).not.toHaveBeenCalled()
+
+    const third = deps(bucket, vi.fn(async () => new Response('', { status: 503 })))
+    await runSync(third)
+    expect(third.notify).toHaveBeenCalledTimes(1)
+  })
+
+  it('перехоплює збій запису після воріт осудності і не кидає виключення', async () => {
+    const bucket = new FakeBucket()
+    const d = deps(bucket)
+    d.triggerBuild = vi.fn(async () => {
+      throw new Error('deploy hook 500')
+    })
+
+    await expect(runSync(d)).resolves.toMatchObject({ published: false })
+    expect(d.notify).toHaveBeenCalledOnce()
+
+    const status = JSON.parse(String(bucket.store.get(STATUS_KEY)))
+    expect(status.lastError).toBe('deploy hook 500')
   })
 })
