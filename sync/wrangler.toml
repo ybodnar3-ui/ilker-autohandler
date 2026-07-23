@@ -1,0 +1,18 @@
+name = "hayat-sync"
+main = "src/index.ts"
+compatibility_date = "2026-07-22"
+
+[triggers]
+crons = ["*/15 * * * *"]
+
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "hayat-cars"
+
+[vars]
+WILLHABEN_ORG_ID = "1004471"
+USER_AGENT = "HayatGruppeSync/1.0 (+https://hayatgruppe.com)"
+
+# Секрети задаються окремо, у файл не потрапляють:
+#   wrangler secret put PAGES_DEPLOY_HOOK
+#   wrangler secret put ALERT_WEBHOOK_URL   (необовʼязковий)
