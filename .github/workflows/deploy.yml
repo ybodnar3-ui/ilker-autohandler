@@ -1,9 +1,11 @@
-name: Sync & Deploy
+name: Sync stock
 
-# Скрейпить сток willhaben і публікує сайт на GitHub Pages.
-# - за розкладом кожні 30 хв (парсер 24/7),
+# Парсер 24/7: скрейпить сток willhaben, обирає чисті обкладинки (без рекламних
+# банерів дилера), будує web/data.js і комітить у репо. Хостинг — Vercel:
+# він передеплоює сайт автоматично на кожен коміт (Git integration).
+# - за розкладом кожні 30 хв,
 # - при пуші змін сайту чи парсера,
-# - вручну (кнопка Run workflow).
+# - вручну (Run workflow).
 on:
   schedule:
     - cron: '*/30 * * * *'
@@ -15,23 +17,17 @@ on:
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
-# GITHUB_TOKEN: писати оновлений каталог у репо + деплой Pages.
+# Лише коміт оновленого стоку; деплой робить Vercel.
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
-# Один деплой за раз; цикли, що набігли, не скасовуємо на півдорозі.
 concurrency:
-  group: pages
+  group: sync
   cancel-in-progress: false
 
 jobs:
-  sync-and-deploy:
+  sync:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -45,7 +41,14 @@ jobs:
         working-directory: sync
         run: npm ci
 
-      - name: Scrape willhaben → catalog.json + data.js
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install cover-picker deps
+        run: pip install pillow numpy
+
+      - name: Scrape willhaben → catalog.json
         working-directory: sync
         env:
           DATA_DIR: ../web/data
@@ -53,9 +56,21 @@ jobs:
           USER_AGENT: 'HayatGruppeSync/1.0 (+https://hayatgruppe.com)'
         run: npm run sync:fs
 
-      # Комітимо оновлений стан, щоб наступний цикл мав з чим порівнювати
-      # (перевірка осудності захищає від публікації підозріло малого стоку).
+      - name: Pick clean covers (skip promo banners)
+        env:
+          DATA_DIR: web/data
+          USER_AGENT: 'HayatGruppeSync/1.0 (+https://hayatgruppe.com)'
+        run: python3 sync/scripts/pick-covers.py
+
+      - name: Build web/data.js
+        working-directory: sync
+        env:
+          DATA_DIR: ../web/data
+        run: npm run build:data
+
       # Коміт лише коли є реальні зміни — без порожніх комітів щопівгодини.
+      # covers.json теж комітимо: це кеш вибору обкладинок (за підписом фото),
+      # щоб наступний цикл не перекачував весь сток.
       - name: Commit updated stock
         run: |
           git config user.name 'hayat-sync[bot]'
@@ -67,15 +82,3 @@ jobs:
             git commit -m 'chore(sync): update stock from willhaben [skip ci]'
             git push
           fi
-
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true # сам вмикає Pages на репо при першому запуску
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: web
-
-      - name: Deploy to GitHub Pages
-        id: deploy
-        uses: actions/deploy-pages@v4

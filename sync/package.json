@@ -8,7 +8,8 @@
     "typecheck": "tsc --noEmit",
     "deploy": "wrangler deploy",
     "seed": "node --experimental-strip-types scripts/seed-images.ts",
-    "sync:fs": "tsx scripts/sync-fs.ts"
+    "sync:fs": "tsx scripts/sync-fs.ts",
+    "build:data": "tsx scripts/build-data.ts"
   },
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.1094.0",
