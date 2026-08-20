@@ -71,13 +71,17 @@ jobs:
       # Коміт лише коли є реальні зміни — без порожніх комітів щопівгодини.
       # covers.json теж комітимо: це кеш вибору обкладинок (за підписом фото),
       # щоб наступний цикл не перекачував весь сток.
+      # Коміт лише коли реально змінився вміст сайту (data.js) або вибір
+      # обкладинок (covers.json). catalog/live/status містять таймстемпи, що
+      # змінюються щоцикл, тож на них НЕ орієнтуємось — інакше коміт (і зайвий
+      # редеплой Vercel) щопівгодини навіть без змін стоку.
       - name: Commit updated stock
         run: |
           git config user.name 'hayat-sync[bot]'
           git config user.email 'hayat-sync@users.noreply.github.com'
           git add web/data web/data.js
-          if git diff --cached --quiet; then
-            echo 'Сток без змін — коміт не потрібен.'
+          if git diff --cached --quiet -- web/data.js web/data/covers.json; then
+            echo 'Сток без змістовних змін — коміт не потрібен.'
           else
             git commit -m 'chore(sync): update stock from willhaben [skip ci]'
             git push
