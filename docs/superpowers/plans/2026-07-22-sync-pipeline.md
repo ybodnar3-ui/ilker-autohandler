@@ -90,10 +90,10 @@ cp docs/research/fixtures/*.json sync/test/fixtures/
     "deploy": "wrangler deploy"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260101.0",
-    "typescript": "^5.7.0",
-    "vitest": "^3.0.0",
-    "wrangler": "^3.100.0"
+    "@cloudflare/workers-types": "^5.20260722.1",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.113.0"
   }
 }
 ```
@@ -175,7 +175,7 @@ describe('attributesOf', () => {
     expect(attributesOf(ad as never)).toEqual({ PRICE: '330000' })
   })
 
-  it('склеює кілька значень через кому', () => {
+  it('склеює кілька значень через вертикальну риску', () => {
     const ad = {
       id: '1',
       attributes: { attribute: [{ name: 'X', values: ['a', 'b'] }] },
@@ -2004,6 +2004,45 @@ git commit -m "feat(sync): add scheduled Worker entry point and deployment confi
 ```
 
 ---
+
+### Task 11: Скрипт початкового сідингу фото + бюджет завантажень
+
+**Files:**
+- Create: `sync/scripts/seed-images.ts`
+- Create: `sync/test/scripts/seed-images.test.ts`
+- Modify: `sync/src/storage/images.ts` (додати параметр бюджету)
+- Modify: `sync/test/storage/images.test.ts`
+- Modify: `sync/src/pipeline.ts` (передати бюджет; читати status перед catalog)
+- Modify: `sync/package.json` (devDependency + скрипт `seed`)
+- Modify: `sync/README.md`
+
+**Навіщо (знахідка фінального рев'ю всієї гілки):**
+`mirrorImages` не мав ліміту завантажень на один виклик. Cloudflare Worker на
+безкоштовному тарифі дозволяє **50 зовнішніх запитів на виклик**, а перший запуск
+на порожній бакет намагався б завантажити ~3400 фото за один цикл cron — впирався б
+у ліміт, кидав виняток, `catalog.json` не записувався б, і сайт **ніколи не
+наповнювався б**. Тестами не спіймалось, бо фікстура має 3 авто.
+
+**Рішення (обране):** одноразовий локальний скрипт `seed-images.ts` заливає весь
+поточний сток у R2 **поза Worker'ом** (локально, без ліміту запитів), через
+S3-сумісний API R2. Після цього Worker веде лише дельти — кілька нових авто на день,
+глибоко під лімітом. На першому циклі Worker бачить, що всі фото вже на місці
+(`head` повертає наявність, нуль завантажень), і одразу публікує каталог.
+
+Додатково `mirrorImages` отримує **бюджет завантажень на цикл** (лічильник саме
+спроб `fetch`, бо кожна споживає квоту запиту), щоб навіть рідкісний сплеск нових
+авто не пробив ліміт: що не встигли — доїде наступного циклу через `head`-пропуск.
+
+Заразом виправлення IMPORTANT #3 з фінального рев'ю: читати `status.json` **перед**
+`catalog.json`, щоб дедуплікація алертів переживала збій читання каталогу.
+
+**Interfaces:**
+- `mirrorImages(bucket, cars, fetchImpl, maxFetches?: number): Promise<number>` —
+  `maxFetches` за замовчуванням `Infinity` (стара поведінка); бюджет рахує спроби fetch.
+- `planSeed(cars: Car[], presentKeys: Set<string>): Array<{ key: string; sourceUrl: string }>` —
+  чиста функція: які фото ще треба залити. Одиниця, яку покриваємо тестами.
+
+Кроки TDD — за зразком інших завдань. Повний код передається виконавцю в дорученні.
 
 ## Перевірка плану проти специфікації
 

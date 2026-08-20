@@ -1,0 +1,22 @@
+{
+  "name": "hayat-sync",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "deploy": "wrangler deploy",
+    "seed": "node --experimental-strip-types scripts/seed-images.ts",
+    "sync:fs": "tsx scripts/sync-fs.ts"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-s3": "^3.1094.0",
+    "@cloudflare/workers-types": "^5.20260722.1",
+    "@types/node": "^26.1.1",
+    "tsx": "^4.23.12",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.113.0"
+  }
+}

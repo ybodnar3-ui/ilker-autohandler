@@ -1,0 +1,86 @@
+import type { Car } from '../types'
+
+const IMAGE_BASE = 'https://cache.willhaben.at/mmo/'
+
+/** Скільки днів зберігаємо фото авто, якого вже немає у стоку. */
+export const RETENTION_DAYS = 7
+
+export type FetchLike = (url: string) => Promise<Response>
+
+/**
+ * Повнорозмірний варіант — це шлях без суфікса (1178×785).
+ * Суфікс _hoved дає лише 400×267 і для сторінки авто непридатний.
+ */
+export const sourceUrl = (path: string): string => IMAGE_BASE + path
+
+/**
+ * Копіює до R2 ті фото, яких там ще немає.
+ *
+ * Перевірка наявності обовʼязкова: без неї кожен цикл качав би весь сток
+ * заново — близько 185 МБ кожні 15 хвилин.
+ *
+ * Помилка одного фото не зупиняє решту: краще авто з неповною галереєю,
+ * ніж провалений цикл синхронізації.
+ */
+export async function mirrorImages(
+  bucket: R2Bucket,
+  cars: Car[],
+  fetchImpl: FetchLike,
+  maxFetches = Infinity,
+): Promise<number> {
+  let copied = 0
+  let attempts = 0
+
+  for (const car of cars) {
+    for (const image of car.images) {
+      // Бюджет рахує саме спроби fetch: кожна споживає квоту subrequest'ів
+      // Worker'а (50 на виклик на безкоштовному тарифі). Що не встигли —
+      // доїде наступного циклу, бо вже завантажені фото пропускаються по head.
+      if (attempts >= maxFetches) return copied
+      if (await bucket.head(image.key)) continue
+
+      attempts += 1
+      try {
+        const response = await fetchImpl(sourceUrl(image.source))
+        if (!response.ok) continue
+        await bucket.put(image.key, await response.arrayBuffer(), {
+          httpMetadata: { contentType: 'image/webp', cacheControl: 'public, max-age=31536000, immutable' },
+        })
+        copied += 1
+      } catch {
+        // Мережевий збій на одному фото — не привід зривати весь цикл.
+        continue
+      }
+    }
+  }
+
+  return copied
+}
+
+/**
+ * Прибирає фото авто, яких немає у стоку довше за RETENTION_DAYS.
+ * Дилер уже міг розіслати посилання, тому одразу після продажу не видаляємо.
+ */
+export async function pruneImages(bucket: R2Bucket, cars: Car[], now: Date): Promise<number> {
+  const alive = new Set(cars.map((car) => car.id))
+  const cutoff = now.getTime() - RETENTION_DAYS * 24 * 60 * 60 * 1000
+  let removed = 0
+
+  // list() повертає щонайбільше 1000 обʼєктів за раз — при ~99 авто × ~35 фото
+  // (~3500 обʼєктів) сток одразу перевищує одну сторінку, тому йдемо по cursor,
+  // поки truncated не стане false.
+  let cursor: string | undefined
+  do {
+    const listed = await bucket.list({ prefix: 'cars/', cursor })
+    for (const object of listed.objects) {
+      const carId = object.key.split('/')[1]
+      if (!carId || alive.has(carId)) continue
+      if (object.uploaded.getTime() > cutoff) continue
+      await bucket.delete(object.key)
+      removed += 1
+    }
+    cursor = listed.truncated ? listed.cursor : undefined
+  } while (cursor)
+
+  return removed
+}

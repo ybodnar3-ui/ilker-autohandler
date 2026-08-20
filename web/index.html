@@ -1,0 +1,529 @@
+<!doctype html><html lang=de><head><meta charset=utf8>
+<meta name=viewport content="width=device-width,initial-scale=1"><title>Hayat Gruppe — Automobile</title>
+<link rel=preconnect href="https://fonts.googleapis.com"><link rel=preconnect href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel=stylesheet>
+<style>
+:root{
+  --bg:#EEF0F3;--bg-2:#FFFFFF;--panel:#F6F7F9;
+  --ink:#15171C;--ink-2:#565C66;--ink-3:#8b929c;
+  --line:#E0E3E9;--line-2:#D2D6DD;
+  --accent:#1B45FF;
+  --d-ink:#F7F8FA;--d-muted:rgba(247,248,250,.62);--d-line:rgba(247,248,250,.22);
+  --disp:'Familjen Grotesk',system-ui,sans-serif;--body:'Manrope',system-ui,sans-serif;
+  --maxw:1320px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:400;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:#fff}
+::-webkit-scrollbar{width:11px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#c7ccd4}::-webkit-scrollbar-thumb:hover{background:#aab1bb}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--ink-3)}
+
+/* NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 0;transition:background .45s,padding .45s}
+header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:transparent;transition:.45s}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.14em;color:var(--d-ink);transition:color .45s}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--d-muted);transition:color .3s}
+.nav-links a:hover{color:var(--d-ink)}
+.nav-right{display:flex;align-items:center;gap:18px}
+.langs{display:flex;gap:2px}
+.langs button{background:none;border:none;color:var(--d-muted);font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.06em;padding:6px 8px;cursor:pointer;transition:.25s;border-radius:6px}
+.langs button.on{color:var(--d-ink)}
+.langs button:not(.on):hover{color:var(--d-ink)}
+.navcall{font-size:13px;font-weight:600;color:var(--d-ink);border:1px solid var(--d-line);border-radius:100px;padding:9px 18px;transition:.3s}
+.navcall:hover{background:var(--d-ink);color:var(--ink)}
+header.solid{background:rgba(238,240,243,.85);backdrop-filter:blur(16px) saturate(150%);padding:14px 0}
+header.solid::after{background:var(--line)}
+header.solid .brand{color:var(--ink)}
+header.solid .nav-links a{color:var(--ink-2)}header.solid .nav-links a:hover{color:var(--ink)}
+header.solid .langs button{color:var(--ink-3)}header.solid .langs button.on{color:var(--ink)}
+header.solid .navcall{color:var(--ink);border-color:var(--line-2)}header.solid .navcall:hover{background:var(--ink);color:#fff}
+
+/* burger + mobile menu */
+.burger{display:none;flex-direction:column;gap:5px;width:42px;height:42px;align-items:center;justify-content:center;background:none;border:1px solid var(--d-line);border-radius:100px;cursor:pointer;transition:.3s}
+.burger span{display:block;width:17px;height:1.6px;background:var(--d-ink);transition:.3s}
+header.solid .burger{border-color:var(--line-2)}
+header.solid .burger span{background:var(--ink)}
+.burger.x{border-color:var(--d-ink)}
+.burger.x span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+.burger.x span:nth-child(2){opacity:0}
+.burger.x span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:150;background:rgba(9,10,13,.98);backdrop-filter:blur(24px);
+  display:flex;flex-direction:column;justify-content:center;gap:8px;padding:80px clamp(24px,7vw,48px) 44px;
+  opacity:0;visibility:hidden;transform:translateY(-12px);transition:opacity .4s,transform .4s,visibility .4s}
+.mnav.open{opacity:1;visibility:visible;transform:none}
+.mnav-links{display:flex;flex-direction:column;gap:2px;margin-bottom:30px}
+.mnav-links a{font-family:var(--disp);font-weight:600;font-size:34px;letter-spacing:-.01em;color:var(--d-ink);padding:12px 0;border-bottom:1px solid rgba(247,248,250,.08)}
+.mnav-langs{display:flex;gap:6px;margin-bottom:26px}
+.mnav-langs button{background:none;border:1px solid var(--d-line);color:var(--d-muted);font-family:var(--body);font-weight:600;font-size:14px;padding:9px 18px;border-radius:100px;cursor:pointer}
+.mnav-langs button.on{background:var(--d-ink);color:var(--ink);border-color:var(--d-ink)}
+.mnav-contact{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.mnav-contact a{display:flex;align-items:center;justify-content:center;gap:10px;padding:17px;font-size:15px;font-weight:600;border-radius:100px}
+.mnav-contact a svg{width:20px;height:20px}
+.mc-wa{background:#25D366;color:#08130c}
+.mc-call{background:var(--d-ink);color:var(--ink)}
+.mnav-info{margin-top:20px;font-size:13px;color:var(--d-muted);text-align:center;line-height:1.6}
+body.menu-open{overflow:hidden}
+
+/* FIXED VIDEO BACKGROUND */
+.cinema{position:fixed;inset:0;z-index:0;overflow:hidden;background:#0a0b0e}
+.cinema video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cinema-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,14,.55) 0%,rgba(10,11,14,.1) 30%,rgba(10,11,14,.28) 66%,rgba(10,11,14,.62) 100%)}
+.cinema-veil{position:absolute;inset:0;background:#0a0b0e;pointer-events:none}
+.scrub-track{position:fixed;left:0;bottom:0;height:2px;width:100%;background:rgba(20,22,28,.1);z-index:60;transition:opacity .4s}
+.scrub-fill{height:100%;width:0;background:var(--accent)}
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-content{position:relative;z-index:1;width:100%;padding-bottom:clamp(70px,11vh,120px);will-change:transform,opacity}
+.hero-eyebrow{color:var(--d-muted);margin-bottom:24px}
+.hero-content h1{font-family:var(--disp);font-weight:600;color:var(--d-ink);font-size:clamp(46px,8vw,116px);line-height:.94;letter-spacing:-.02em;text-wrap:balance;max-width:14ch}
+.hero-sub{color:var(--d-muted);font-size:clamp(15px,1.4vw,19px);max-width:46ch;margin:26px 0 34px}
+.hero-cta{display:inline-flex;align-items:center;gap:12px;font-size:14px;font-weight:600;color:var(--d-ink);border:1px solid var(--d-line);border-radius:100px;padding:15px 28px;transition:.35s cubic-bezier(.2,.7,.2,1)}
+.hero-cta:hover{background:var(--d-ink);color:var(--ink);gap:16px}
+.hero-cta svg{width:16px;height:16px}
+.hero-foot{position:absolute;left:0;right:0;bottom:0;z-index:2;pointer-events:none;padding-bottom:26px}
+.hero-foot .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hero-foot .stat{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--d-muted)}
+.hero-foot .stat b{color:var(--d-ink)}
+.hero-foot .sh{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--d-muted)}
+
+/* SHOWCASE — frameless cars over the still-playing video */
+.showcase{position:relative;z-index:1;padding:clamp(30px,5vw,70px) 0 clamp(90px,15vw,210px)}
+.show-head{margin-bottom:clamp(44px,7vw,84px)}
+.show-head h2{font-family:var(--disp);font-weight:600;font-size:clamp(30px,4.4vw,60px);line-height:1;letter-spacing:-.02em;color:var(--d-ink)}
+.show-head .meta{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--d-muted);margin-top:14px}
+.show-list{display:flex;flex-direction:column;gap:clamp(80px,13vw,180px)}
+.show-item{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(26px,4.5vw,66px);align-items:center;cursor:pointer}
+.show-item:nth-child(even) .show-media{order:2}
+.show-media{position:relative;overflow:hidden;aspect-ratio:16/10;box-shadow:0 60px 120px -30px rgba(0,0,0,.85)}
+.show-media img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.show-item:hover .show-media img{transform:scale(1.045)}
+.show-media .tag{position:absolute;top:18px;left:18px;background:rgba(10,11,14,.5);backdrop-filter:blur(8px);border:1px solid var(--d-line);color:var(--d-ink);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:7px 13px;border-radius:100px}
+.show-info{color:var(--d-ink)}
+.show-info .eb{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--d-muted);margin-bottom:16px}
+.show-info h3{font-family:var(--disp);font-weight:600;font-size:clamp(26px,3.1vw,42px);line-height:1.02;letter-spacing:-.02em}
+.show-info .specs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 24px}
+.show-info .specs span{font-size:12px;font-weight:500;color:var(--d-ink);border:1px solid var(--d-line);padding:6px 13px;border-radius:100px}
+.show-info .price{font-family:var(--disp);font-size:clamp(25px,2.6vw,34px);font-weight:600;letter-spacing:-.01em;margin-bottom:26px}
+.show-info .cta{display:inline-flex;align-items:center;gap:11px;font-size:13px;font-weight:600;color:var(--d-ink);border:1px solid var(--d-line);border-radius:100px;padding:14px 24px;transition:.4s cubic-bezier(.2,.7,.2,1)}
+.show-info .cta svg{width:15px;height:15px}
+.show-item:hover .show-info .cta{background:var(--d-ink);color:var(--ink);gap:15px}
+
+/* LIGHT PAGE (scrolls up over the fixed video) */
+.page{position:relative;z-index:2;background:var(--bg)}
+.sec{padding:clamp(72px,10vw,132px) 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:44px;flex-wrap:wrap}
+.sec-head h2{font-family:var(--disp);font-weight:600;font-size:clamp(30px,4.2vw,58px);line-height:1;letter-spacing:-.02em}
+.sec-head .meta{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.chip{font-size:13px;font-weight:600;color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line);padding:9px 17px;cursor:pointer;transition:.28s;font-family:var(--body);border-radius:100px}
+.chip:hover{border-color:var(--ink-3);color:var(--ink)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.controls{display:flex;align-items:flex-end;justify-content:space-between;gap:18px 24px;flex-wrap:wrap;margin-bottom:26px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ctrl-filters{display:flex;gap:16px 20px;flex-wrap:wrap;align-items:flex-end}
+.fg{display:flex;flex-direction:column;gap:8px}
+.fg-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.fg-row{display:flex;align-items:center;gap:6px}
+.fg-row .dash{color:var(--ink-3);font-size:14px}
+.ctrl-sort{display:flex;flex-direction:column;gap:8px}
+.ctrl-sort .fg-label{text-align:right}
+.sel{position:relative;display:inline-flex}
+.sel select{appearance:none;-webkit-appearance:none;font-family:var(--body);font-size:13px;font-weight:600;color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:9px 30px 9px 13px;cursor:pointer;transition:.25s;min-width:86px}
+.sel select:hover{border-color:var(--ink-3);color:var(--ink)}
+.sel.on select{border-color:var(--accent);color:var(--accent);background:rgba(27,69,255,.05)}
+.sel::after{content:'';position:absolute;right:13px;top:44%;width:6px;height:6px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-50%) rotate(45deg);pointer-events:none;color:var(--ink-3)}
+.sel.on::after{color:var(--accent)}
+.ctrl-reset{align-self:flex-end;font-size:12.5px;font-weight:600;color:var(--ink-3);background:none;border:none;cursor:pointer;padding:11px 4px;transition:.2s}
+.ctrl-reset:hover{color:var(--accent)}
+.count{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.grid-empty{grid-column:1/-1;padding:60px 0;text-align:center;color:var(--ink-3);font-size:15px}
+.gcard{cursor:pointer;background:var(--bg-2);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s,border-color .45s}
+.gcard:hover{transform:translateY(-4px);box-shadow:0 24px 46px -30px rgba(21,23,28,.26);border-color:var(--line-2)}
+.gmedia{aspect-ratio:4/3;overflow:hidden;position:relative;background:var(--panel)}
+.gmedia img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.gcard:hover .gmedia img{transform:scale(1.05)}
+.gbadge{position:absolute;top:11px;left:11px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.9);backdrop-filter:blur(6px);color:var(--ink-2);padding:5px 10px;border-radius:100px}
+.gbody{padding:16px 17px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+.gbody h3{font-family:var(--disp);font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.12}
+.gmeta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:auto;font-weight:500}
+.gmeta .d{width:3px;height:3px;border-radius:50%;background:var(--line-2);align-self:center}
+.gprice{font-family:var(--disp);font-size:19px;font-weight:600;letter-spacing:-.01em;padding-top:13px;border-top:1px solid var(--line)}
+
+.about{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.about-in{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,6vw,90px);align-items:center;padding:clamp(60px,9vw,116px) 0}
+.about h2{font-family:var(--disp);font-weight:600;font-size:clamp(28px,3.6vw,50px);line-height:1.04;letter-spacing:-.02em;margin-bottom:22px}
+.about p{color:var(--ink-2);font-size:16px;max-width:46ch;margin-bottom:16px}
+.marks{display:flex;gap:44px;margin-top:38px;flex-wrap:wrap}
+.marks b{font-family:var(--disp);font-size:46px;font-weight:600;letter-spacing:-.02em;display:block;line-height:1}
+.marks b.acc{color:var(--accent)}
+.marks span{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:8px;display:block}
+.about-list{display:flex;flex-direction:column}
+.about-list div{display:flex;align-items:center;gap:15px;padding:17px 0;border-top:1px solid var(--line);font-size:15px}
+.about-list div:last-child{border-bottom:1px solid var(--line)}
+.about-list svg{width:18px;height:18px;color:var(--accent);flex-shrink:0}
+
+footer{padding:clamp(56px,7vw,92px) 0 36px}
+.foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--line)}
+.foot-brand b{font-family:var(--disp);font-size:26px;font-weight:700;letter-spacing:.12em;display:block;margin-bottom:16px}
+.foot-brand p{color:var(--ink-2);max-width:34ch;font-size:14px}
+.foot-col h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px;font-weight:600}
+.foot-col a,.foot-col p{display:block;color:var(--ink-2);font-size:14px;margin-bottom:11px;transition:.25s}
+.foot-col a:hover{color:var(--accent)}
+.foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px}
+.foot-bot span{font-size:12.5px;color:var(--ink-3)}
+.foot-legal{display:flex;gap:22px}
+.foot-legal a{font-size:12.5px;color:var(--ink-3)}.foot-legal a:hover{color:var(--ink)}
+
+/* DETAIL */
+.detail{position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .45s}
+.detail.open{opacity:1;visibility:visible}
+.detail-bar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(20px,5vw,60px);background:rgba(238,240,243,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.detail-bar .b{font-family:var(--disp);font-size:17px;font-weight:600}
+.dclose{background:var(--bg-2);border:1px solid var(--line);color:var(--ink);width:42px;height:42px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;border-radius:100px;font-size:15px}
+.dclose:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.detail-in{max-width:var(--maxw);margin:0 auto;padding:clamp(26px,4vw,54px) clamp(20px,5vw,60px) 90px;display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
+.gal-main{overflow:hidden;border-radius:16px;background:var(--panel);border:1px solid var(--line)}
+.gal-main img{width:100%;aspect-ratio:16/10.5;object-fit:cover}
+.gal-thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:11px}
+.gal-thumbs img{width:100%;aspect-ratio:1;object-fit:cover;cursor:pointer;opacity:.55;transition:.3s;border-radius:9px;background:var(--panel)}
+.gal-thumbs img:hover{opacity:.85}
+.gal-thumbs img.on{opacity:1;outline:2px solid var(--accent);outline-offset:1px}
+.dpanel .eyebrow{margin-bottom:14px}
+.dpanel h1{font-family:var(--disp);font-weight:600;font-size:clamp(28px,3.2vw,44px);line-height:1;letter-spacing:-.02em;margin-bottom:12px}
+.dprice{font-family:var(--disp);font-size:34px;font-weight:600;letter-spacing:-.02em;margin-bottom:28px}
+.dspecs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:28px}
+.dspecs div{background:var(--bg-2);padding:15px 17px}
+.dspecs span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:5px;font-weight:600}
+.dspecs b{font-family:var(--disp);font-size:19px;font-weight:600}
+.dcta{display:flex;flex-direction:column;gap:11px;margin-bottom:30px}
+.dcta a{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;font-size:14px;font-weight:600;border-radius:100px;transition:.35s cubic-bezier(.2,.7,.2,1)}
+.dcta a svg{width:18px;height:18px}
+.wa{background:var(--accent);color:#fff}.wa:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.dsec{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.dsec a{border:1px solid var(--line-2);color:var(--ink)}.dsec a:hover{border-color:var(--ink);transform:translateY(-1px)}
+.deq h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;font-weight:600}
+.deq-tags{display:flex;flex-wrap:wrap;gap:7px}
+.deq-tags span{font-size:12.5px;color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line);padding:7px 12px;border-radius:8px}
+.dnote{margin-top:24px;font-size:12.5px;color:var(--ink-3);line-height:1.6}
+
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.stg>*{opacity:0;transform:translateY(22px);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1)}
+.stg.in>*{opacity:1;transform:none}
+.stg.in>*:nth-child(2){transition-delay:.05s}.stg.in>*:nth-child(3){transition-delay:.1s}.stg.in>*:nth-child(4){transition-delay:.15s}
+
+.flag{position:fixed;left:0;bottom:0;z-index:9990;background:var(--ink);color:#fff;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 13px;border-top-right-radius:8px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* tablet */
+@media(max-width:960px){
+  .nav-links,.navcall,.langs{display:none}.burger{display:flex}
+  .show-item,.about-in,.detail-in{grid-template-columns:1fr;gap:clamp(24px,6vw,44px)}
+  .show-item:nth-child(even) .show-media{order:0}
+  .show-list{gap:clamp(56px,12vw,110px)}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .foot-top{grid-template-columns:1fr;gap:34px}
+}
+/* phone */
+@media(max-width:640px){
+  .wrap{padding:0 20px}
+  header{padding:15px 0}.brand{font-size:17px}
+  .sec{padding:62px 0}
+  .cinema video{object-position:66% center}
+  .hero-content{padding-bottom:92px}
+  .hero-content h1{font-size:clamp(40px,13vw,58px);max-width:none;line-height:.98}
+  .hero-sub{font-size:15px;margin:20px 0 26px;max-width:none}
+  .hero-cta{padding:14px 24px}
+  .hero-foot .stat{font-size:10.5px}.hero-foot .sh{display:none}
+  .showcase{padding:16px 0 clamp(70px,16vw,120px)}.show-list{gap:66px}
+  .show-media{aspect-ratio:4/3}.show-info h3{font-size:26px}.show-info .price{font-size:26px}
+  .sec-head{margin-bottom:32px}.show-head{margin-bottom:38px}
+  /* filters: brand chips scroll, controls stack full-width */
+  .filters{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;margin-bottom:18px;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto}
+  .controls{flex-direction:column;align-items:stretch;gap:16px;padding:18px 0}
+  .ctrl-filters{gap:14px}
+  .fg{flex:1 1 100%}
+  .fg-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
+  .sel select{width:100%;min-width:0}
+  .ctrl-sort{align-items:stretch}.ctrl-sort .fg-label{text-align:left}.ctrl-reset{align-self:flex-start}
+  .grid{grid-template-columns:1fr;gap:15px}.gbody h3{font-size:18px}
+  .dspecs{grid-template-columns:1fr 1fr}.gal-thumbs{grid-template-columns:repeat(5,1fr)}.dsec{grid-template-columns:1fr}
+  .detail-bar{padding:14px 20px}
+  .marks{gap:26px}.marks b{font-size:38px}
+  .mnav-links a{font-size:30px}
+}
+@media(max-width:380px){.hero-content h1{font-size:37px}.mnav-contact{grid-template-columns:1fr}}
+</style>
+</head><body>
+<script src="./data.js"></script>
+<div class="flag">Hayat Gruppe · Wien · seit 1932</div>
+
+<header id="hdr"><div class="wrap nav">
+  <a class="brand" href="#hero">HAYAT GRUPPE</a>
+  <nav class="nav-links"><a href="#kollektion">Kollektion</a><a href="#ausgewaehlt">Ausgewählt</a><a href="#ueber">Über uns</a><a href="#kontakt">Kontakt</a></nav>
+  <div class="nav-right"><div class="langs"><button class="on">DE</button><button>EN</button><button>TR</button></div>
+    <a class="navcall" href="tel:+436765571571">+43 676 5571571</a>
+    <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button></div>
+</div></header>
+
+<div class="mnav" id="mnav">
+  <nav class="mnav-links">
+    <a href="#kollektion" data-close>Kollektion</a>
+    <a href="#ausgewaehlt" data-close>Ausgewählt</a>
+    <a href="#ueber" data-close>Über uns</a>
+    <a href="#kontakt" data-close>Kontakt</a>
+  </nav>
+  <div class="mnav-langs"><button class="on">DE</button><button>EN</button><button>TR</button></div>
+  <div class="mnav-contact">
+    <a class="mc-wa" href="https://wa.me/436765571571" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m5.56 12.4c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42-.14 0-.31-.02-.47-.02-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.16 1.73 2.64 4.19 3.7.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18z"/></svg>WhatsApp</a>
+    <a class="mc-call" href="tel:+436765571571">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Anrufen</a>
+  </div>
+  <div class="mnav-info">+43 676 5571571 · Groß-Enzersdorfer Straße 88b, 1220 Wien</div>
+</div>
+
+<div class="cinema" aria-hidden="true">
+  <video id="heroVid" muted playsinline preload="auto" poster="./poster.jpg"><source src="./hero.mp4" type="video/mp4"></video>
+  <div class="cinema-scrim"></div>
+  <div class="cinema-veil" id="veil"></div>
+</div>
+<div class="scrub-track"><div class="scrub-fill" id="scrubFill"></div></div>
+
+<section class="hero" id="hero">
+  <div class="wrap hero-content" id="heroContent">
+    <div class="eyebrow hero-eyebrow">Hayat Gruppe · Wien seit 1932</div>
+    <h1>Automobile mit Charakter.</h1>
+    <p class="hero-sub"><span id="heroCount">100</span> geprüfte Premiumfahrzeuge — persönlich ausgewählt, ehrlich vermittelt.</p>
+    <a class="hero-cta" href="#kollektion">Kollektion ansehen
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+  <div class="hero-foot"><div class="wrap">
+    <div class="stat"><b id="statTotal">100</b> Fahrzeuge · <b id="statBrands">19</b> Marken</div>
+    <div class="sh">Weiterscrollen</div>
+  </div></div>
+</section>
+
+<section class="showcase wrap" id="ausgewaehlt">
+  <div class="show-head rv"><h2>Ausgewählte Fahrzeuge</h2><div class="meta">Kuratiert aus dem Bestand</div></div>
+  <div class="show-list" id="showItems"></div>
+</section>
+
+<div class="page">
+  <section class="sec wrap" id="kollektion">
+    <div class="sec-head rv"><h2>Die Kollektion</h2><div class="meta" id="collmeta"></div></div>
+    <div class="filters rv" id="filters"></div>
+    <div class="controls rv" id="controls"></div>
+    <div class="count" id="count"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+  <section class="about" id="ueber"><div class="wrap about-in">
+    <div class="rv">
+      <h2>Persönlich vermittelt.<br>Seit 1932.</h2>
+      <p>Ein Familienunternehmen aus dem 22. Wiener Gemeindebezirk. Wir kaufen, verkaufen und vermitteln Premiumfahrzeuge — geprüft, ehrlich, unkompliziert.</p>
+      <p>Jedes Fahrzeug wird persönlich betreut. Von der ersten Anfrage bis zur Übergabe.</p>
+      <div class="marks"><div><b>90+</b><span>Jahre Erfahrung</span></div><div><b class="acc" id="mtotal">100</b><span>Fahrzeuge</span></div><div><b id="mbrands">19</b><span>Marken</span></div></div>
+    </div>
+    <div class="about-list rv">
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Fahrzeugankauf &amp; -verkauf</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Finanzierung über 5 Banken</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Geprüfte Premium- &amp; Sportwagen</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Europaweites Händlernetzwerk</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Diskrete &amp; persönliche Abwicklung</div>
+    </div>
+  </div></section>
+  <footer id="kontakt"><div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand rv"><b>HAYAT GRUPPE</b><p>Exklusive Automobile. Persönliche Beratung. Höchste Qualität — für Käufer und Verkäufer in ganz Österreich.</p></div>
+      <div class="foot-col rv"><h4>Kontakt</h4><a href="tel:+436765571571">+43 676 5571571</a><a href="mailto:contact@hayatgruppe.com">contact@hayatgruppe.com</a><p>Groß-Enzersdorfer Straße 88b<br>1220 Wien, Donaustadt</p></div>
+      <div class="foot-col rv"><h4>Folgen</h4><a href="#" onclick="return false">Instagram</a><a href="#" onclick="return false">Facebook</a><a href="#kollektion">Zum Bestand</a></div>
+    </div>
+    <div class="foot-bot"><span>© 2026 Hayat Gruppe — Familienunternehmen seit 1932</span>
+      <div class="foot-legal"><a href="#" onclick="return false">Impressum</a><a href="#" onclick="return false">Datenschutz</a><a href="#" onclick="return false">AGB</a></div></div>
+  </div></footer>
+</div>
+
+<div class="detail" id="detail"></div>
+
+<script>
+const DATA=window.DATA;
+const PHONE='436765571571',EMAIL='contact@hayatgruppe.com';
+const nf=new Intl.NumberFormat('de-DE');
+const km=v=>nf.format(v)+' km';
+const specArr=c=>[c.year,c.fuel,c.ps?c.ps+' PS':'',c.trans].filter(Boolean);
+
+['heroCount','statTotal','mtotal'].forEach(id=>document.getElementById(id).textContent=DATA.stats.total);
+['statBrands','mbrands'].forEach(id=>document.getElementById(id).textContent=DATA.stats.brands);
+document.getElementById('collmeta').textContent=DATA.stats.total+' Fahrzeuge · '+DATA.stats.brands+' Marken';
+
+/* showcase = hero car + featured, over the video */
+const showcaseCars=[DATA.hero,...DATA.featured];
+document.getElementById('showItems').innerHTML=showcaseCars.map(c=>`
+  <div class="show-item rv" onclick="openDetailById('${c.id}')">
+    <div class="show-media"><span class="tag">${c.body}</span><img src="${c.cover}" alt="${c.title}"></div>
+    <div class="show-info"><div class="eb">${c.make} · ${c.year}</div><h3>${c.title}</h3>
+      <div class="specs">${specArr(c).map(s=>`<span>${s}</span>`).join('')}</div>
+      <div class="price">${c.disp}</div>
+      <span class="cta">Fahrzeug ansehen<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+  </div>`).join('');
+
+/* ---------- collection: brands + willhaben-style von–bis filters + sort ---------- */
+const G=DATA.grid;
+const uniq=a=>[...new Set(a.filter(Boolean))];
+const state={brand:'Alle',fuel:'',trans:'',priceMin:0,priceMax:0,yearMin:0,yearMax:0,kmMin:0,kmMax:0,psMin:0,psMax:0,sort:'price-desc'};
+
+const brands=['Alle',...uniq(G.map(c=>c.make))];
+document.getElementById('filters').innerHTML=brands.map((b,i)=>`<button class="chip ${i===0?'on':''}" data-b="${b}">${b}</button>`).join('');
+
+/* value lists computed from the live stock — auto-adjust as it changes */
+const maxP=Math.max(...G.map(c=>c.price)),maxKm=Math.max(...G.map(c=>c.km)),maxPs=Math.max(...G.map(c=>c.ps).filter(Boolean));
+const ys=G.map(c=>+c.year).filter(Boolean),minY=Math.min(...ys),maxY=Math.max(...ys);
+const priceVals=[5000,10000,20000,30000,50000,75000,100000,150000,250000].filter(v=>v<=maxP);
+const kmVals=[10000,25000,50000,75000,100000,150000,200000].filter(v=>v<=maxKm);
+const psVals=[75,100,150,200,250,300,400,500].filter(v=>v<=maxPs);
+const yearVals=[];for(let y=maxY;y>=minY;y--)yearVals.push(y);
+const fmt=v=>nf.format(v);
+const O=(v,l,sel)=>`<option value="${v}" ${sel?'selected':''}>${l}</option>`;
+const SEL=(id,opts)=>`<span class="sel" data-for="${id}"><select id="${id}">${opts}</select></span>`;
+const range=(label,idMin,idMax,vals,f)=>`<div class="fg"><span class="fg-label">${label}</span><div class="fg-row">${SEL(idMin,O('0','von',1)+vals.map(v=>O(v,f(v))).join(''))}<span class="dash">–</span>${SEL(idMax,O('0','bis',1)+vals.map(v=>O(v,f(v))).join(''))}</div></div>`;
+const single=(label,id,opts)=>`<div class="fg"><span class="fg-label">${label}</span>${SEL(id,opts)}</div>`;
+document.getElementById('controls').innerHTML=`
+  <div class="ctrl-filters">
+    ${single('Kraftstoff','fFuel',O('','Alle',1)+uniq(G.map(c=>c.fuel)).map(v=>O(v,v)).join(''))}
+    ${single('Getriebe','fTrans',O('','Alle',1)+uniq(G.map(c=>c.trans)).map(v=>O(v,v)).join(''))}
+    ${range('Preis (€)','fPriceMin','fPriceMax',priceVals,fmt)}
+    ${range('Erstzulassung','fYearMin','fYearMax',yearVals,v=>v)}
+    ${range('Kilometerstand','fKmMin','fKmMax',kmVals,fmt)}
+    ${range('Leistung (PS)','fPsMin','fPsMax',psVals,v=>v)}
+    <button class="ctrl-reset" id="fReset">Zurücksetzen</button>
+  </div>
+  <div class="ctrl-sort"><span class="fg-label">Sortieren</span><span class="sel"><select id="sort">
+    ${O('price-desc','Preis absteigend',1)}${O('price-asc','Preis aufsteigend')}${O('year-desc','Erstzulassung neueste')}${O('year-asc','Erstzulassung älteste')}${O('km-asc','Kilometerstand aufsteigend')}
+  </select></span></div>`;
+
+const sorters={'price-desc':(a,b)=>b.price-a.price,'price-asc':(a,b)=>a.price-b.price,'year-desc':(a,b)=>(+b.year)-(+a.year),'year-asc':(a,b)=>(+a.year)-(+b.year),'km-asc':(a,b)=>a.km-b.km};
+function apply(){
+  let list=G.filter(c=>
+    (state.brand==='Alle'||c.make===state.brand)&&(!state.fuel||c.fuel===state.fuel)&&(!state.trans||c.trans===state.trans)&&
+    (!state.priceMin||c.price>=state.priceMin)&&(!state.priceMax||c.price<=state.priceMax)&&
+    (!state.yearMin||(+c.year)>=state.yearMin)&&(!state.yearMax||(+c.year)<=state.yearMax)&&
+    (!state.kmMin||c.km>=state.kmMin)&&(!state.kmMax||c.km<=state.kmMax)&&
+    (!state.psMin||c.ps>=state.psMin)&&(!state.psMax||c.ps<=state.psMax));
+  list=list.slice().sort(sorters[state.sort]);
+  document.getElementById('count').textContent=list.length+' '+(list.length===1?'Fahrzeug':'Fahrzeuge');
+  document.getElementById('grid').innerHTML=list.length?list.map(c=>`
+    <div class="gcard" onclick="openDetailById('${c.id}')">
+      <div class="gmedia"><span class="gbadge">${c.make}</span><img src="${c.cover}" alt="${c.title}" loading="lazy"></div>
+      <div class="gbody"><h3>${c.title}</h3>
+        <div class="gmeta"><span>${c.year}</span><i class="d"></i><span>${km(c.km)}</span><i class="d"></i><span>${c.fuel}</span></div>
+        <div class="gprice">${c.disp}</div></div>
+    </div>`).join(''):'<div class="grid-empty">Keine Fahrzeuge mit diesen Kriterien. <a href="#" onclick="resetFilters();return false" style="color:var(--accent);font-weight:600">Filter zurücksetzen</a></div>';
+  document.querySelectorAll('.sel[data-for]').forEach(s=>{const v=s.querySelector('select').value;s.classList.toggle('on',v&&v!=='0');});
+}
+document.getElementById('filters').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
+  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.brand=b.dataset.b;apply();});
+const bind=(id,key,num)=>document.getElementById(id).addEventListener('change',e=>{state[key]=num?+e.target.value:e.target.value;apply();});
+bind('fFuel','fuel');bind('fTrans','trans');
+bind('fPriceMin','priceMin',1);bind('fPriceMax','priceMax',1);bind('fYearMin','yearMin',1);bind('fYearMax','yearMax',1);
+bind('fKmMin','kmMin',1);bind('fKmMax','kmMax',1);bind('fPsMin','psMin',1);bind('fPsMax','psMax',1);
+document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;apply();});
+function resetFilters(){Object.assign(state,{brand:'Alle',fuel:'',trans:'',priceMin:0,priceMax:0,yearMin:0,yearMax:0,kmMin:0,kmMax:0,psMin:0,psMax:0});
+  document.querySelectorAll('.chip').forEach((x,i)=>x.classList.toggle('on',i===0));
+  document.getElementById('fFuel').value='';document.getElementById('fTrans').value='';
+  ['fPriceMin','fPriceMax','fYearMin','fYearMax','fKmMin','fKmMax','fPsMin','fPsMax'].forEach(id=>document.getElementById(id).value='0');apply();}
+document.getElementById('fReset').addEventListener('click',resetFilters);
+apply();
+
+/* detail */
+const byId=id=>[DATA.hero,...DATA.featured,...DATA.grid].find(c=>c.id===id);
+function openDetailById(id){renderDetail(byId(id));}
+function renderDetail(c){
+  const gal=c.gallery&&c.gallery.length?c.gallery:[c.cover];
+  const wa=`https://wa.me/${PHONE}?text=`+encodeURIComponent(`Guten Tag, ich interessiere mich für den ${c.title} (${c.disp}). Ist das Fahrzeug noch verfügbar?`);
+  const mail=`mailto:${EMAIL}?subject=`+encodeURIComponent(`Anfrage: ${c.title}`)+'&body='+encodeURIComponent(`Guten Tag,\n\nich interessiere mich für den ${c.title} (${c.disp}).\nBitte kontaktieren Sie mich.\n\nDanke!`);
+  const sp=(l,v)=>`<div><span>${l}</span><b>${v}</b></div>`;
+  const d=document.getElementById('detail');
+  d.innerHTML=`
+    <div class="detail-bar"><div class="b">${c.title}</div><button class="dclose" onclick="closeDetail()">✕</button></div>
+    <div class="detail-in">
+      <div><div class="gal-main"><img id="galMain" src="${gal[0]}" alt="${c.title}"></div>
+        ${gal.length>1?`<div class="gal-thumbs">${gal.map((g,i)=>`<img class="${i===0?'on':''}" src="${g}" onclick="swapGal(this,'${g}')">`).join('')}</div>`:''}</div>
+      <div class="dpanel"><div class="eyebrow">${c.make} · ${c.body}</div><h1>${c.title}</h1><div class="dprice">${c.disp}</div>
+        <div class="dspecs">${sp('Kilometerstand',km(c.km))}${sp('Erstzulassung',c.year)}${sp('Leistung',(c.ps?c.ps+' PS':'—')+(c.kw?' · '+c.kw+' kW':''))}${sp('Kraftstoff',c.fuel||'—')}${sp('Getriebe',c.trans||'—')}${sp('Zustand',c.cond||'—')}</div>
+        <div class="dcta">
+          <a class="wa" href="${wa}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 1.67c4.55 0 8.24 3.69 8.24 8.24s-3.69 8.24-8.24 8.24c-1.53 0-3.02-.42-4.31-1.22l-.31-.18-3.11.82.83-3.03-.2-.32a8.2 8.2 0 0 1-1.26-4.35c0-4.55 3.7-8.24 8.24-8.24m4.52 10.4c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42-.14 0-.31-.02-.47-.02-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.16 1.73 2.64 4.19 3.7.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29"/></svg>Per WhatsApp anfragen</a>
+          <div class="dsec"><a href="tel:+${PHONE}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Anrufen</a>
+          <a href="${mail}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>E-Mail</a></div>
+        </div>
+        ${c.eq&&c.eq.length?`<div class="deq"><h4>Ausstattung — ${c.eq.length} Merkmale</h4><div class="deq-tags">${c.eq.slice(0,18).map(x=>`<span>${x}</span>`).join('')}${c.eq.length>18?`<span>+${c.eq.length-18} weitere</span>`:''}</div></div>`:''}
+        <p class="dnote">Fahrzeugdaten automatisch aus dem willhaben-Bestand synchronisiert.</p>
+      </div>
+    </div>`;
+  d.classList.add('open');document.body.style.overflow='hidden';d.scrollTop=0;
+}
+function swapGal(el,src){document.getElementById('galMain').src=src;document.querySelectorAll('.gal-thumbs img').forEach(x=>x.classList.remove('on'));el.classList.add('on');}
+function closeDetail(){document.getElementById('detail').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
+
+/* ---- fixed video background, scroll drives the frame ---- */
+const hdr=document.getElementById('hdr'),content=document.getElementById('heroContent'),
+  vid=document.getElementById('heroVid'),fill=document.getElementById('scrubFill'),
+  foot=document.querySelector('.hero-foot'),scrubTrack=document.querySelector('.scrub-track'),
+  veil=document.getElementById('veil'),pageEl=document.querySelector('.page');
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const SCRUB_SCREENS=3.0;   /* slower: video plays over 3 screens */
+const SCRUB_START=1.4;     /* skip the ugly opening (car hidden behind panel) */
+let dur=0,ticking=false;
+vid.muted=true;vid.playsInline=true;vid.load();
+function wake(){const p=vid.play();if(p&&p.then)p.then(()=>{vid.pause();update();}).catch(()=>{});}
+['loadedmetadata','durationchange','canplay','loadeddata'].forEach(ev=>vid.addEventListener(ev,()=>{if(vid.duration&&isFinite(vid.duration))dur=vid.duration;update();}));
+wake();addEventListener('pointerdown',wake,{once:true});addEventListener('touchstart',wake,{once:true,passive:true});
+function update(){
+  if(!dur&&vid.duration&&isFinite(vid.duration))dur=vid.duration;
+  const y=scrollY;
+  const p=clamp(y/(innerHeight*SCRUB_SCREENS),0,1);
+  /* nav turns light only once the light page reaches the top */
+  hdr.classList.toggle('solid',pageEl.getBoundingClientRect().top<70);
+  if(dur){const t=clamp(SCRUB_START+p*(dur-SCRUB_START-0.05),0,dur-0.05);if(Math.abs(vid.currentTime-t)>0.008){try{vid.currentTime=t;}catch(e){}}}
+  fill.style.width=(p*100).toFixed(2)+'%';
+  scrubTrack.style.opacity=p>=1?0:1;
+  /* intro veil: dark at top, fades out as you start scrolling */
+  veil.style.opacity=clamp(1-y/(innerHeight*0.55),0,1).toFixed(3);
+  /* hero text: subtle parallax + fade over the first screen */
+  const hp=clamp(y/innerHeight,0,1);
+  content.style.opacity=clamp(1-(hp-0.08)/0.5,0,1);
+  content.style.transform=`translateY(${-y*0.08}px)`;
+  foot.style.opacity=clamp(1-hp*1.8,0,1);
+}
+addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{update();ticking=false;});ticking=true;}},{passive:true});
+addEventListener('resize',update);update();
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.rv,.stg').forEach(el=>io.observe(el));
+
+document.querySelectorAll('.langs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.langs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  if(b.textContent!=='DE')alert('Mehrsprachigkeit (DE / EN / TR) folgt im finalen Build — dieser Prototyp zeigt Deutsch.');});
+
+/* mobile menu */
+const burger=document.getElementById('burger'),mnav=document.getElementById('mnav');
+function toggleMenu(open){const o=(open===undefined)?!mnav.classList.contains('open'):open;
+  mnav.classList.toggle('open',o);document.body.classList.toggle('menu-open',o);burger.classList.toggle('x',o);}
+burger.addEventListener('click',()=>toggleMenu());
+mnav.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+mnav.querySelectorAll('.mnav-contact a').forEach(a=>a.addEventListener('click',()=>setTimeout(()=>toggleMenu(false),120)));
+mnav.querySelectorAll('.mnav-langs button').forEach(b=>b.onclick=()=>{
+  mnav.querySelectorAll('.mnav-langs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  if(b.textContent!=='DE'){toggleMenu(false);alert('Mehrsprachigkeit (DE / EN / TR) folgt im finalen Build — dieser Prototyp zeigt Deutsch.');}});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&mnav.classList.contains('open'))toggleMenu(false);});
+</script>
+</body></html>
