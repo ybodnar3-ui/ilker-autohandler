@@ -212,6 +212,42 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 .deq h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;font-weight:600}
 .deq-tags{display:flex;flex-wrap:wrap;gap:7px}
 .deq-tags span{font-size:12.5px;color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line);padding:7px 12px;border-radius:8px}
+
+/* пошук */
+.search{position:relative;display:flex;align-items:center;gap:10px;background:var(--bg-2);border:1px solid var(--line);border-radius:100px;padding:6px 8px 6px 18px;margin-bottom:20px;transition:.25s}
+.search:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(27,69,255,.09)}
+.search-ico{width:18px;height:18px;color:var(--ink-3);flex:none}
+.search input{flex:1;min-width:0;border:none;outline:none;background:none;font-family:var(--body);font-size:15px;color:var(--ink);padding:12px 0}
+.search input::placeholder{color:var(--ink-3)}
+.search input::-webkit-search-cancel-button{display:none}
+.mic,.qclear{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);cursor:pointer;transition:.25s}
+.mic:hover,.qclear:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.mic svg{width:18px;height:18px}
+.mic.rec{background:var(--accent);border-color:var(--accent);color:#fff;animation:pulse 1.3s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(27,69,255,.45)}50%{box-shadow:0 0 0 9px rgba(27,69,255,0)}}
+/* схожі авто */
+.dsim{margin-top:30px;border-top:1px solid var(--line);padding-top:22px}
+.dsim h4{font-family:var(--disp);font-size:17px;font-weight:600;margin-bottom:14px}
+.dsim-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dsim-list a{display:block;cursor:pointer}
+.dsim-list img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;margin-bottom:8px}
+.dsim-list b{display:block;font-size:13px;font-weight:600;line-height:1.3}
+.dsim-list span{font-size:12px;color:var(--ink-3)}
+/* калькулятор */
+.dfin{margin-top:26px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.dfin h4{font-family:var(--disp);font-size:17px;font-weight:600;margin-bottom:14px}
+.dfin-row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:11px;font-size:13px;color:var(--ink-2)}
+.dfin-row input[type=range]{flex:1;accent-color:var(--accent)}
+.dfin-row b{color:var(--ink);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.dfin-out{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--line);margin-top:14px;padding-top:14px}
+.dfin-out span{font-size:13px;color:var(--ink-2)}
+.dfin-out b{font-family:var(--disp);font-size:27px;font-weight:600}
+.dfin-note{font-size:11px;color:var(--ink-3);line-height:1.5;margin-top:10px}
+/* позиціонування ціни */
+.pbadge{display:inline-block;font-size:12px;font-weight:600;border-radius:100px;padding:5px 12px;margin-top:9px}
+.pbadge.good{color:#0d7a3e;background:rgba(13,122,62,.09);border:1px solid rgba(13,122,62,.2)}
+.pbadge.high{color:var(--ink-2);background:var(--panel);border:1px solid var(--line)}
+@media(max-width:640px){.dsim-list{grid-template-columns:repeat(2,1fr)}.search{padding-left:14px}.search input{font-size:14px}}
 .ddesc{color:var(--ink-2);font-size:15px;line-height:1.65;margin:18px 0 4px}
 .dhl{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 4px}
 .dhl span{font-size:12px;font-weight:600;color:var(--accent);background:rgba(27,69,255,.08);border:1px solid rgba(27,69,255,.18);border-radius:100px;padding:6px 13px}
@@ -324,6 +360,12 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 <div class="page">
   <section class="sec wrap" id="kollektion">
     <div class="sec-head rv"><h2 data-t="collTitle">Die Kollektion</h2><div class="meta" id="collmeta"></div></div>
+    <div class="search rv">
+      <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" autocomplete="off" aria-label="Suche">
+      <button id="mic" class="mic" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg></button>
+      <button id="qClear" class="qclear" type="button" hidden>✕</button>
+    </div>
     <div class="filters rv" id="filters"></div>
     <div class="controls rv" id="controls"></div>
     <div class="count" id="count"></div>
@@ -420,6 +462,29 @@ tr:{flag:'Hayat Gruppe · Viyana · 1932’den beri',navColl:'Koleksiyon',navSel
  waBtn:'WhatsApp ile sorun',mailBtn:'E-posta',dnote:'Araç verileri willhaben stokundan otomatik olarak eşitlenir.',
  waText:'Merhaba, {title} ({price}) ile ilgileniyorum. Araç hâlâ mevcut mu?',
  mailSubject:'Talep: {title}',mailBody:'Merhaba,\n\n{title} ({price}) ile ilgileniyorum.\nLütfen benimle iletişime geçin.\n\nTeşekkürler!'}};
+
+/* Рядки для пошуку, голосу, «схожих» і калькулятора — доливаємо в основний словник. */
+Object.assign(I18N.de,{searchPh:'Beschreiben Sie Ihr Wunschauto — z. B. „Kombi unter 20.000 mit Anhängerkupplung“',
+ voiceStart:'Spracheingabe',listening:'Ich höre zu …',voiceNo:'Spracheingabe wird von diesem Browser nicht unterstützt.',
+ searchClear:'Suche zurücksetzen',searchHits:'Treffer für „{q}“',
+ similar:'Ähnliche Fahrzeuge',finTitle:'Finanzierung berechnen',finDown:'Anzahlung',finTerm:'Laufzeit',finMonths:'Monate',
+ finRate:'Sollzinssatz p. a.',finMonthly:'Monatliche Rate',finLoan:'Nettodarlehensbetrag',
+ finNote:'Unverbindliches Rechenbeispiel. Kein Angebot, keine Bonitätsprüfung — das konkrete Angebot erstellt die Hayat Gruppe individuell.',
+ priceBelow:'{p}% unter vergleichbaren Fahrzeugen im Bestand',priceAbove:'{p}% über vergleichbaren Fahrzeugen im Bestand'});
+Object.assign(I18N.en,{searchPh:'Describe your ideal car — e.g. “estate under 20,000 with tow bar”',
+ voiceStart:'Voice search',listening:'Listening …',voiceNo:'Voice input is not supported by this browser.',
+ searchClear:'Clear search',searchHits:'results for “{q}”',
+ similar:'Similar vehicles',finTitle:'Calculate financing',finDown:'Down payment',finTerm:'Term',finMonths:'months',
+ finRate:'Nominal rate p.a.',finMonthly:'Monthly payment',finLoan:'Net loan amount',
+ finNote:'Non-binding example calculation. Not an offer and no credit check — Hayat Gruppe prepares the actual offer individually.',
+ priceBelow:'{p}% below comparable vehicles in stock',priceAbove:'{p}% above comparable vehicles in stock'});
+Object.assign(I18N.tr,{searchPh:'Aradığınız aracı yazın — örn. “20.000 altı station wagon, çeki demirli”',
+ voiceStart:'Sesli arama',listening:'Dinliyorum …',voiceNo:'Bu tarayıcı sesli aramayı desteklemiyor.',
+ searchClear:'Aramayı temizle',searchHits:'“{q}” için sonuç',
+ similar:'Benzer araçlar',finTitle:'Finansman hesapla',finDown:'Peşinat',finTerm:'Vade',finMonths:'ay',
+ finRate:'Yıllık faiz',finMonthly:'Aylık taksit',finLoan:'Net kredi tutarı',
+ finNote:'Bağlayıcı olmayan örnek hesaplama. Teklif değildir, kredi değerlendirmesi içermez — kesin teklifi Hayat Gruppe hazırlar.',
+ priceBelow:'Stoktaki benzer araçlardan %{p} daha uygun',priceAbove:'Stoktaki benzer araçlardan %{p} daha yüksek'});
 const LOCALES={de:'de-DE',en:'en-GB',tr:'tr-TR'};
 let LANG=(localStorage.getItem('lang')||'de');
 if(!I18N[LANG])LANG='de';
@@ -442,6 +507,9 @@ function applyStatic(){
   document.getElementById('heroSub').innerHTML=t('heroSub',{n:n});
   document.getElementById('statLine').innerHTML=t('statLine',{n:n,b:b});
   document.getElementById('collmeta').textContent=t('collMeta',{n:n,b:b});
+  const qi=document.getElementById('q');if(qi)qi.placeholder=t('searchPh');
+  const mi=document.getElementById('mic');if(mi)mi.title=t('voiceStart');
+  const qc=document.getElementById('qClear');if(qc)qc.title=t('searchClear');
   document.getElementById('mtotal').textContent=n;
   document.getElementById('mbrands').textContent=b;
   document.querySelectorAll('.langs button,.mnav-langs button').forEach(x=>x.classList.toggle('on',x.textContent.toLowerCase()===LANG));
@@ -465,7 +533,7 @@ renderShowcase();
 /* ---------- collection: brands + willhaben-style von–bis filters + sort ---------- */
 const G=DATA.grid;
 const uniq=a=>[...new Set(a.filter(Boolean))];
-const state={brand:'Alle',fuel:'',trans:'',priceMin:0,priceMax:0,yearMin:0,yearMax:0,kmMin:0,kmMax:0,psMin:0,psMax:0,sort:'price-desc'};
+const state={q:'',brand:'Alle',fuel:'',trans:'',priceMin:0,priceMax:0,yearMin:0,yearMax:0,kmMin:0,kmMax:0,psMin:0,psMax:0,sort:'price-desc'};
 
 const brands=['Alle',...uniq(G.map(c=>c.make))];
 document.getElementById('filters').innerHTML=brands.map((b,i)=>`<button class="chip ${i===0?'on':''}" data-b="${b}">${b}</button>`).join('');
@@ -508,6 +576,118 @@ document.getElementById('controls').innerHTML=`
 }
 
 const sorters={'price-desc':(a,b)=>b.price-a.price,'price-asc':(a,b)=>a.price-b.price,'year-desc':(a,b)=>(+b.year)-(+a.year),'year-asc':(a,b)=>(+a.year)-(+b.year),'km-asc':(a,b)=>a.km-b.km};
+
+/* ---------------- Пошук природною мовою (DE/EN/TR) -------------------------
+   Розбираємо запит на числові обмеження (ціна / рік / пробіг / потужність),
+   тип кузова, пальне, марку та намір («для сім'ї», «спортивне»), решту слів
+   шукаємо в назві, описі й списку опцій.
+
+   Свідомо БЕЗ нейромережі: у каталозі 99 авто, а запити тут майже завжди
+   структурні («Kombi unter 20.000»). Розбір дає точну відповідь миттєво,
+   без завантаження моделі й без ключа — на такому обсязі це чесно краще
+   за пошук по ембедингах. -------------------------------------------------*/
+const SYN={
+  body:{'Cabrio':['cabrio','cabriolet','roadster','convertible','üstü açık','ustu acik'],
+        'Kleinbus':['bus','kleinbus','van','minibus','minibüs','transporter','9 sitze'],
+        'Limousine':['limousine','sedan','saloon','stufenheck'],
+        'SUV':['suv','geländewagen','gelandewagen','offroad','jeep','arazi','4x4','allrad'],
+        'Kombi':['kombi','estate','wagon','station','family','familienauto','aile'],
+        'Sportwagen':['sportwagen','sport','sportlich','coupe','coupé','spor'],
+        'Klein':['klein','kompakt','compact','small','city','küçük','kucuk']},
+  fuel:{'Benzin':['benzin','petrol','gasoline','benzinli'],
+        'Diesel':['diesel','dizel'],
+        'Elektro':['elektro','electric','elektrikli','ev','strom'],
+        'Hybrid':['hybrid','hibrit','plugin','plug-in'],
+        'Gas':['gas','lpg','autogas']}};
+/* Намір → на що спирається підбір. Жодних вигадок: усе перевіряється по даних. */
+const INTENT={
+  family:{w:['familie','family','familien','aile','kinder','kids','çocuk','cocuk'],body:['Kombi','Kleinbus','SUV']},
+  sport:{w:['sportlich','sporty','schnell','fast','spor','hızlı','hizli','power'],body:['Sportwagen','Cabrio'],ps:250},
+  cheap:{w:['günstig','gunstig','billig','cheap','ucuz','budget','preiswert'],cheap:true},
+  luxury:{w:['luxus','luxury','lüks','luks','premium','exklusiv'],luxury:true},
+  winter:{w:['winter','allrad','4x4','quattro','xdrive','4matic','awd','kış','kis'],awd:true},
+  eco:{w:['sparsam','economical','ekonomik','verbrauch','efficient'],fuel:['Diesel','Hybrid','Elektro']}};
+const STOP=new Set(('der die das ein eine einen mit und für fur unter bis ab über uber ich suche auto autos fahrzeug fahrzeuge von zu im in den dem '+
+ 'a an the with and for under up to i am looking want need car cars vehicle vehicles from of '+
+ 'bir ile ve için icin araba araç arac altı alti üstü ustu olan arıyorum ariyorum istiyorum').split(' '));
+
+const deAccent=s=>s.toLowerCase().replace(/ä/g,'a').replace(/ö/g,'o').replace(/ü/g,'u').replace(/ß/g,'ss')
+  .replace(/ı/g,'i').replace(/ş/g,'s').replace(/ç/g,'c').replace(/ğ/g,'g');
+
+/* Число + одиниця, з урахуванням «20.000», «20k», «20 000». */
+function parseNums(q){
+  const out=[];const re=/(\d[\d.,\s]*?)\s*(k\b|tsd|km|ps|hp|kw|€|eur\b|euro|tl)?(?=$|[^\w.,])/gi;let m;
+  while((m=re.exec(q))){
+    const rawNum=m[1].replace(/[\s.](?=\d{3}\b)/g,'').replace(/,(?=\d{3}\b)/g,'').replace(',','.');
+    let v=parseFloat(rawNum); if(!isFinite(v))continue;
+    let u=(m[2]||'').toLowerCase();
+    if(u==='k'||u==='tsd'){v*=1000;u='';}
+    const before=deAccent(q.slice(Math.max(0,m.index-18),m.index));
+    const dir=/(unter|bis|max|weniger|under|below|less|altin|alti|kadar|-)/.test(before)?'max'
+             :/(ab|uber|mind|from|above|over|min|uzeri|ustu|en az)/.test(before)?'min':'';
+    out.push({v,u,dir});
+  }
+  return out;
+}
+
+function parseQuery(q){
+  const p={price:{},year:{},km:{},ps:{},body:[],fuel:[],make:[],awd:false,cheap:false,luxury:false,tokens:[]};
+  const low=deAccent(q);
+  parseNums(q).forEach(n=>{
+    const t=n.u==='km'?'km':(n.u==='ps'||n.u==='hp'||n.u==='kw')?'ps'
+           :(n.v>=1900&&n.v<=2035&&Number.isInteger(n.v))?'year':'price';
+    p[t][n.dir||(t==='year'?'min':'max')]=n.v;
+  });
+  for(const key in SYN.body) if(SYN.body[key].some(w=>low.includes(deAccent(w)))) p.body.push(key);
+  for(const key in SYN.fuel) if(SYN.fuel[key].some(w=>low.includes(deAccent(w)))) p.fuel.push(key);
+  uniq(G.map(c=>c.make)).forEach(mk=>{ if(low.includes(deAccent(mk))) p.make.push(mk); });
+  for(const k in INTENT){const it=INTENT[k];
+    if(it.w.some(w=>low.includes(deAccent(w)))){
+      if(it.body)p.body.push(...it.body); if(it.fuel)p.fuel.push(...it.fuel);
+      if(it.ps&&!p.ps.min)p.ps.min=it.ps; if(it.awd)p.awd=true;
+      if(it.cheap)p.cheap=true; if(it.luxury)p.luxury=true;}}
+  p.tokens=low.split(/[^\wäöüß]+/).filter(w=>w.length>2&&!STOP.has(w)&&!/^\d+$/.test(w));
+  return p;
+}
+
+const bodyKey=c=>{const b=deAccent(c.body.de);
+  return b.includes('cabrio')||b.includes('roadster')?'Cabrio':b.includes('kleinbus')?'Kleinbus'
+    :b.includes('suv')||b.includes('gelande')?'SUV':b.includes('kombi')?'Kombi'
+    :b.includes('sport')||b.includes('coupe')?'Sportwagen':b.includes('klein')||b.includes('kompakt')?'Klein':'Limousine';};
+const fuelKey=c=>{const f=deAccent(c.fuel.de);
+  return f.includes('hybrid')?'Hybrid':f.includes('elektro')?'Elektro':f.includes('diesel')?'Diesel'
+    :f.includes('gas')?'Gas':'Benzin';};
+const AWD=/quattro|xdrive|4matic|4motion|allrad|awd|4x4|tiptronic 4|sh-awd/i;
+
+/* Пошуковий текст авто: назва, марка, кузов, пальне, опції, опис. */
+const hay=c=>deAccent([c.title,c.make,c.body.de,c.fuel.de,c.trans.de,(c.eq&&c.eq.de||[]).join(' '),(c.desc&&c.desc.de||''),
+                       (c.desc&&c.desc[LANG]||''),(c.eq&&c.eq[LANG]||[]).join(' ')].join(' '));
+
+function searchRank(list,q){
+  const p=parseQuery(q);
+  const med=median(list.map(c=>c.price));
+  let out=list.filter(c=>
+    (!p.price.max||c.price<=p.price.max)&&(!p.price.min||c.price>=p.price.min)&&
+    (!p.year.min||+c.year>=p.year.min)&&(!p.year.max||+c.year<=p.year.max)&&
+    (!p.km.max||c.km<=p.km.max)&&(!p.km.min||c.km>=p.km.min)&&
+    (!p.ps.min||c.ps>=p.ps.min)&&(!p.ps.max||c.ps<=p.ps.max)&&
+    (!p.body.length||p.body.includes(bodyKey(c)))&&
+    (!p.fuel.length||p.fuel.includes(fuelKey(c)))&&
+    (!p.make.length||p.make.includes(c.make))&&
+    (!p.awd||AWD.test(c.title)||/allrad|4x4/i.test((c.eq&&c.eq.de||[]).join(' '))));
+  const scored=out.map(c=>{
+    const t=hay(c);let s=0;
+    p.tokens.forEach(w=>{ if(deAccent(c.title+' '+c.make).includes(w))s+=3; else if(t.includes(w))s+=1; });
+    if(p.cheap&&c.price<med)s+=1.5;
+    if(p.luxury&&c.price>med)s+=1.5;
+    return {c,s};
+  });
+  const anyHit=scored.some(x=>x.s>0);
+  return scored.filter(x=>!p.tokens.length||!anyHit||x.s>0)
+               .sort((a,b)=>b.s-a.s||b.c.price-a.c.price).map(x=>x.c);
+}
+const median=a=>{const s=[...a].sort((x,y)=>x-y);return s.length?s[Math.floor(s.length/2)]:0;};
+
 function apply(){
   let list=G.filter(c=>
     (state.brand==='Alle'||c.make===state.brand)&&(!state.fuel||c.fuel.de===state.fuel)&&(!state.trans||c.trans.de===state.trans)&&
@@ -515,7 +695,7 @@ function apply(){
     (!state.yearMin||(+c.year)>=state.yearMin)&&(!state.yearMax||(+c.year)<=state.yearMax)&&
     (!state.kmMin||c.km>=state.kmMin)&&(!state.kmMax||c.km<=state.kmMax)&&
     (!state.psMin||c.ps>=state.psMin)&&(!state.psMax||c.ps<=state.psMax));
-  list=list.slice().sort(sorters[state.sort]);
+  list=state.q?searchRank(list,state.q):list.slice().sort(sorters[state.sort]);
   document.getElementById('count').textContent=list.length+' '+t(list.length===1?'countOne':'countMany');
   document.getElementById('grid').innerHTML=list.length?list.map(c=>`
     <div class="gcard" onclick="openDetailById('${c.id}')">
@@ -550,6 +730,96 @@ function resetFilters(){Object.assign(state,{brand:'Alle',fuel:'',trans:'',price
 buildControls();
 apply();
 
+/* --- пошук: введення, очищення, голос ------------------------------------ */
+const qEl=document.getElementById('q'),micEl=document.getElementById('mic'),qClearEl=document.getElementById('qClear');
+let qTimer;
+function setQuery(v){state.q=(v||'').trim();qClearEl.hidden=!state.q;apply();}
+qEl.addEventListener('input',e=>{const v=e.target.value;clearTimeout(qTimer);qTimer=setTimeout(()=>setQuery(v),160);});
+qClearEl.addEventListener('click',()=>{qEl.value='';setQuery('');qEl.focus();});
+
+/* Розпізнавання мовлення вбудоване в браузер — без ключа й без сервера.
+   Мова диктування йде за поточною мовою сайту. */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+micEl.addEventListener('click',()=>{
+  if(!SR){alert(t('voiceNo'));return;}
+  const r=new SR();r.lang=LOCALES[LANG];r.interimResults=false;r.maxAlternatives=1;
+  micEl.classList.add('rec');qEl.placeholder=t('listening');
+  r.onresult=e=>{const txt=e.results[0][0].transcript;qEl.value=txt;setQuery(txt);};
+  r.onend=()=>{micEl.classList.remove('rec');qEl.placeholder=t('searchPh');};
+  r.onerror=r.onend;
+  try{r.start();}catch(e){micEl.classList.remove('rec');qEl.placeholder=t('searchPh');}
+});
+
+
+/* ---- Схожі авто, калькулятор і позиція ціни ------------------------------
+   Схожість рахуємо за атрибутами (кузов, ціна, рік, потужність), а не за
+   текстом: покупець порівнює саме їх, і результат видно, чому він такий. ---*/
+function similarTo(c,take=3){
+  return G.filter(x=>x.id!==c.id).map(x=>{
+    let s=0;
+    if(bodyKey(x)===bodyKey(c))s+=3;
+    if(fuelKey(x)===fuelKey(c))s+=1.5;
+    if(x.make===c.make)s+=1;
+    s-=Math.abs(x.price-c.price)/Math.max(c.price,1)*4;
+    s-=Math.abs(+x.year-+c.year)/12;
+    s-=Math.abs(x.ps-c.ps)/Math.max(c.ps||1,1);
+    return {x,s};
+  }).sort((a,b)=>b.s-a.s).slice(0,take).map(o=>o.x);
+}
+
+/* Порівнюємо з авто того ж типу кузова в НАШОМУ стоку — жодних зовнішніх
+   «ринкових» оцінок, які ми не можемо підтвердити. */
+function pricePosition(c){
+  /* Коло порівняння мусить бути вузьким: той самий тип кузова, близький рік і
+     клас потужності. Інакше 510-сильна Giulia порівнюється з усіма седанами
+     поспіль (разом з авто за 299 €) і дає безглузді «+232%». */
+  const peers=G.filter(x=>x.id!==c.id&&bodyKey(x)===bodyKey(c)
+    &&Math.abs(+x.year-+c.year)<=3
+    &&(!c.ps||!x.ps||(x.ps>=c.ps*0.6&&x.ps<=c.ps*1.6)));
+  if(peers.length<5)return null;
+  const m=median(peers.map(x=>x.price));
+  if(!m)return null;
+  const diff=Math.round((c.price-m)/m*100);
+  /* Показуємо лише вигідну позицію: «ви переплачуєте» на сайті самого дилера
+     не має сенсу, а ціна й так вказана поруч. Надто великий розрив ховаємо —
+     це ознака, що порівняння все одно нерівне. */
+  if(diff>-5||diff<-55)return null;
+  return {diff,below:true};
+}
+
+/* Ануїтет: класична формула місячного платежу. Ставку й термін беремо з
+   прикладу дилера (6,49% / 60 міс) — це РОЗРАХУНОК, не пропозиція. */
+const RATE=6.49;
+function monthly(loan,months,ratePct){
+  const r=ratePct/100/12;
+  return r<=0?loan/months:loan*r/(1-Math.pow(1+r,-months));
+}
+function finBlock(c){
+  const maxDown=Math.round(c.price*0.5/500)*500;
+  const down=Math.min(Math.round(c.price*0.1/500)*500,maxDown);
+  return `<div class="dfin"><h4>${t('finTitle')}</h4>
+    <div class="dfin-row"><span>${t('finDown')}</span><input type="range" id="finDown" min="0" max="${maxDown}" step="500" value="${down}"><b id="finDownV"></b></div>
+    <div class="dfin-row"><span>${t('finTerm')}</span><input type="range" id="finTerm" min="12" max="84" step="12" value="60"><b id="finTermV"></b></div>
+    <div class="dfin-row"><span>${t('finRate')}</span><b>${RATE.toLocaleString(LOCALES[LANG],{minimumFractionDigits:2})} %</b></div>
+    <div class="dfin-row"><span>${t('finLoan')}</span><b id="finLoanV"></b></div>
+    <div class="dfin-out"><span>${t('finMonthly')}</span><b id="finPay"></b></div>
+    <p class="dfin-note">${t('finNote')}</p></div>`;
+}
+function finUpdate(price){
+  const d=+document.getElementById('finDown').value,m=+document.getElementById('finTerm').value;
+  const loan=Math.max(price-d,0);
+  document.getElementById('finDownV').textContent='€ '+nf.format(d);
+  document.getElementById('finTermV').textContent=m+' '+t('finMonths');
+  document.getElementById('finLoanV').textContent='€ '+nf.format(loan);
+  document.getElementById('finPay').textContent='€ '+nf.format(Math.round(monthly(loan,m,RATE)));
+}
+function finBind(c){
+  const d=document.getElementById('finDown'),m=document.getElementById('finTerm');
+  if(!d)return;
+  const upd=()=>finUpdate(c.price);
+  d.addEventListener('input',upd);m.addEventListener('input',upd);upd();
+}
+
 /* detail */
 const byId=id=>[DATA.hero,...DATA.featured,...DATA.grid].find(c=>c.id===id);
 let openCar=null;
@@ -569,6 +839,7 @@ function renderDetail(c){
       <div class="dpanel"><div class="eyebrow">${c.make} · ${L(c.body)}</div><h1>${c.title}</h1><div class="dprice">${price}</div>
         ${L(c.desc)?`<p class="ddesc">${L(c.desc)}</p>`:''}
         ${(L(c.hl)||[]).length?`<div class="dhl">${L(c.hl).map(x=>`<span>${x}</span>`).join('')}</div>`:''}
+        ${(()=>{const pp=pricePosition(c);return pp?`<div class="pbadge ${pp.below?'good':'high'}">${t(pp.below?'priceBelow':'priceAbove',{p:Math.abs(pp.diff)})}</div>`:'';})()}
         <div class="dspecs">${sp(t('fKm'),km(c.km))}${sp(t('fYear'),c.year)}${sp(t('dPower'),(c.ps?c.ps+' PS':'—')+(c.kw?' · '+c.kw+' kW':''))}${sp(t('fFuel'),L(c.fuel)||'—')}${sp(t('fTrans'),L(c.trans)||'—')}${sp(t('dCondition'),L(c.cond)||'—')}</div>
         <div class="dcta">
           <a class="wa" href="${wa}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 1.67c4.55 0 8.24 3.69 8.24 8.24s-3.69 8.24-8.24 8.24c-1.53 0-3.02-.42-4.31-1.22l-.31-.18-3.11.82.83-3.03-.2-.32a8.2 8.2 0 0 1-1.26-4.35c0-4.55 3.7-8.24 8.24-8.24m4.52 10.4c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42-.14 0-.31-.02-.47-.02-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.16 1.73 2.64 4.19 3.7.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29"/></svg>${t('waBtn')}</a>
@@ -576,10 +847,14 @@ function renderDetail(c){
           <a href="${mail}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>${t('mailBtn')}</a></div>
         </div>
         ${(L(c.eq)||[]).length?`<div class="deq"><h4>${t('dEquip',{n:L(c.eq).length})}</h4><div class="deq-tags">${L(c.eq).slice(0,18).map(x=>`<span>${x}</span>`).join('')}${L(c.eq).length>18?`<span>${t('dMore',{n:L(c.eq).length-18})}</span>`:''}</div></div>`:''}
+        ${finBlock(c)}
+        ${(()=>{const sim=similarTo(c);return sim.length?`<div class="dsim"><h4>${t('similar')}</h4><div class="dsim-list">${sim.map(s=>`
+          <a onclick="openDetailById('${s.id}')"><img src="${s.cover}" alt="${s.title}" loading="lazy"><b>${s.title}</b><span>${s.year} · ${L(s.disp)}</span></a>`).join('')}</div></div>`:'';})()}
         <p class="dnote">${t('dnote')}</p>
       </div>
     </div>`;
   d.classList.add('open');document.body.style.overflow='hidden';d.scrollTop=0;
+  finBind(c);
 }
 function swapGal(el,src){document.getElementById('galMain').src=src;document.querySelectorAll('.gal-thumbs img').forEach(x=>x.classList.remove('on'));el.classList.add('on');}
 function closeDetail(){document.getElementById('detail').classList.remove('open');document.body.style.overflow='';}
@@ -628,7 +903,7 @@ function setLang(lang){
   LANG=lang;localStorage.setItem('lang',lang);
   nf=new Intl.NumberFormat(LOCALES[LANG]);
   applyStatic();renderShowcase();buildControls();apply();
-  if(openCar&&document.getElementById('detail').classList.contains('on'))renderDetail(openCar);
+  if(openCar&&document.getElementById('detail').classList.contains('open'))renderDetail(openCar);
 }
 document.querySelectorAll('.langs button').forEach(b=>b.onclick=()=>setLang(b.textContent.trim().toLowerCase()));
 
