@@ -212,6 +212,9 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 .deq h4{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;font-weight:600}
 .deq-tags{display:flex;flex-wrap:wrap;gap:7px}
 .deq-tags span{font-size:12.5px;color:var(--ink-2);background:var(--bg-2);border:1px solid var(--line);padding:7px 12px;border-radius:8px}
+.ddesc{color:var(--ink-2);font-size:15px;line-height:1.65;margin:18px 0 4px}
+.dhl{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 4px}
+.dhl span{font-size:12px;font-weight:600;color:var(--accent);background:rgba(27,69,255,.08);border:1px solid rgba(27,69,255,.18);border-radius:100px;padding:6px 13px}
 .dnote{margin-top:24px;font-size:12.5px;color:var(--ink-3);line-height:1.6}
 
 .rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
@@ -265,29 +268,29 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 </style>
 </head><body>
 <script src="./data.js"></script>
-<div class="flag">Hayat Gruppe · Wien · seit 1932</div>
+<div class="flag" data-t="flag">Hayat Gruppe · Wien · seit 1932</div>
 
 <header id="hdr"><div class="wrap nav">
   <a class="brand" href="#hero">HAYAT GRUPPE</a>
-  <nav class="nav-links"><a href="#kollektion">Kollektion</a><a href="#ausgewaehlt">Ausgewählt</a><a href="#ueber">Über uns</a><a href="#kontakt">Kontakt</a></nav>
+  <nav class="nav-links"><a href="#kollektion" data-t="navColl">Kollektion</a><a href="#ausgewaehlt" data-t="navSel">Ausgewählt</a><a href="#ueber" data-t="navAbout">Über uns</a><a href="#kontakt" data-t="navContact">Kontakt</a></nav>
   <div class="nav-right"><div class="langs"><button class="on">DE</button><button>EN</button><button>TR</button></div>
     <a class="navcall" href="tel:+436765571571">+43 676 5571571</a>
-    <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button></div>
+    <button class="burger" id="burger" aria-label="Menü" data-t-aria="menu"><span></span><span></span><span></span></button></div>
 </div></header>
 
 <div class="mnav" id="mnav">
   <nav class="mnav-links">
-    <a href="#kollektion" data-close>Kollektion</a>
-    <a href="#ausgewaehlt" data-close>Ausgewählt</a>
-    <a href="#ueber" data-close>Über uns</a>
-    <a href="#kontakt" data-close>Kontakt</a>
+    <a href="#kollektion" data-close data-t="navColl">Kollektion</a>
+    <a href="#ausgewaehlt" data-close data-t="navSel">Ausgewählt</a>
+    <a href="#ueber" data-close data-t="navAbout">Über uns</a>
+    <a href="#kontakt" data-close data-t="navContact">Kontakt</a>
   </nav>
   <div class="mnav-langs"><button class="on">DE</button><button>EN</button><button>TR</button></div>
   <div class="mnav-contact">
     <a class="mc-wa" href="https://wa.me/436765571571" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m5.56 12.4c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42-.14 0-.31-.02-.47-.02-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.16 1.73 2.64 4.19 3.7.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18z"/></svg>WhatsApp</a>
     <a class="mc-call" href="tel:+436765571571">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Anrufen</a>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span data-t="call">Anrufen</span></a>
   </div>
   <div class="mnav-info">+43 676 5571571 · Groß-Enzersdorfer Straße 88b, 1220 Wien</div>
 </div>
@@ -301,26 +304,26 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 
 <section class="hero" id="hero">
   <div class="wrap hero-content" id="heroContent">
-    <div class="eyebrow hero-eyebrow">Hayat Gruppe · Wien seit 1932</div>
-    <h1>Automobile mit Charakter.</h1>
-    <p class="hero-sub"><span id="heroCount">100</span> geprüfte Premiumfahrzeuge — persönlich ausgewählt, ehrlich vermittelt.</p>
-    <a class="hero-cta" href="#kollektion">Kollektion ansehen
+    <div class="eyebrow hero-eyebrow" data-t="heroEyebrow">Hayat Gruppe · Wien seit 1932</div>
+    <h1 data-t="heroTitle">Automobile mit Charakter.</h1>
+    <p class="hero-sub" id="heroSub"></p>
+    <a class="hero-cta" href="#kollektion"><span data-t="heroCta">Kollektion ansehen</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
   <div class="hero-foot"><div class="wrap">
-    <div class="stat"><b id="statTotal">100</b> Fahrzeuge · <b id="statBrands">19</b> Marken</div>
-    <div class="sh">Weiterscrollen</div>
+    <div class="stat" id="statLine"></div>
+    <div class="sh" data-t="scrollOn">Weiterscrollen</div>
   </div></div>
 </section>
 
 <section class="showcase wrap" id="ausgewaehlt">
-  <div class="show-head rv"><h2>Ausgewählte Fahrzeuge</h2><div class="meta">Kuratiert aus dem Bestand</div></div>
+  <div class="show-head rv"><h2 data-t="selTitle">Ausgewählte Fahrzeuge</h2><div class="meta" data-t="selMeta">Kuratiert aus dem Bestand</div></div>
   <div class="show-list" id="showItems"></div>
 </section>
 
 <div class="page">
   <section class="sec wrap" id="kollektion">
-    <div class="sec-head rv"><h2>Die Kollektion</h2><div class="meta" id="collmeta"></div></div>
+    <div class="sec-head rv"><h2 data-t="collTitle">Die Kollektion</h2><div class="meta" id="collmeta"></div></div>
     <div class="filters rv" id="filters"></div>
     <div class="controls rv" id="controls"></div>
     <div class="count" id="count"></div>
@@ -328,27 +331,27 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
   </section>
   <section class="about" id="ueber"><div class="wrap about-in">
     <div class="rv">
-      <h2>Persönlich vermittelt.<br>Seit 1932.</h2>
-      <p>Ein Familienunternehmen aus dem 22. Wiener Gemeindebezirk. Wir kaufen, verkaufen und vermitteln Premiumfahrzeuge — geprüft, ehrlich, unkompliziert.</p>
-      <p>Jedes Fahrzeug wird persönlich betreut. Von der ersten Anfrage bis zur Übergabe.</p>
-      <div class="marks"><div><b>90+</b><span>Jahre Erfahrung</span></div><div><b class="acc" id="mtotal">100</b><span>Fahrzeuge</span></div><div><b id="mbrands">19</b><span>Marken</span></div></div>
+      <h2 data-t="aboutTitle">Persönlich vermittelt.<br>Seit 1932.</h2>
+      <p data-t="aboutP1">Ein Familienunternehmen aus dem 22. Wiener Gemeindebezirk. Wir kaufen, verkaufen und vermitteln Premiumfahrzeuge — geprüft, ehrlich, unkompliziert.</p>
+      <p data-t="aboutP2">Jedes Fahrzeug wird persönlich betreut. Von der ersten Anfrage bis zur Übergabe.</p>
+      <div class="marks"><div><b>90+</b><span data-t="yearsExp">Jahre Erfahrung</span></div><div><b class="acc" id="mtotal">100</b><span data-t="vehicles">Fahrzeuge</span></div><div><b id="mbrands">19</b><span data-t="brands">Marken</span></div></div>
     </div>
     <div class="about-list rv">
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Fahrzeugankauf &amp; -verkauf</div>
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Finanzierung über 5 Banken</div>
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Geprüfte Premium- &amp; Sportwagen</div>
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Europaweites Händlernetzwerk</div>
-      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Diskrete &amp; persönliche Abwicklung</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-t="svc1">Fahrzeugankauf &amp; -verkauf</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-t="svc2">Finanzierung über 5 Banken</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-t="svc3">Geprüfte Premium- &amp; Sportwagen</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-t="svc4">Europaweites Händlernetzwerk</span></div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-t="svc5">Diskrete &amp; persönliche Abwicklung</span></div>
     </div>
   </div></section>
   <footer id="kontakt"><div class="wrap">
     <div class="foot-top">
-      <div class="foot-brand rv"><b>HAYAT GRUPPE</b><p>Exklusive Automobile. Persönliche Beratung. Höchste Qualität — für Käufer und Verkäufer in ganz Österreich.</p></div>
-      <div class="foot-col rv"><h4>Kontakt</h4><a href="tel:+436765571571">+43 676 5571571</a><a href="mailto:contact@hayatgruppe.com">contact@hayatgruppe.com</a><p>Groß-Enzersdorfer Straße 88b<br>1220 Wien, Donaustadt</p></div>
-      <div class="foot-col rv"><h4>Folgen</h4><a href="#" onclick="return false">Instagram</a><a href="#" onclick="return false">Facebook</a><a href="#kollektion">Zum Bestand</a></div>
+      <div class="foot-brand rv"><b>HAYAT GRUPPE</b><p data-t="footBlurb">Exklusive Automobile. Persönliche Beratung. Höchste Qualität — für Käufer und Verkäufer in ganz Österreich.</p></div>
+      <div class="foot-col rv"><h4 data-t="navContact">Kontakt</h4><a href="tel:+436765571571">+43 676 5571571</a><a href="mailto:contact@hayatgruppe.com">contact@hayatgruppe.com</a><p>Groß-Enzersdorfer Straße 88b<br>1220 Wien, Donaustadt</p></div>
+      <div class="foot-col rv"><h4 data-t="follow">Folgen</h4><a href="#" onclick="return false">Instagram</a><a href="#" onclick="return false">Facebook</a><a href="#kollektion" data-t="toStock">Zum Bestand</a></div>
     </div>
-    <div class="foot-bot"><span>© 2026 Hayat Gruppe — Familienunternehmen seit 1932</span>
-      <div class="foot-legal"><a href="#" onclick="return false">Impressum</a><a href="#" onclick="return false">Datenschutz</a><a href="#" onclick="return false">AGB</a></div></div>
+    <div class="foot-bot"><span data-t="copyright">© 2026 Hayat Gruppe — Familienunternehmen seit 1932</span>
+      <div class="foot-legal"><a href="#" onclick="return false" data-t="imprint">Impressum</a><a href="#" onclick="return false" data-t="privacy">Datenschutz</a><a href="#" onclick="return false" data-t="terms">AGB</a></div></div>
   </div></footer>
 </div>
 
@@ -357,24 +360,107 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 <script>
 const DATA=window.DATA;
 const PHONE='436765571571',EMAIL='contact@hayatgruppe.com';
-const nf=new Intl.NumberFormat('de-DE');
-const km=v=>nf.format(v)+' km';
-const specArr=c=>[c.year,c.fuel,c.ps?c.ps+' PS':'',c.trans].filter(Boolean);
+/* ---- i18n: три мови. Значення авто вже локалізовані в даних (data.js),
+   тут лише рядки інтерфейсу. L() дістає мову з локалізованого поля. ---- */
+const I18N={
+de:{flag:'Hayat Gruppe · Wien · seit 1932',navColl:'Kollektion',navSel:'Ausgewählt',navAbout:'Über uns',navContact:'Kontakt',menu:'Menü',call:'Anrufen',
+ heroEyebrow:'Hayat Gruppe · Wien seit 1932',heroTitle:'Automobile mit Charakter.',heroSub:'{n} geprüfte Premiumfahrzeuge — persönlich ausgewählt, ehrlich vermittelt.',
+ heroCta:'Kollektion ansehen',statLine:'<b>{n}</b> Fahrzeuge · <b>{b}</b> Marken',scrollOn:'Weiterscrollen',
+ selTitle:'Ausgewählte Fahrzeuge',selMeta:'Kuratiert aus dem Bestand',collTitle:'Die Kollektion',collMeta:'{n} Fahrzeuge · {b} Marken',
+ aboutTitle:'Persönlich vermittelt.<br>Seit 1932.',
+ aboutP1:'Ein Familienunternehmen aus dem 22. Wiener Gemeindebezirk. Wir kaufen, verkaufen und vermitteln Premiumfahrzeuge — geprüft, ehrlich, unkompliziert.',
+ aboutP2:'Jedes Fahrzeug wird persönlich betreut. Von der ersten Anfrage bis zur Übergabe.',
+ yearsExp:'Jahre Erfahrung',vehicles:'Fahrzeuge',brands:'Marken',
+ svc1:'Fahrzeugankauf & -verkauf',svc2:'Finanzierung über 5 Banken',svc3:'Geprüfte Premium- & Sportwagen',svc4:'Europaweites Händlernetzwerk',svc5:'Diskrete & persönliche Abwicklung',
+ footBlurb:'Exklusive Automobile. Persönliche Beratung. Höchste Qualität — für Käufer und Verkäufer in ganz Österreich.',
+ follow:'Folgen',toStock:'Zum Bestand',copyright:'© 2026 Hayat Gruppe — Familienunternehmen seit 1932',imprint:'Impressum',privacy:'Datenschutz',terms:'AGB',
+ fFuel:'Kraftstoff',fTrans:'Getriebe',fPrice:'Preis (€)',fYear:'Erstzulassung',fKm:'Kilometerstand',fPower:'Leistung (PS)',
+ all:'Alle',from:'von',to:'bis',reset:'Zurücksetzen',sortBy:'Sortieren',
+ sPriceDesc:'Preis absteigend',sPriceAsc:'Preis aufsteigend',sYearDesc:'Erstzulassung neueste',sYearAsc:'Erstzulassung älteste',sKmAsc:'Kilometerstand aufsteigend',
+ countOne:'Fahrzeug',countMany:'Fahrzeuge',emptyMsg:'Keine Fahrzeuge mit diesen Kriterien.',emptyReset:'Filter zurücksetzen',
+ dPower:'Leistung',dCondition:'Zustand',dEquip:'Ausstattung — {n} Merkmale',dMore:'+{n} weitere',overview:'Überblick',highlights:'Highlights',
+ waBtn:'Per WhatsApp anfragen',mailBtn:'E-Mail',dnote:'Fahrzeugdaten automatisch aus dem willhaben-Bestand synchronisiert.',
+ waText:'Guten Tag, ich interessiere mich für den {title} ({price}). Ist das Fahrzeug noch verfügbar?',
+ mailSubject:'Anfrage: {title}',mailBody:'Guten Tag,\n\nich interessiere mich für den {title} ({price}).\nBitte kontaktieren Sie mich.\n\nDanke!'},
+en:{flag:'Hayat Gruppe · Vienna · since 1932',navColl:'Collection',navSel:'Selected',navAbout:'About us',navContact:'Contact',menu:'Menu',call:'Call',
+ heroEyebrow:'Hayat Gruppe · Vienna since 1932',heroTitle:'Automobiles with character.',heroSub:'{n} vetted premium vehicles — personally selected, honestly brokered.',
+ heroCta:'View the collection',statLine:'<b>{n}</b> vehicles · <b>{b}</b> brands',scrollOn:'Scroll on',
+ selTitle:'Selected vehicles',selMeta:'Curated from our stock',collTitle:'The collection',collMeta:'{n} vehicles · {b} brands',
+ aboutTitle:'Personally brokered.<br>Since 1932.',
+ aboutP1:"A family business from Vienna's 22nd district. We buy, sell and broker premium vehicles — vetted, honest, straightforward.",
+ aboutP2:'Every vehicle is looked after personally. From the first enquiry to handover.',
+ yearsExp:'years of experience',vehicles:'vehicles',brands:'brands',
+ svc1:'Vehicle purchase & sale',svc2:'Financing via 5 banks',svc3:'Vetted premium & sports cars',svc4:'Europe-wide dealer network',svc5:'Discreet & personal handling',
+ footBlurb:'Exclusive automobiles. Personal advice. Highest quality — for buyers and sellers across Austria.',
+ follow:'Follow',toStock:'Browse stock',copyright:'© 2026 Hayat Gruppe — family business since 1932',imprint:'Legal notice',privacy:'Privacy',terms:'Terms',
+ fFuel:'Fuel',fTrans:'Transmission',fPrice:'Price (€)',fYear:'First registration',fKm:'Mileage',fPower:'Power (hp)',
+ all:'All',from:'from',to:'to',reset:'Reset',sortBy:'Sort',
+ sPriceDesc:'Price high to low',sPriceAsc:'Price low to high',sYearDesc:'Newest first',sYearAsc:'Oldest first',sKmAsc:'Lowest mileage',
+ countOne:'vehicle',countMany:'vehicles',emptyMsg:'No vehicles match these criteria.',emptyReset:'Reset filters',
+ dPower:'Power',dCondition:'Condition',dEquip:'Equipment — {n} features',dMore:'+{n} more',overview:'Overview',highlights:'Highlights',
+ waBtn:'Enquire via WhatsApp',mailBtn:'Email',dnote:'Vehicle data synced automatically from the willhaben stock.',
+ waText:"Hello, I'm interested in the {title} ({price}). Is it still available?",
+ mailSubject:'Enquiry: {title}',mailBody:"Hello,\n\nI'm interested in the {title} ({price}).\nPlease get in touch.\n\nThank you!"},
+tr:{flag:'Hayat Gruppe · Viyana · 1932’den beri',navColl:'Koleksiyon',navSel:'Seçilenler',navAbout:'Hakkımızda',navContact:'İletişim',menu:'Menü',call:'Ara',
+ heroEyebrow:'Hayat Gruppe · 1932’den beri Viyana',heroTitle:'Karakterli otomobiller.',heroSub:'{n} kontrol edilmiş premium araç — özenle seçildi, dürüstçe sunuldu.',
+ heroCta:'Koleksiyonu görün',statLine:'<b>{n}</b> araç · <b>{b}</b> marka',scrollOn:'Kaydırın',
+ selTitle:'Seçili araçlar',selMeta:'Stoktan özenle seçildi',collTitle:'Koleksiyon',collMeta:'{n} araç · {b} marka',
+ aboutTitle:'Kişisel hizmet.<br>1932’den beri.',
+ aboutP1:'Viyana’nın 22. bölgesinden bir aile şirketi. Premium araçları alıyor, satıyor ve aracılık ediyoruz — kontrollü, dürüst, zahmetsiz.',
+ aboutP2:'Her araçla kişisel olarak ilgileniyoruz. İlk sorudan teslimata kadar.',
+ yearsExp:'yıllık deneyim',vehicles:'araç',brands:'marka',
+ svc1:'Araç alım & satımı',svc2:'5 banka ile finansman',svc3:'Kontrollü premium & spor araçlar',svc4:'Avrupa çapında bayi ağı',svc5:'Gizli & kişisel işlem',
+ footBlurb:'Özel otomobiller. Kişisel danışmanlık. En yüksek kalite — Avusturya genelinde alıcılar ve satıcılar için.',
+ follow:'Takip edin',toStock:'Stoka git',copyright:'© 2026 Hayat Gruppe — 1932’den beri aile şirketi',imprint:'Künye',privacy:'Gizlilik',terms:'Şartlar',
+ fFuel:'Yakıt',fTrans:'Şanzıman',fPrice:'Fiyat (€)',fYear:'İlk tescil',fKm:'Kilometre',fPower:'Güç (HP)',
+ all:'Tümü',from:'en az',to:'en çok',reset:'Sıfırla',sortBy:'Sırala',
+ sPriceDesc:'Fiyat azalan',sPriceAsc:'Fiyat artan',sYearDesc:'En yeni',sYearAsc:'En eski',sKmAsc:'En düşük km',
+ countOne:'araç',countMany:'araç',emptyMsg:'Bu kriterlere uygun araç yok.',emptyReset:'Filtreleri sıfırla',
+ dPower:'Güç',dCondition:'Durum',dEquip:'Donanım — {n} özellik',dMore:'+{n} daha',overview:'Genel bakış',highlights:'Öne çıkanlar',
+ waBtn:'WhatsApp ile sorun',mailBtn:'E-posta',dnote:'Araç verileri willhaben stokundan otomatik olarak eşitlenir.',
+ waText:'Merhaba, {title} ({price}) ile ilgileniyorum. Araç hâlâ mevcut mu?',
+ mailSubject:'Talep: {title}',mailBody:'Merhaba,\n\n{title} ({price}) ile ilgileniyorum.\nLütfen benimle iletişime geçin.\n\nTeşekkürler!'}};
+const LOCALES={de:'de-DE',en:'en-GB',tr:'tr-TR'};
+let LANG=(localStorage.getItem('lang')||'de');
+if(!I18N[LANG])LANG='de';
+const t=(k,vars)=>{let s=(I18N[LANG]&&I18N[LANG][k])||I18N.de[k]||k;
+  if(vars)for(const key in vars)s=s.split('{'+key+'}').join(vars[key]);return s;};
+/* локалізоване поле авто → рядок поточною мовою */
+const L=v=>(v&&typeof v==='object')?(v[LANG]||v.de||''):(v||'');
 
-['heroCount','statTotal','mtotal'].forEach(id=>document.getElementById(id).textContent=DATA.stats.total);
-['statBrands','mbrands'].forEach(id=>document.getElementById(id).textContent=DATA.stats.brands);
-document.getElementById('collmeta').textContent=DATA.stats.total+' Fahrzeuge · '+DATA.stats.brands+' Marken';
+let nf=new Intl.NumberFormat(LOCALES[LANG]);
+const km=v=>nf.format(v)+' km';
+const specArr=c=>[c.year,L(c.fuel),c.ps?c.ps+' PS':'',L(c.trans)].filter(Boolean);
+
+/* усі статичні рядки + лічильники поточною мовою */
+function applyStatic(){
+  const n=DATA.stats.total,b=DATA.stats.brands;
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('[data-t]').forEach(el=>{const s=t(el.dataset.t);
+    if(s.indexOf('<')>=0)el.innerHTML=s;else el.textContent=s;});
+  document.querySelectorAll('[data-t-aria]').forEach(el=>el.setAttribute('aria-label',t(el.dataset.tAria)));
+  document.getElementById('heroSub').innerHTML=t('heroSub',{n:n});
+  document.getElementById('statLine').innerHTML=t('statLine',{n:n,b:b});
+  document.getElementById('collmeta').textContent=t('collMeta',{n:n,b:b});
+  document.getElementById('mtotal').textContent=n;
+  document.getElementById('mbrands').textContent=b;
+  document.querySelectorAll('.langs button,.mnav-langs button').forEach(x=>x.classList.toggle('on',x.textContent.toLowerCase()===LANG));
+}
+applyStatic();
 
 /* showcase = hero car + featured, over the video */
 const showcaseCars=[DATA.hero,...DATA.featured];
+function renderShowcase(){
 document.getElementById('showItems').innerHTML=showcaseCars.map(c=>`
   <div class="show-item rv" onclick="openDetailById('${c.id}')">
-    <div class="show-media"><span class="tag">${c.body}</span><img src="${c.cover}" alt="${c.title}"></div>
+    <div class="show-media"><span class="tag">${L(c.body)}</span><img src="${c.cover}" alt="${c.title}"></div>
     <div class="show-info"><div class="eb">${c.make} · ${c.year}</div><h3>${c.title}</h3>
       <div class="specs">${specArr(c).map(s=>`<span>${s}</span>`).join('')}</div>
-      <div class="price">${c.disp}</div>
-      <span class="cta">Fahrzeug ansehen<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      <div class="price">${L(c.disp)}</div>
+      <span class="cta">${t('heroCta')}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
   </div>`).join('');
+}
+renderShowcase();
 
 /* ---------- collection: brands + willhaben-style von–bis filters + sort ---------- */
 const G=DATA.grid;
@@ -394,62 +480,85 @@ const yearVals=[];for(let y=maxY;y>=minY;y--)yearVals.push(y);
 const fmt=v=>nf.format(v);
 const O=(v,l,sel)=>`<option value="${v}" ${sel?'selected':''}>${l}</option>`;
 const SEL=(id,opts)=>`<span class="sel" data-for="${id}"><select id="${id}">${opts}</select></span>`;
-const range=(label,idMin,idMax,vals,f)=>`<div class="fg"><span class="fg-label">${label}</span><div class="fg-row">${SEL(idMin,O('0','von',1)+vals.map(v=>O(v,f(v))).join(''))}<span class="dash">–</span>${SEL(idMax,O('0','bis',1)+vals.map(v=>O(v,f(v))).join(''))}</div></div>`;
+const range=(label,idMin,idMax,vals,f)=>`<div class="fg"><span class="fg-label">${label}</span><div class="fg-row">${SEL(idMin,O('0',t('from'),1)+vals.map(v=>O(v,f(v))).join(''))}<span class="dash">–</span>${SEL(idMax,O('0',t('to'),1)+vals.map(v=>O(v,f(v))).join(''))}</div></div>`;
+/* Значення опції — німецьке (канонічне), підпис — поточною мовою. Інакше
+   вибраний фільтр губиться при перемиканні мови (Dizel → Diesel). */
+const optPairs=key=>{const seen=new Map();
+  G.forEach(c=>{const canon=c[key]&&c[key].de;if(canon&&!seen.has(canon))seen.set(canon,L(c[key]));});
+  return [...seen].map(([v,l])=>O(v,l)).join('');};
 const single=(label,id,opts)=>`<div class="fg"><span class="fg-label">${label}</span>${SEL(id,opts)}</div>`;
+/* Панель фільтрів перебудовується при зміні мови: підписи й значення
+   (Benzin/Petrol/Benzin) залежать від неї. Обраний стан бережемо в state. */
+function buildControls(){
 document.getElementById('controls').innerHTML=`
   <div class="ctrl-filters">
-    ${single('Kraftstoff','fFuel',O('','Alle',1)+uniq(G.map(c=>c.fuel)).map(v=>O(v,v)).join(''))}
-    ${single('Getriebe','fTrans',O('','Alle',1)+uniq(G.map(c=>c.trans)).map(v=>O(v,v)).join(''))}
-    ${range('Preis (€)','fPriceMin','fPriceMax',priceVals,fmt)}
-    ${range('Erstzulassung','fYearMin','fYearMax',yearVals,v=>v)}
-    ${range('Kilometerstand','fKmMin','fKmMax',kmVals,fmt)}
-    ${range('Leistung (PS)','fPsMin','fPsMax',psVals,v=>v)}
-    <button class="ctrl-reset" id="fReset">Zurücksetzen</button>
+    ${single(t('fFuel'),'fFuel',O('',t('all'),1)+optPairs('fuel'))}
+    ${single(t('fTrans'),'fTrans',O('',t('all'),1)+optPairs('trans'))}
+    ${range(t('fPrice'),'fPriceMin','fPriceMax',priceVals,fmt)}
+    ${range(t('fYear'),'fYearMin','fYearMax',yearVals,v=>v)}
+    ${range(t('fKm'),'fKmMin','fKmMax',kmVals,fmt)}
+    ${range(t('fPower'),'fPsMin','fPsMax',psVals,v=>v)}
+    <button class="ctrl-reset" id="fReset">${t('reset')}</button>
   </div>
-  <div class="ctrl-sort"><span class="fg-label">Sortieren</span><span class="sel"><select id="sort">
-    ${O('price-desc','Preis absteigend',1)}${O('price-asc','Preis aufsteigend')}${O('year-desc','Erstzulassung neueste')}${O('year-asc','Erstzulassung älteste')}${O('km-asc','Kilometerstand aufsteigend')}
+  <div class="ctrl-sort"><span class="fg-label">${t('sortBy')}</span><span class="sel"><select id="sort">
+    ${O('price-desc',t('sPriceDesc'),1)}${O('price-asc',t('sPriceAsc'))}${O('year-desc',t('sYearDesc'))}${O('year-asc',t('sYearAsc'))}${O('km-asc',t('sKmAsc'))}
   </select></span></div>`;
+  bindControls();
+  restoreControls();
+}
 
 const sorters={'price-desc':(a,b)=>b.price-a.price,'price-asc':(a,b)=>a.price-b.price,'year-desc':(a,b)=>(+b.year)-(+a.year),'year-asc':(a,b)=>(+a.year)-(+b.year),'km-asc':(a,b)=>a.km-b.km};
 function apply(){
   let list=G.filter(c=>
-    (state.brand==='Alle'||c.make===state.brand)&&(!state.fuel||c.fuel===state.fuel)&&(!state.trans||c.trans===state.trans)&&
+    (state.brand==='Alle'||c.make===state.brand)&&(!state.fuel||c.fuel.de===state.fuel)&&(!state.trans||c.trans.de===state.trans)&&
     (!state.priceMin||c.price>=state.priceMin)&&(!state.priceMax||c.price<=state.priceMax)&&
     (!state.yearMin||(+c.year)>=state.yearMin)&&(!state.yearMax||(+c.year)<=state.yearMax)&&
     (!state.kmMin||c.km>=state.kmMin)&&(!state.kmMax||c.km<=state.kmMax)&&
     (!state.psMin||c.ps>=state.psMin)&&(!state.psMax||c.ps<=state.psMax));
   list=list.slice().sort(sorters[state.sort]);
-  document.getElementById('count').textContent=list.length+' '+(list.length===1?'Fahrzeug':'Fahrzeuge');
+  document.getElementById('count').textContent=list.length+' '+t(list.length===1?'countOne':'countMany');
   document.getElementById('grid').innerHTML=list.length?list.map(c=>`
     <div class="gcard" onclick="openDetailById('${c.id}')">
       <div class="gmedia"><span class="gbadge">${c.make}</span><img src="${c.cover}" alt="${c.title}" loading="lazy"></div>
       <div class="gbody"><h3>${c.title}</h3>
-        <div class="gmeta"><span>${c.year}</span><i class="d"></i><span>${km(c.km)}</span><i class="d"></i><span>${c.fuel}</span></div>
-        <div class="gprice">${c.disp}</div></div>
-    </div>`).join(''):'<div class="grid-empty">Keine Fahrzeuge mit diesen Kriterien. <a href="#" onclick="resetFilters();return false" style="color:var(--accent);font-weight:600">Filter zurücksetzen</a></div>';
+        <div class="gmeta"><span>${c.year}</span><i class="d"></i><span>${km(c.km)}</span><i class="d"></i><span>${L(c.fuel)}</span></div>
+        <div class="gprice">${L(c.disp)}</div></div>
+    </div>`).join(''):`<div class="grid-empty">${t('emptyMsg')} <a href="#" onclick="resetFilters();return false" style="color:var(--accent);font-weight:600">${t('emptyReset')}</a></div>`;
   document.querySelectorAll('.sel[data-for]').forEach(s=>{const v=s.querySelector('select').value;s.classList.toggle('on',v&&v!=='0');});
 }
 document.getElementById('filters').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
   document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));b.classList.add('on');state.brand=b.dataset.b;apply();});
-const bind=(id,key,num)=>document.getElementById(id).addEventListener('change',e=>{state[key]=num?+e.target.value:e.target.value;apply();});
-bind('fFuel','fuel');bind('fTrans','trans');
-bind('fPriceMin','priceMin',1);bind('fPriceMax','priceMax',1);bind('fYearMin','yearMin',1);bind('fYearMax','yearMax',1);
-bind('fKmMin','kmMin',1);bind('fKmMax','kmMax',1);bind('fPsMin','psMin',1);bind('fPsMax','psMax',1);
-document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;apply();});
+const NUMKEYS=[['fPriceMin','priceMin'],['fPriceMax','priceMax'],['fYearMin','yearMin'],['fYearMax','yearMax'],
+  ['fKmMin','kmMin'],['fKmMax','kmMax'],['fPsMin','psMin'],['fPsMax','psMax']];
+function bindControls(){
+  const bind=(id,key,num)=>document.getElementById(id).addEventListener('change',e=>{state[key]=num?+e.target.value:e.target.value;apply();});
+  bind('fFuel','fuel');bind('fTrans','trans');
+  NUMKEYS.forEach(([id,key])=>bind(id,key,1));
+  document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;apply();});
+  document.getElementById('fReset').addEventListener('click',resetFilters);
+}
+/* після перебудови панелі повертаємо вибір користувача у нові елементи */
+function restoreControls(){
+  document.getElementById('fFuel').value=state.fuel;
+  document.getElementById('fTrans').value=state.trans;
+  NUMKEYS.forEach(([id,key])=>document.getElementById(id).value=String(state[key]||0));
+  document.getElementById('sort').value=state.sort;
+}
 function resetFilters(){Object.assign(state,{brand:'Alle',fuel:'',trans:'',priceMin:0,priceMax:0,yearMin:0,yearMax:0,kmMin:0,kmMax:0,psMin:0,psMax:0});
   document.querySelectorAll('.chip').forEach((x,i)=>x.classList.toggle('on',i===0));
-  document.getElementById('fFuel').value='';document.getElementById('fTrans').value='';
-  ['fPriceMin','fPriceMax','fYearMin','fYearMax','fKmMin','fKmMax','fPsMin','fPsMax'].forEach(id=>document.getElementById(id).value='0');apply();}
-document.getElementById('fReset').addEventListener('click',resetFilters);
+  restoreControls();apply();}
+buildControls();
 apply();
 
 /* detail */
 const byId=id=>[DATA.hero,...DATA.featured,...DATA.grid].find(c=>c.id===id);
-function openDetailById(id){renderDetail(byId(id));}
+let openCar=null;
+function openDetailById(id){openCar=byId(id);renderDetail(openCar);}
 function renderDetail(c){
   const gal=c.gallery&&c.gallery.length?c.gallery:[c.cover];
-  const wa=`https://wa.me/${PHONE}?text=`+encodeURIComponent(`Guten Tag, ich interessiere mich für den ${c.title} (${c.disp}). Ist das Fahrzeug noch verfügbar?`);
-  const mail=`mailto:${EMAIL}?subject=`+encodeURIComponent(`Anfrage: ${c.title}`)+'&body='+encodeURIComponent(`Guten Tag,\n\nich interessiere mich für den ${c.title} (${c.disp}).\nBitte kontaktieren Sie mich.\n\nDanke!`);
+  const price=L(c.disp);
+  const wa=`https://wa.me/${PHONE}?text=`+encodeURIComponent(t('waText',{title:c.title,price:price}));
+  const mail=`mailto:${EMAIL}?subject=`+encodeURIComponent(t('mailSubject',{title:c.title}))+'&body='+encodeURIComponent(t('mailBody',{title:c.title,price:price}));
   const sp=(l,v)=>`<div><span>${l}</span><b>${v}</b></div>`;
   const d=document.getElementById('detail');
   d.innerHTML=`
@@ -457,15 +566,17 @@ function renderDetail(c){
     <div class="detail-in">
       <div><div class="gal-main"><img id="galMain" src="${gal[0]}" alt="${c.title}"></div>
         ${gal.length>1?`<div class="gal-thumbs">${gal.map((g,i)=>`<img class="${i===0?'on':''}" src="${g}" onclick="swapGal(this,'${g}')">`).join('')}</div>`:''}</div>
-      <div class="dpanel"><div class="eyebrow">${c.make} · ${c.body}</div><h1>${c.title}</h1><div class="dprice">${c.disp}</div>
-        <div class="dspecs">${sp('Kilometerstand',km(c.km))}${sp('Erstzulassung',c.year)}${sp('Leistung',(c.ps?c.ps+' PS':'—')+(c.kw?' · '+c.kw+' kW':''))}${sp('Kraftstoff',c.fuel||'—')}${sp('Getriebe',c.trans||'—')}${sp('Zustand',c.cond||'—')}</div>
+      <div class="dpanel"><div class="eyebrow">${c.make} · ${L(c.body)}</div><h1>${c.title}</h1><div class="dprice">${price}</div>
+        ${L(c.desc)?`<p class="ddesc">${L(c.desc)}</p>`:''}
+        ${(L(c.hl)||[]).length?`<div class="dhl">${L(c.hl).map(x=>`<span>${x}</span>`).join('')}</div>`:''}
+        <div class="dspecs">${sp(t('fKm'),km(c.km))}${sp(t('fYear'),c.year)}${sp(t('dPower'),(c.ps?c.ps+' PS':'—')+(c.kw?' · '+c.kw+' kW':''))}${sp(t('fFuel'),L(c.fuel)||'—')}${sp(t('fTrans'),L(c.trans)||'—')}${sp(t('dCondition'),L(c.cond)||'—')}</div>
         <div class="dcta">
-          <a class="wa" href="${wa}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 1.67c4.55 0 8.24 3.69 8.24 8.24s-3.69 8.24-8.24 8.24c-1.53 0-3.02-.42-4.31-1.22l-.31-.18-3.11.82.83-3.03-.2-.32a8.2 8.2 0 0 1-1.26-4.35c0-4.55 3.7-8.24 8.24-8.24m4.52 10.4c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42-.14 0-.31-.02-.47-.02-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.16 1.73 2.64 4.19 3.7.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29"/></svg>Per WhatsApp anfragen</a>
-          <div class="dsec"><a href="tel:+${PHONE}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Anrufen</a>
-          <a href="${mail}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>E-Mail</a></div>
+          <a class="wa" href="${wa}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 1.67c4.55 0 8.24 3.69 8.24 8.24s-3.69 8.24-8.24 8.24c-1.53 0-3.02-.42-4.31-1.22l-.31-.18-3.11.82.83-3.03-.2-.32a8.2 8.2 0 0 1-1.26-4.35c0-4.55 3.7-8.24 8.24-8.24m4.52 10.4c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42-.14 0-.31-.02-.47-.02-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.16 1.73 2.64 4.19 3.7.59.25 1.04.4 1.4.52.59.19 1.12.16 1.54.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29"/></svg>${t('waBtn')}</a>
+          <div class="dsec"><a href="tel:+${PHONE}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>${t('call')}</a>
+          <a href="${mail}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>${t('mailBtn')}</a></div>
         </div>
-        ${c.eq&&c.eq.length?`<div class="deq"><h4>Ausstattung — ${c.eq.length} Merkmale</h4><div class="deq-tags">${c.eq.slice(0,18).map(x=>`<span>${x}</span>`).join('')}${c.eq.length>18?`<span>+${c.eq.length-18} weitere</span>`:''}</div></div>`:''}
-        <p class="dnote">Fahrzeugdaten automatisch aus dem willhaben-Bestand synchronisiert.</p>
+        ${(L(c.eq)||[]).length?`<div class="deq"><h4>${t('dEquip',{n:L(c.eq).length})}</h4><div class="deq-tags">${L(c.eq).slice(0,18).map(x=>`<span>${x}</span>`).join('')}${L(c.eq).length>18?`<span>${t('dMore',{n:L(c.eq).length-18})}</span>`:''}</div></div>`:''}
+        <p class="dnote">${t('dnote')}</p>
       </div>
     </div>`;
   d.classList.add('open');document.body.style.overflow='hidden';d.scrollTop=0;
@@ -510,9 +621,16 @@ addEventListener('resize',update);update();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.rv,.stg').forEach(el=>io.observe(el));
 
-document.querySelectorAll('.langs button').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('.langs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
-  if(b.textContent!=='DE')alert('Mehrsprachigkeit (DE / EN / TR) folgt im finalen Build — dieser Prototyp zeigt Deutsch.');});
+/* Перемикання мови без перезавантаження: перемальовуємо все, що містить текст,
+   і повертаємо вибір фільтрів. Вибір мови памʼятається між візитами. */
+function setLang(lang){
+  if(!I18N[lang]||lang===LANG)return;
+  LANG=lang;localStorage.setItem('lang',lang);
+  nf=new Intl.NumberFormat(LOCALES[LANG]);
+  applyStatic();renderShowcase();buildControls();apply();
+  if(openCar&&document.getElementById('detail').classList.contains('on'))renderDetail(openCar);
+}
+document.querySelectorAll('.langs button').forEach(b=>b.onclick=()=>setLang(b.textContent.trim().toLowerCase()));
 
 /* mobile menu */
 const burger=document.getElementById('burger'),mnav=document.getElementById('mnav');
@@ -521,9 +639,7 @@ function toggleMenu(open){const o=(open===undefined)?!mnav.classList.contains('o
 burger.addEventListener('click',()=>toggleMenu());
 mnav.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
 mnav.querySelectorAll('.mnav-contact a').forEach(a=>a.addEventListener('click',()=>setTimeout(()=>toggleMenu(false),120)));
-mnav.querySelectorAll('.mnav-langs button').forEach(b=>b.onclick=()=>{
-  mnav.querySelectorAll('.mnav-langs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
-  if(b.textContent!=='DE'){toggleMenu(false);alert('Mehrsprachigkeit (DE / EN / TR) folgt im finalen Build — dieser Prototyp zeigt Deutsch.');}});
+mnav.querySelectorAll('.mnav-langs button').forEach(b=>b.onclick=()=>{setLang(b.textContent.trim().toLowerCase());toggleMenu(false);});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&mnav.classList.contains('open'))toggleMenu(false);});
 </script>
 </body></html>

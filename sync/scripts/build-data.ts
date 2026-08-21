@@ -2,24 +2,31 @@
  * Будує web/data.js — форму window.DATA (hero/featured/grid/stats), яку споживає
  * сайт — з catalog.json та covers.json (чисті обкладинки від pick-covers.py).
  *
- * Окремий крок після pick-covers.py, щоб data.js уже мав обрані обкладинки, а не
- * перше-ліпше фото willhaben (часто рекламний банер дилера).
+ * Кожне текстове поле віддається трьома мовами (de/en/tr), бо перемикач мов на
+ * сайті працює без перезавантаження: локалізовані значення вже є в каталозі,
+ * описи й підсумок опцій рахує describe.ts.
  */
 import { existsSync } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { sourceUrl } from '../src/storage/images'
-import type { Car, Catalog } from '../src/types'
+import type { Car, Catalog, Lang, Localized } from '../src/types'
+import { describe, highlightIdx } from './describe'
 
 const DATA_DIR = process.env.DATA_DIR ?? 'web/data'
 const SITE_DIR = process.env.SITE_DIR ?? dirname(DATA_DIR)
+const LANGS: Lang[] = ['de', 'en', 'tr']
+const LOCALE: Record<Lang, string> = { de: 'de-DE', en: 'en-GB', tr: 'tr-TR' }
 
 type CoverPick = { cover: number; gallery: number[] }
 type Covers = Record<string, CoverPick>
 
 const IMG = (source: string) => sourceUrl(source)
-const price = (n: number) => '€ ' + n.toLocaleString('de-DE')
 const ps = (kw: number) => (kw ? Math.round(kw * 1.35962) : 0)
+
+/** Значення по всіх мовах: { de: …, en: …, tr: … }. */
+const each = (fn: (lang: Lang) => string): Localized =>
+  Object.fromEntries(LANGS.map((l) => [l, fn(l)])) as Localized
 
 /** Індекси фото авто: з covers.json, або дефолт (обкладинка = 0, галерея = всі). */
 function pickFor(car: Car, covers: Covers): CoverPick {
@@ -32,23 +39,27 @@ function pickFor(car: Car, covers: Covers): CoverPick {
 function toCard(car: Car, covers: Covers) {
   const pick = pickFor(car, covers)
   const url = (i: number) => (car.images[i] ? IMG(car.images[i].source) : '')
+  const hl = highlightIdx(car)
   return {
     id: car.id,
     make: car.make,
     model: car.model,
     title: car.title,
     price: car.price,
-    disp: price(car.price),
+    disp: each((l) => '€ ' + car.price.toLocaleString(LOCALE[l])),
     km: car.mileage,
     year: String(car.year),
-    fuel: car.fuel.de,
     kw: car.powerKw ? String(car.powerKw) : '',
     ps: ps(car.powerKw),
-    trans: car.transmission.de,
-    body: car.bodyType.de,
-    cond: car.condition.de,
+    fuel: car.fuel,
+    trans: car.transmission,
+    body: car.bodyType,
+    cond: car.condition,
     owners: car.owners != null ? String(car.owners) : '',
-    eq: car.equipment.map((e) => e.de),
+    warranty: car.warranty,
+    eq: Object.fromEntries(LANGS.map((l) => [l, car.equipment.map((e) => e[l])])),
+    hl: Object.fromEntries(LANGS.map((l) => [l, hl.map((i) => car.equipment[i][l])])),
+    desc: each((l) => describe(car, l)),
     cover: url(pick.cover),
     gallery: pick.gallery.map(url).filter(Boolean),
   }
