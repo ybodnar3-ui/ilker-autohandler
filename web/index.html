@@ -102,23 +102,16 @@ body.menu-open{overflow:hidden}
 .show-list{display:flex;flex-direction:column;gap:clamp(80px,13vw,180px)}
 .show-item{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(26px,4.5vw,66px);align-items:center;cursor:pointer}
 .show-item:nth-child(even) .show-media{order:2}
-/* Усі картки однієї форми — це тримає ритм вітрини. Саме фото вписується
-   ЦІЛКОМ (contain), тож нічого не ріжеться навіть у вертикальних знімків, а
-   поля заповнює те саме фото, розмите й притемнене: порожнеча читається як
-   задум, а не як діра. */
-.show-media{position:relative;overflow:hidden;aspect-ratio:16/10;border-radius:18px;background:#0a0b0e;
+/* Одна форма для всіх карток — це тримає ритм ряду. Знімок для вітрини
+   добирається ГОРИЗОНТАЛЬНИЙ (див. pickWide), тому заповнює рамку повністю:
+   ні обрізання, ні порожніх полів. */
+.show-media{position:relative;overflow:hidden;aspect-ratio:7/5;border-radius:18px;background:#0a0b0e;
   box-shadow:0 46px 100px -44px rgba(0,0,0,.92), 0 0 0 1px rgba(247,248,250,.07)}
-/* Ширина карток однакова завжди; висоті дозволено трохи змінюватись (1.6→1.2),
-   щоб вертикальний знімок не губився в полях. Діапазон вузький навмисно —
-   ритм вітрини лишається, а бус займає ~64% ширини замість 48%. */
-.show-media img{position:absolute;inset:0;width:100%;height:100%;display:block}
-.show-media .bg{object-fit:cover;transform:scale(1.25);
-  filter:blur(34px) brightness(.42) saturate(.65)}
-.show-media .fg{object-fit:contain;
+.show-media img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;
   filter:brightness(.88) saturate(.86) contrast(1.04);
-  transition:transform 1.4s cubic-bezier(.2,.7,.2,1), filter .7s ease}
+  transition:transform 1.4s cubic-bezier(.2,.7,.2,1), filter .7s ease, opacity .5s ease}
 /* На наведення знімок «оживає» — повна яскравість і колір. */
-.show-item:hover .show-media .fg{transform:scale(1.035);filter:brightness(1) saturate(1) contrast(1)}
+.show-item:hover .show-media img{transform:scale(1.045);filter:brightness(1) saturate(1) contrast(1)}
 /* Віньєтка зводить краї картки з темною сценою за нею. */
 .show-media::after{content:'';position:absolute;inset:0;pointer-events:none;
   transition:opacity .7s ease;
@@ -550,22 +543,38 @@ function applyStatic(){
 applyStatic();
 
 /* showcase = hero car + featured, over the video */
-/* Висота рамки трохи підлаштовується під знімок — у вузьких межах. */
-function fitFrame(img){
-  const r=img.naturalWidth/img.naturalHeight;
-  if(!isFinite(r)||r<=0)return;
-  img.closest('.show-media').style.aspectRatio=Math.min(1.6,Math.max(1.2,r));
+/* Вітрина широка, тож їй потрібен ГОРИЗОНТАЛЬНИЙ знімок.
+   Вертикальне фото у такій рамці або ріжеться (у Sprinter зникали дах і
+   колеса), або лишає порожні поля. У кожного авто 30–50 фото, тож просто
+   беремо з галереї перше достатньо широке — решта проблеми зникає сама. */
+function pickWide(img, gallery){
+  let i = 0;
+  (function next(){
+    if (i >= Math.min(gallery.length, 8)) return;   // широкого нема — лишаємо як є
+    const probe = new Image();
+    probe.onload = () => {
+      if (probe.naturalWidth / probe.naturalHeight >= 1.2) {
+        if (img.src !== probe.src) img.src = probe.src;
+      } else { i++; next(); }
+    };
+    probe.onerror = () => { i++; next(); };
+    probe.src = gallery[i];
+  })();
 }
 const showcaseCars=[DATA.hero,...DATA.featured];
 function renderShowcase(){
 document.getElementById('showItems').innerHTML=showcaseCars.map(c=>`
   <div class="show-item rv" onclick="openDetailById('${c.id}')">
-    <div class="show-media"><span class="tag">${L(c.body)}</span><img class="bg" src="${c.cover}" alt="" aria-hidden="true"><img class="fg" src="${c.cover}" alt="${c.title}" onload="fitFrame(this)"></div>
+    <div class="show-media"><span class="tag">${L(c.body)}</span><img src="${c.cover}" alt="${c.title}"></div>
     <div class="show-info"><div class="eb">${c.make} · ${c.year}</div><h3>${c.title}</h3>
       <div class="specs">${specArr(c).map(s=>`<span>${s}</span>`).join('')}</div>
       <div class="price">${L(c.disp)}</div>
       <span class="cta">${t('heroCta')}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
   </div>`).join('');
+  document.querySelectorAll('#showItems .show-media img').forEach((img,i)=>{
+    const g = showcaseCars[i] && showcaseCars[i].gallery;
+    if (g && g.length) pickWide(img, g);
+  });
 }
 renderShowcase();
 
