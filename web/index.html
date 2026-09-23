@@ -102,26 +102,31 @@ body.menu-open{overflow:hidden}
 .show-list{display:flex;flex-direction:column;gap:clamp(80px,13vw,180px)}
 .show-item{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(26px,4.5vw,66px);align-items:center;cursor:pointer}
 .show-item:nth-child(even) .show-media{order:2}
-/* Пропорції задає саме фото (JS, з обмеженням) — фіксовані 16:10 різали
-   вертикальні знімки: у Sprinter зникали дах і колеса. */
+/* Усі картки однієї форми — це тримає ритм вітрини. Саме фото вписується
+   ЦІЛКОМ (contain), тож нічого не ріжеться навіть у вертикальних знімків, а
+   поля заповнює те саме фото, розмите й притемнене: порожнеча читається як
+   задум, а не як діра. */
 .show-media{position:relative;overflow:hidden;aspect-ratio:16/10;border-radius:18px;background:#0a0b0e;
   box-shadow:0 46px 100px -44px rgba(0,0,0,.92), 0 0 0 1px rgba(247,248,250,.07)}
-.show-media img{width:100%;height:100%;object-fit:cover;display:block;
-  filter:brightness(.82) saturate(.8) contrast(1.06);
+/* Ширина карток однакова завжди; висоті дозволено трохи змінюватись (1.6→1.2),
+   щоб вертикальний знімок не губився в полях. Діапазон вузький навмисно —
+   ритм вітрини лишається, а бус займає ~64% ширини замість 48%. */
+.show-media img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.show-media .bg{object-fit:cover;transform:scale(1.25);
+  filter:blur(34px) brightness(.42) saturate(.65)}
+.show-media .fg{object-fit:contain;
+  filter:brightness(.88) saturate(.86) contrast(1.04);
   transition:transform 1.4s cubic-bezier(.2,.7,.2,1), filter .7s ease}
 /* На наведення знімок «оживає» — повна яскравість і колір. */
-.show-item:hover .show-media img{transform:scale(1.045);filter:brightness(1) saturate(1) contrast(1)}
-/* Два шари зведення з темною сценою:
-   1) холодний відтінок кольору салону — прибирає «липкість» синього неба;
-   2) віньєтка, що гасить краї, щоб не було різкого прямокутника на відео. */
+.show-item:hover .show-media .fg{transform:scale(1.035);filter:brightness(1) saturate(1) contrast(1)}
+/* Віньєтка зводить краї картки з темною сценою за нею. */
 .show-media::after{content:'';position:absolute;inset:0;pointer-events:none;
   transition:opacity .7s ease;
   background:
-    linear-gradient(180deg, rgba(18,26,42,.30), rgba(10,11,14,.22)),
-    radial-gradient(120% 95% at 50% 44%, transparent 46%, rgba(10,11,14,.55) 100%),
-    linear-gradient(180deg, rgba(10,11,14,.26) 0%, transparent 22%, transparent 68%, rgba(10,11,14,.46) 100%)}
-.show-item:hover .show-media::after{opacity:.35}
-.show-media .tag{position:absolute;top:18px;left:18px;background:rgba(10,11,14,.5);backdrop-filter:blur(8px);border:1px solid var(--d-line);color:var(--d-ink);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:7px 13px;border-radius:100px}
+    radial-gradient(125% 100% at 50% 45%, transparent 55%, rgba(10,11,14,.5) 100%),
+    linear-gradient(180deg, rgba(10,11,14,.22) 0%, transparent 24%, transparent 70%, rgba(10,11,14,.38) 100%)}
+.show-item:hover .show-media::after{opacity:.4}
+.show-media .tag{position:absolute;top:18px;left:18px;z-index:2;background:rgba(10,11,14,.72);backdrop-filter:blur(8px);border:1px solid var(--d-line);color:var(--d-ink);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:7px 13px;border-radius:100px}
 .show-info{color:var(--d-ink)}
 .show-info .eb{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--d-muted);margin-bottom:16px}
 .show-info h3{font-family:var(--disp);font-weight:600;font-size:clamp(26px,3.1vw,42px);line-height:1.02;letter-spacing:-.02em}
@@ -545,19 +550,17 @@ function applyStatic(){
 applyStatic();
 
 /* showcase = hero car + featured, over the video */
-/* Рамка приймає пропорції фото, але в розумних межах: дуже вертикальні
-   знімки не розтягують верстку, дуже широкі — не перетворюються на смужку.
-   У цих межах кадр видно цілим, без обрізання. */
-function fitMedia(img){
+/* Висота рамки трохи підлаштовується під знімок — у вузьких межах. */
+function fitFrame(img){
   const r=img.naturalWidth/img.naturalHeight;
   if(!isFinite(r)||r<=0)return;
-  img.parentElement.style.aspectRatio=Math.min(1.78,Math.max(0.8,r));
+  img.closest('.show-media').style.aspectRatio=Math.min(1.6,Math.max(1.2,r));
 }
 const showcaseCars=[DATA.hero,...DATA.featured];
 function renderShowcase(){
 document.getElementById('showItems').innerHTML=showcaseCars.map(c=>`
   <div class="show-item rv" onclick="openDetailById('${c.id}')">
-    <div class="show-media"><span class="tag">${L(c.body)}</span><img src="${c.cover}" alt="${c.title}" onload="fitMedia(this)"></div>
+    <div class="show-media"><span class="tag">${L(c.body)}</span><img class="bg" src="${c.cover}" alt="" aria-hidden="true"><img class="fg" src="${c.cover}" alt="${c.title}" onload="fitFrame(this)"></div>
     <div class="show-info"><div class="eb">${c.make} · ${c.year}</div><h3>${c.title}</h3>
       <div class="specs">${specArr(c).map(s=>`<span>${s}</span>`).join('')}</div>
       <div class="price">${L(c.disp)}</div>
