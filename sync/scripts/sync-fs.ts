@@ -49,15 +49,79 @@ function fsBucket(dir: string): R2Bucket {
   return bucket as unknown as R2Bucket
 }
 
-const dealerUrl = `https://www.willhaben.at/iad/haendler/hayatgruppe/auto/?orgId=${ORG}&page=1&rows=200`
+const PAGE_ROWS = 100 // willhaben віддає щонайбільше 200 за раз, беремо із запасом
+const MAX_PAGES = 20  // страховка від нескінченного циклу, якщо willhaben зациклить видачу
+const dealerUrl = (page: number) =>
+  `https://www.willhaben.at/iad/haendler/hayatgruppe/auto/?orgId=${ORG}&page=${page}&rows=${PAGE_ROWS}`
+
+const NEXT_DATA = /<script id="__NEXT_DATA__" type="application\/json">(.*?)<\/script>/s
+
+const getPage = (page: number) =>
+  fetch(dealerUrl(page), { headers: { 'User-Agent': UA, 'Accept-Language': 'de-AT,de;q=0.9' } })
+
+/**
+ * Збирає ВЕСЬ сток дилера і віддає його як одну відповідь.
+ *
+ * willhaben обмежує видачу 200 оголошеннями за запит (більший `rows` він просто
+ * ігнорує), тому єдиний спосіб не загубити авто при зростанні стоку — пагінація.
+ * Сторінки зшиваємо в один __NEXT_DATA__, щоб конвеєр і його тести лишились
+ * недоторканими: вони й далі бачать рівно одну сторінку.
+ *
+ * Якщо зібрати вдалося менше, ніж willhaben декларує в `rowsFound`, віддаємо
+ * помилку. Часткова видача пройшла б перевірку осудності й СТЕРЛА б із сайту
+ * авто, які насправді в наявності — краще пропустити цикл і повторити за 30 хв.
+ */
+async function fetchAllPages(): Promise<Response> {
+  const first = await getPage(1)
+  if (!first.ok) return first
+
+  const html = await first.text()
+  const match = NEXT_DATA.exec(html)
+  if (!match) return new Response(html, { status: 200 }) // хай конвеєр сам відхилить
+
+  const root = JSON.parse(match[1])
+  const result = root?.props?.pageProps?.searchResult
+  const list = result?.advertSummaryList
+  if (!list?.advertSummary) return new Response(html, { status: 200 })
+
+  const expected: number = Number(result.rowsFound ?? list.advertSummary.length)
+  const all = [...list.advertSummary]
+  const seen = new Set(all.map((a: { id?: string }) => a?.id))
+
+  for (let page = 2; all.length < expected && page <= MAX_PAGES; page++) {
+    const res = await getPage(page)
+    if (!res.ok) break
+    const m = NEXT_DATA.exec(await res.text())
+    if (!m) break
+    const ads = JSON.parse(m[1])?.props?.pageProps?.searchResult?.advertSummaryList?.advertSummary
+    if (!Array.isArray(ads) || ads.length === 0) break
+    let fresh = 0
+    for (const ad of ads) {
+      if (seen.has(ad?.id)) continue // та сама сторінка вдруге — далі йти нема сенсу
+      seen.add(ad?.id)
+      all.push(ad)
+      fresh++
+    }
+    if (fresh === 0) break
+  }
+
+  if (all.length < expected) {
+    console.error(`Зібрано ${all.length} з ${expected} оголошень — цикл пропущено, щоб не стерти наявні авто`)
+    return new Response('', { status: 502 })
+  }
+
+  list.advertSummary = all
+  console.log(`willhaben: зібрано ${all.length} оголошень (сторінок: ${Math.ceil(all.length / PAGE_ROWS)})`)
+  return new Response(
+    `<script id="__NEXT_DATA__" type="application/json">${JSON.stringify(root)}</script>`,
+    { status: 200 },
+  )
+}
 
 const outcome = await runSync({
   bucket: fsBucket(DATA_DIR),
   now: new Date(),
-  fetchPage: () =>
-    fetch(dealerUrl, {
-      headers: { 'User-Agent': UA, 'Accept-Language': 'de-AT,de;q=0.9' },
-    }),
+  fetchPage: fetchAllPages,
   // Не викликається: head() для ключів фото повертає «наявне».
   fetchImage: (url) => fetch(url, { headers: { 'User-Agent': UA } }),
   triggerBuild: async () => {},
