@@ -191,6 +191,13 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 .foot-col h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px;font-weight:600}
 .foot-col a,.foot-col p{display:block;color:var(--ink-2);font-size:14px;margin-bottom:11px;transition:.25s}
 .foot-col a:hover{color:var(--accent)}
+
+/* Підпис розробника — стриманий, щоб не сперечатись із брендом клієнта. */
+.built{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-3);transition:.25s}
+.built a{color:var(--ink-2);font-weight:600;letter-spacing:.02em;border-bottom:1px solid transparent;transition:.25s}
+.built a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.built svg{width:13px;height:13px;color:var(--ink-3);transition:.25s}
+.built:hover svg{color:var(--accent);transform:translate(1px,-1px)}
 .foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px}
 .foot-bot span{font-size:12.5px;color:var(--ink-3)}
 .foot-legal{display:flex;gap:22px}
@@ -418,6 +425,9 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
       <div class="foot-col rv"><h4 data-t="follow">Folgen</h4><a href="#" onclick="return false">Instagram</a><a href="#" onclick="return false">Facebook</a><a href="#kollektion" data-t="toStock">Zum Bestand</a></div>
     </div>
     <div class="foot-bot"><span data-t="copyright">© 2026 Hayat Gruppe — Familienunternehmen seit 1932</span>
+      <span class="built"><span data-t="builtBy">Entwickelt von</span>
+        <a id="builtLink" href="#" target="_blank" rel="noopener">VUZOL</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       <div class="foot-legal"><a href="#" onclick="return false" data-t="imprint">Impressum</a><a href="#" onclick="return false" data-t="privacy">Datenschutz</a><a href="#" onclick="return false" data-t="terms">AGB</a></div></div>
   </div></footer>
 </div>
@@ -428,6 +438,8 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 <script>
 const DATA=window.DATA;
 const PHONE='436765571571',EMAIL='contact@hayatgruppe.com';
+/* ⚠️ Підставити справжню адресу агенції — поки заглушка, посилання неактивне. */
+const VUZOL_URL='';
 /* ---- i18n: три мови. Значення авто вже локалізовані в даних (data.js),
    тут лише рядки інтерфейсу. L() дістає мову з локалізованого поля. ---- */
 const I18N={
@@ -441,7 +453,7 @@ de:{flag:'Hayat Gruppe · Wien · seit 1932',navColl:'Kollektion',navSel:'Ausgew
  yearsExp:'Jahre Erfahrung',vehicles:'Fahrzeuge',brands:'Marken',
  svc1:'Fahrzeugankauf & -verkauf',svc2:'Finanzierung über 5 Banken',svc3:'Geprüfte Premium- & Sportwagen',svc4:'Europaweites Händlernetzwerk',svc5:'Diskrete & persönliche Abwicklung',
  footBlurb:'Exklusive Automobile. Persönliche Beratung. Höchste Qualität — für Käufer und Verkäufer in ganz Österreich.',
- follow:'Folgen',toStock:'Zum Bestand',copyright:'© 2026 Hayat Gruppe — Familienunternehmen seit 1932',legalLang:'Rechtlich maßgeblich ist die deutsche Fassung.',imprint:'Impressum',privacy:'Datenschutz',terms:'AGB',
+ follow:'Folgen',toStock:'Zum Bestand',copyright:'© 2026 Hayat Gruppe — Familienunternehmen seit 1932',legalLang:'Rechtlich maßgeblich ist die deutsche Fassung.',builtBy:'Entwickelt von',imprint:'Impressum',privacy:'Datenschutz',terms:'AGB',
  fFuel:'Kraftstoff',fTrans:'Getriebe',fPrice:'Preis (€)',fYear:'Erstzulassung',fKm:'Kilometerstand',fPower:'Leistung (PS)',
  all:'Alle',from:'von',to:'bis',reset:'Zurücksetzen',sortBy:'Sortieren',
  sPriceDesc:'Preis absteigend',sPriceAsc:'Preis aufsteigend',sYearDesc:'Erstzulassung neueste',sYearAsc:'Erstzulassung älteste',sKmAsc:'Kilometerstand aufsteigend',
@@ -460,7 +472,7 @@ en:{flag:'Hayat Gruppe · Vienna · since 1932',navColl:'Collection',navSel:'Sel
  yearsExp:'years of experience',vehicles:'vehicles',brands:'brands',
  svc1:'Vehicle purchase & sale',svc2:'Financing via 5 banks',svc3:'Vetted premium & sports cars',svc4:'Europe-wide dealer network',svc5:'Discreet & personal handling',
  footBlurb:'Exclusive automobiles. Personal advice. Highest quality — for buyers and sellers across Austria.',
- follow:'Follow',toStock:'Browse stock',copyright:'© 2026 Hayat Gruppe — family business since 1932',legalLang:'The German version is the legally binding one.',imprint:'Legal notice',privacy:'Privacy',terms:'Terms',
+ follow:'Follow',toStock:'Browse stock',copyright:'© 2026 Hayat Gruppe — family business since 1932',legalLang:'The German version is the legally binding one.',builtBy:'Built by',imprint:'Legal notice',privacy:'Privacy',terms:'Terms',
  fFuel:'Fuel',fTrans:'Transmission',fPrice:'Price (€)',fYear:'First registration',fKm:'Mileage',fPower:'Power (hp)',
  all:'All',from:'from',to:'to',reset:'Reset',sortBy:'Sort',
  sPriceDesc:'Price high to low',sPriceAsc:'Price low to high',sYearDesc:'Newest first',sYearAsc:'Oldest first',sKmAsc:'Lowest mileage',
@@ -479,7 +491,7 @@ tr:{flag:'Hayat Gruppe · Viyana · 1932’den beri',navColl:'Koleksiyon',navSel
  yearsExp:'yıllık deneyim',vehicles:'araç',brands:'marka',
  svc1:'Araç alım & satımı',svc2:'5 banka ile finansman',svc3:'Kontrollü premium & spor araçlar',svc4:'Avrupa çapında bayi ağı',svc5:'Gizli & kişisel işlem',
  footBlurb:'Özel otomobiller. Kişisel danışmanlık. En yüksek kalite — Avusturya genelinde alıcılar ve satıcılar için.',
- follow:'Takip edin',toStock:'Stoka git',copyright:'© 2026 Hayat Gruppe — 1932’den beri aile şirketi',legalLang:'Hukuken bağlayıcı olan Almanca sürümdür.',imprint:'Künye',privacy:'Gizlilik',terms:'Şartlar',
+ follow:'Takip edin',toStock:'Stoka git',copyright:'© 2026 Hayat Gruppe — 1932’den beri aile şirketi',legalLang:'Hukuken bağlayıcı olan Almanca sürümdür.',builtBy:'Geliştiren:',imprint:'Künye',privacy:'Gizlilik',terms:'Şartlar',
  fFuel:'Yakıt',fTrans:'Şanzıman',fPrice:'Fiyat (€)',fYear:'İlk tescil',fKm:'Kilometre',fPower:'Güç (HP)',
  all:'Tümü',from:'en az',to:'en çok',reset:'Sıfırla',sortBy:'Sırala',
  sPriceDesc:'Fiyat azalan',sPriceAsc:'Fiyat artan',sYearDesc:'En yeni',sYearAsc:'En eski',sKmAsc:'En düşük km',
@@ -536,6 +548,9 @@ function applyStatic(){
   const qi=document.getElementById('q');if(qi)qi.placeholder=t('searchPh');
   const mi=document.getElementById('mic');if(mi)mi.title=t('voiceStart');
   const qc=document.getElementById('qClear');if(qc)qc.title=t('searchClear');
+  const bl=document.getElementById('builtLink');
+  if(bl){ if(VUZOL_URL){bl.href=VUZOL_URL;bl.removeAttribute('aria-disabled');}
+          else {bl.removeAttribute('href');bl.setAttribute('aria-disabled','true');} }
   document.getElementById('mtotal').textContent=n;
   document.getElementById('mbrands').textContent=b;
   document.querySelectorAll('.langs button,.mnav-langs button').forEach(x=>x.classList.toggle('on',x.textContent.toLowerCase()===LANG));
