@@ -193,11 +193,14 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 .foot-col a:hover{color:var(--accent)}
 
 /* Підпис розробника — стриманий, щоб не сперечатись із брендом клієнта. */
-.built{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-3);transition:.25s}
-.built a{color:var(--ink-2);font-weight:600;letter-spacing:.02em;border-bottom:1px solid transparent;transition:.25s}
-.built a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-.built svg{width:13px;height:13px;color:var(--ink-3);transition:.25s}
-.built:hover svg{color:var(--accent);transform:translate(1px,-1px)}
+.built{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-3);
+  background:var(--bg-2);border:1px solid var(--line);border-radius:100px;padding:8px 14px;
+  white-space:nowrap;text-decoration:none;transition:.28s}
+.built b{color:var(--ink);font-weight:700;letter-spacing:.06em}
+.built svg{width:12px;height:12px;flex:none;transition:.28s}
+a.built:hover{border-color:var(--accent);background:rgba(27,69,255,.06);color:var(--accent)}
+a.built:hover b{color:var(--accent)}
+a.built:hover svg{transform:translate(1.5px,-1.5px)}
 .foot-bot{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:14px}
 .foot-bot span{font-size:12.5px;color:var(--ink-3)}
 .foot-legal{display:flex;gap:22px}
@@ -425,9 +428,9 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
       <div class="foot-col rv"><h4 data-t="follow">Folgen</h4><a href="#" onclick="return false">Instagram</a><a href="#" onclick="return false">Facebook</a><a href="#kollektion" data-t="toStock">Zum Bestand</a></div>
     </div>
     <div class="foot-bot"><span data-t="copyright">© 2026 Hayat Gruppe — Familienunternehmen seit 1932</span>
-      <span class="built"><span data-t="builtBy">Entwickelt von</span>
-        <a id="builtLink" href="#" target="_blank" rel="noopener">VUZOL</a>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      <a class="built" id="builtLink" href="#" target="_blank" rel="noopener">
+        <span data-t="builtBy">Entwickelt von</span><b>VUZOL</b>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
       <div class="foot-legal"><a href="#" onclick="return false" data-t="imprint">Impressum</a><a href="#" onclick="return false" data-t="privacy">Datenschutz</a><a href="#" onclick="return false" data-t="terms">AGB</a></div></div>
   </div></footer>
 </div>
@@ -438,8 +441,8 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 <script>
 const DATA=window.DATA;
 const PHONE='436765571571',EMAIL='contact@hayatgruppe.com';
-/* ⚠️ Підставити справжню адресу агенції — поки заглушка, посилання неактивне. */
-const VUZOL_URL='';
+/* Сайт агенції-розробника. Порожнє значення робить підпис звичайним текстом. */
+const VUZOL_URL='https://vuzol-agency.vercel.app/';
 /* ---- i18n: три мови. Значення авто вже локалізовані в даних (data.js),
    тут лише рядки інтерфейсу. L() дістає мову з локалізованого поля. ---- */
 const I18N={
@@ -549,8 +552,8 @@ function applyStatic(){
   const mi=document.getElementById('mic');if(mi)mi.title=t('voiceStart');
   const qc=document.getElementById('qClear');if(qc)qc.title=t('searchClear');
   const bl=document.getElementById('builtLink');
-  if(bl){ if(VUZOL_URL){bl.href=VUZOL_URL;bl.removeAttribute('aria-disabled');}
-          else {bl.removeAttribute('href');bl.setAttribute('aria-disabled','true');} }
+  if(bl){ if(VUZOL_URL){bl.href=VUZOL_URL;bl.title='VUZOL — AI automation agency';}
+          else bl.removeAttribute('href'); }
   document.getElementById('mtotal').textContent=n;
   document.getElementById('mbrands').textContent=b;
   document.querySelectorAll('.langs button,.mnav-langs button').forEach(x=>x.classList.toggle('on',x.textContent.toLowerCase()===LANG));
