@@ -192,6 +192,29 @@ footer{padding:clamp(56px,7vw,92px) 0 36px}
 .foot-col a,.foot-col p{display:block;color:var(--ink-2);font-size:14px;margin-bottom:11px;transition:.25s}
 .foot-col a:hover{color:var(--accent)}
 
+
+/* Фіксований підпис розробника — правий нижній кут, щоб не зіштовхнутись із
+   плашкою бренду зліва. Темна напівпрозора капсула з розмиттям читається і
+   на відео вгорі, і на світлій сторінці внизу, тож один стиль на всю сторінку.
+   Ховається, коли видно футер: там уже є свій підпис, і дві однакові плашки
+   поруч виглядали б як помилка. */
+.built-fix{position:fixed;right:14px;bottom:14px;z-index:90;
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:11.5px;color:rgba(247,248,250,.72);text-decoration:none;
+  background:rgba(10,11,14,.62);backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(247,248,250,.16);border-radius:100px;padding:8px 14px;
+  white-space:nowrap;transition:opacity .45s ease, transform .45s ease,
+    background .28s, border-color .28s, color .28s}
+.built-fix b{color:var(--d-ink);font-weight:700;letter-spacing:.06em}
+.built-fix svg{width:11px;height:11px;flex:none;transition:transform .28s}
+.built-fix:hover{background:var(--accent);border-color:var(--accent);color:rgba(255,255,255,.85)}
+.built-fix:hover b{color:#fff}
+.built-fix:hover svg{transform:translate(1.5px,-1.5px)}
+.built-fix.hide{opacity:0;transform:translateY(10px);pointer-events:none}
+@media(max-width:640px){
+  .built-fix{right:10px;bottom:10px;padding:7px 12px;font-size:11px}
+  .built-fix .lbl{display:none}   /* на телефоні лишаємо тільки назву */
+}
 /* Підпис розробника — стриманий, щоб не сперечатись із брендом клієнта. */
 .built{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-3);
   background:var(--bg-2);border:1px solid var(--line);border-radius:100px;padding:8px 14px;
@@ -339,6 +362,9 @@ a.built:hover svg{transform:translate(1.5px,-1.5px)}
 </head><body>
 <script src="./data.js"></script>
 <script src="./legal.js"></script>
+<a class="built-fix" id="builtFix" href="#" target="_blank" rel="noopener">
+  <span class="lbl" data-t="builtBy">Entwickelt von</span><b>VUZOL</b>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
 <div class="flag" data-t="flag">Hayat Gruppe · Wien · seit 1932</div>
 
 <header id="hdr"><div class="wrap nav">
@@ -551,9 +577,10 @@ function applyStatic(){
   const qi=document.getElementById('q');if(qi)qi.placeholder=t('searchPh');
   const mi=document.getElementById('mic');if(mi)mi.title=t('voiceStart');
   const qc=document.getElementById('qClear');if(qc)qc.title=t('searchClear');
-  const bl=document.getElementById('builtLink');
-  if(bl){ if(VUZOL_URL){bl.href=VUZOL_URL;bl.title='VUZOL — AI automation agency';}
-          else bl.removeAttribute('href'); }
+  document.querySelectorAll('#builtLink,#builtFix').forEach(el=>{
+    if(VUZOL_URL){el.href=VUZOL_URL;el.title='VUZOL — AI automation agency';}
+    else el.removeAttribute('href');
+  });
   document.getElementById('mtotal').textContent=n;
   document.getElementById('mbrands').textContent=b;
   document.querySelectorAll('.langs button,.mnav-langs button').forEach(x=>x.classList.toggle('on',x.textContent.toLowerCase()===LANG));
@@ -992,6 +1019,13 @@ addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{update();
 addEventListener('resize',update);update();
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+/* Коли футер у полі зору — фіксовану плашку прибираємо: внизу вже є своя. */
+(function(){
+  const fix=document.getElementById('builtFix'), foot=document.querySelector('footer');
+  if(!fix||!foot)return;
+  new IntersectionObserver(es=>es.forEach(e=>fix.classList.toggle('hide',e.isIntersecting)),
+    {threshold:0}).observe(foot);
+})();
 document.querySelectorAll('.rv,.stg').forEach(el=>io.observe(el));
 
 /* Перемикання мови без перезавантаження: перемальовуємо все, що містить текст,
